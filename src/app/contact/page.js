@@ -57,7 +57,7 @@ function Field({ label, type = "text", className = "" }) {
 
 export default function ContactPage() {
   return (
-    <main className="overflow-x-hidden bg-white pt-20">
+    <main className="overflow-x-hidden no-scrollbar bg-white pt-20">
       <Header />
 
       <section
