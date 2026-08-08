@@ -55,7 +55,7 @@ export default function GrowthSupportSection() {
               steady.
             </p>
             <a
-              href="https://vidimeth.com/contact/"
+              href="/contact"
               className="mt-9 inline-flex w-fit items-center rounded-full border border-white/70 px-7 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white transition hover:border-[#39b76f] hover:bg-[#39b76f]"
             >
               See More

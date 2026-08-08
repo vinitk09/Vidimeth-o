@@ -4,17 +4,9 @@ import ClientTestimonialsSection from "./components/ClientTestimonialsSection";
 import FoundationNetworkSection from "./components/FoundationNetworkSection";
 import Footer from "./components/Footer";
 import GrowthSupportSection from "./components/GrowthSupportSection";
+import Header from "./components/Header";
 import WhatWeDoSection from "./components/WhatWeDoSection";
 import WhyChooseUsSection from "./components/WhyChooseUsSection";
-
-const navLinks = [
-  { label: "Home", href: "https://vidimeth.com/" },
-  { label: "About Us", href: "https://vidimeth.com/about/" },
-  { label: "Our Services", href: "https://vidimeth.com/our-services/" },
-  { label: "Our Divisions", href: "https://vidimeth.com/our-divisions/" },
-  { label: "FAQs", href: "https://vidimeth.com/faqs/" },
-  { label: "Contact Us", href: "https://vidimeth.com/contact/" },
-];
 
 const slides = [
   {
@@ -77,38 +69,7 @@ const welcomeHighlights = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-white pt-20">
-      <header className="fixed left-0 top-0 z-50 w-full border-b border-slate-200 bg-white text-[#0a1f44] shadow-[0_8px_26px_rgba(10,31,68,0.08)]">
-        <nav className="mx-auto flex min-h-20 w-full max-w-7xl items-center justify-between gap-8 px-5 py-2 font-sans sm:px-8 lg:px-10">
-          <a
-            href="https://vidimeth.com/"
-            className="flex shrink-0 items-center"
-            aria-label="Vidi Meth Digital Services home"
-          >
-            <Image
-              src="/vidimethlogo1.png"
-              alt="Vidi Meth Digital Services"
-              width={112}
-              height={112}
-              priority
-              className="h-14 w-14 rounded-full object-cover shadow-md ring-1 ring-slate-200 sm:h-16 sm:w-16"
-            />
-          </a>
-
-          <div className="flex flex-1 items-center justify-end overflow-x-auto pb-1">
-            <div className="flex min-w-max items-center gap-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="nav-link rounded-md px-3 py-2 text-sm font-normal transition hover:text-[#0077c8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] sm:px-4 sm:text-[15px]"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       <section className="hero-slider relative overflow-hidden bg-[#eef7ff]">
         {slides.map((slide, index) => (

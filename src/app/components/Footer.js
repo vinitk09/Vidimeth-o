@@ -1,9 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const footerLinks = [
-  { label: "About", href: "https://vidimeth.com/about/" },
-  { label: "Contact", href: "https://vidimeth.com/contact/" },
-  { label: "Our Services", href: "https://vidimeth.com/our-services/" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Our Services", href: "/our-services" },
+  { label: "Our Divisions", href: "/our-divisions" },
+  { label: "FAQs", href: "/faqs" },
   { label: "Career", href: "https://vidimeth.com/career/" },
 ];
 
@@ -60,18 +63,34 @@ function FooterList({ links }) {
     <ul className="space-y-0.5">
       {links.map((link) => (
         <li key={link.href}>
-          <a
-            href={link.href}
-            className="group flex items-center gap-1.5 border-b border-white/10 py-1.5 text-[15px] font-normal text-white/78 transition hover:text-white"
-          >
+          <FooterLink link={link}>
             <span className="flex h-5 w-5 shrink-0 items-center justify-center text-white/72 transition group-hover:translate-x-0.5 group-hover:text-white [&_svg]:h-4 [&_svg]:w-4 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round">
               <Icon type="arrow" />
             </span>
             {link.label}
-          </a>
+          </FooterLink>
         </li>
       ))}
     </ul>
+  );
+}
+
+function FooterLink({ link, children }) {
+  const className =
+    "group flex items-center gap-1.5 border-b border-white/10 py-1.5 text-[15px] font-normal text-white/78 transition hover:text-white";
+
+  if (link.href.startsWith("http") || link.href.startsWith("mailto:")) {
+    return (
+      <a href={link.href} className={className}>
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={link.href} className={className}>
+      {children}
+    </Link>
   );
 }
 
@@ -162,7 +181,7 @@ export default function Footer() {
 
       <div className="bg-[#10141b] px-5 py-2.5 sm:px-8 lg:px-10">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 text-sm font-normal leading-5 text-white/70 lg:flex-row lg:items-center lg:justify-between">
-          <p>© 2024 Vidi Meth Digital Services (OPC) Private Limited.</p>
+          <p>&copy; 2024 Vidi Meth Digital Services (OPC) Private Limited.</p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
             {legalLinks.map((link) => (
               <a

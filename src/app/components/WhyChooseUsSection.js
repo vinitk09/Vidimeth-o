@@ -221,7 +221,7 @@ export default function WhyChooseUsSection() {
           </div>
 
           <a
-            href="https://vidimeth.com/contact/"
+            href="/contact"
             className="mt-7 inline-flex w-fit self-start rounded-full bg-[#0aa64f] px-9 py-3 text-base font-semibold text-white shadow-[0_12px_28px_rgba(10,166,79,0.25)] transition hover:bg-[#087d3e]"
           >
             Contact Us
