@@ -16,6 +16,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  height: auto;
   margin: 0;
   max-width: 100%;
   overflow-x: hidden;
@@ -34,6 +35,7 @@ html {
 }
 
 main {
+  height: auto;
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -45,15 +47,44 @@ canvas {
   max-width: 100%;
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
 .hero-slider {
-  height: calc(100vh - 96px);
+  height: calc(100dvh - 80px);
   min-height: 560px;
+  max-width: 100%;
+  overflow: hidden !important;
+  scrollbar-width: none;
+  width: 100%;
+}
+
+.hero-slider::-webkit-scrollbar {
+  display: none;
+  height: 0;
+  width: 0;
 }
 
 .hero-slide {
   opacity: 0;
   animation: hero-fade 15s infinite;
   animation-delay: calc(var(--slide-index) * 5s);
+  overflow: hidden !important;
+  scrollbar-width: none;
+}
+
+.hero-slide::-webkit-scrollbar {
+  display: none;
+  height: 0;
+  width: 0;
 }
 
 .hero-slide img {

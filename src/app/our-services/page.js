@@ -62,7 +62,7 @@ function ArrowIcon() {
 
 export default function OurServicesPage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-white pt-20">
+    <main className="overflow-x-hidden bg-white pt-20">
       <Header />
 
       <section

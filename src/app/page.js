@@ -68,10 +68,10 @@ const welcomeHighlights = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-white pt-20">
+    <main className="overflow-x-hidden no-scrollbar bg-white pt-20">
       <Header />
 
-      <section className="hero-slider relative overflow-hidden bg-[#eef7ff]">
+      <section className="hero-slider no-scrollbar relative overflow-hidden bg-[#eef7ff]">
         {slides.map((slide, index) => (
           <div
             className="hero-slide absolute inset-0"
