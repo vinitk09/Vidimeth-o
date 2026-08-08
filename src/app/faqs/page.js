@@ -51,7 +51,7 @@ function PlusIcon() {
 
 export default function FaqsPage() {
   return (
-    <main className="min-h-screen bg-white pt-20">
+    <main className="min-h-screen overflow-x-hidden bg-white pt-20">
       <Header />
 
       <section

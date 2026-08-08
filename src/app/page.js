@@ -68,7 +68,7 @@ const welcomeHighlights = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white pt-20">
+    <main className="min-h-screen overflow-x-hidden bg-white pt-20">
       <Header />
 
       <section className="hero-slider relative overflow-hidden bg-[#eef7ff]">
