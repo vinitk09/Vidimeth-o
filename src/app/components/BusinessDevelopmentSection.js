@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 const businessCards = [
   {
-    image: "/b1.jpeg",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
     title: "Use Networking Opportunities",
     text: "To search for new opportunities and use most of your resources.",
   },
@@ -15,7 +15,7 @@ const businessCards = [
     text: "To preserve trust, credibility, and transparency.",
   },
   {
-    image: "/b3.jpeg",
+    image: "https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?auto=format&fit=crop&w=800&q=80",
     title: "Support communities and charities",
     text: "To have partnerships with other successful businesses, consider getting involved in charity.",
   },
@@ -195,6 +195,7 @@ export default function BusinessDevelopmentSection() {
                   src={card.image}
                   alt={card.title}
                   fill
+                  unoptimized
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition duration-500 group-hover:scale-105"
                 />

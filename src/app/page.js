@@ -7,6 +7,7 @@ import GrowthSupportSection from "./components/GrowthSupportSection";
 import Header from "./components/Header";
 import WhatWeDoSection from "./components/WhatWeDoSection";
 import WhyChooseUsSection from "./components/WhyChooseUsSection";
+import StatsCounterSection from "./components/StatsCounterSection";
 
 const slides = [
   {
@@ -192,6 +193,7 @@ export default function Home() {
       <WhyChooseUsSection />
       <WhatWeDoSection />
       <FoundationNetworkSection />
+      <StatsCounterSection />
       <ClientTestimonialsSection />
       <Footer />
     </main>

@@ -96,19 +96,21 @@ export default function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           {/* Column 1: Company Logo & Info */}
           <div className="lg:col-span-1 space-y-4">
-            <div className="inline-block rounded-xl bg-white p-3 shadow-sm border border-white/10">
-              <div className="flex items-center gap-3">
-                <Image
-                  src="/vidimethlogo1.png"
-                  alt="Vidi Meth Digital Services"
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 rounded-full object-cover"
-                />
-                <div>
-                  <p className="text-sm font-bold text-[#0a1f44] leading-tight">Vidi Meth</p>
-                  <p className="text-[11px] font-medium text-[#0077c8]">Digital Services</p>
-                </div>
+            <div className="flex items-center gap-3.5">
+              <Image
+                src="/vidimethlogo1.png"
+                alt="Vidi Meth Digital Services"
+                width={56}
+                height={56}
+                className="h-14 w-14 rounded-full bg-white object-cover ring-2 ring-white/20"
+              />
+              <div>
+                <p className="text-base font-bold leading-tight text-white">
+                  Vidi Meth Digital Services
+                </p>
+                <p className="mt-0.5 text-xs font-normal text-white/70">
+                  OPC Private Limited
+                </p>
               </div>
             </div>
 

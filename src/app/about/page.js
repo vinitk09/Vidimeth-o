@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import StatsCounterSection from "../components/StatsCounterSection";
 
 export const metadata = {
   title: "About Vidi Meth Digital Services",
@@ -14,6 +15,12 @@ const platforms = [
     href: "https://www.vmacademys.com/",
     category: "Education Portal",
     text: "An online education platform that helps students discover courses, colleges, admissions, eligibility, exams, fees, placements, scholarships, and career guidance across popular UG and PG streams in India.",
+    color: "bg-[#e0f2fe] text-[#0284c7] ring-[#0284c7]/20",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7">
+        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" />
+      </svg>
+    ),
   },
   {
     name: "Village My City",
@@ -21,6 +28,12 @@ const platforms = [
     href: "https://www.villagemycity.com/",
     category: "Real Estate Portal",
     text: "A property and marketplace platform for buyers, sellers, owners, builders, promoters, agents, and dealers to connect online and transact offline with greater ease.",
+    color: "bg-[#dcfce7] text-[#16a34a] ring-[#16a34a]/20",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7">
+        <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" />
+      </svg>
+    ),
   },
   {
     name: "GoJobin",
@@ -28,6 +41,12 @@ const platforms = [
     href: "https://www.gojobin.com/",
     category: "Recruitment Platform",
     text: "An online recruitment solution for candidates and employers, supporting job discovery, staffing, recruiting, free job posting, and opportunities for freshers and experienced professionals.",
+    color: "bg-[#f3e8ff] text-[#9333ea] ring-[#9333ea]/20",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7">
+        <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" />
+      </svg>
+    ),
   },
   {
     name: "Loan Vidhi",
@@ -35,6 +54,12 @@ const platforms = [
     href: "https://www.loanvidhi.com/",
     category: "Finance Services",
     text: "A financial consultancy platform focused on insurance, secured and unsecured loans, monetary affairs, real estate affairs, financial planning, and portfolio management services.",
+    color: "bg-[#ffedd5] text-[#ea580c] ring-[#ea580c]/20",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7">
+        <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
+      </svg>
+    ),
   },
   {
     name: "VM Home Mart",
@@ -42,6 +67,12 @@ const platforms = [
     href: "https://www.vmhomemart.com/",
     category: "E-commerce Store",
     text: "A marketplace and online shopping concept for electronics, fashion, kitchen items, home needs, and other product categories in the fast-growing Indian market.",
+    color: "bg-[#ffe4e6] text-[#e11d48] ring-[#e11d48]/20",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7">
+        <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm0 10c-2.76 0-5-2.24-5-5h2c0 1.66 1.34 3 3 3s3-1.34 3-3h2c0 2.76-2.24 5-5 5z" />
+      </svg>
+    ),
   },
 ];
 
@@ -108,8 +139,9 @@ export default function AboutPage() {
     <main className="overflow-x-hidden no-scrollbar bg-white pt-20">
       <Header />
 
+      {/* Banner */}
       <section
-        className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[340px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
             "linear-gradient(rgba(5, 11, 34, 0.58), rgba(5, 11, 34, 0.62)), url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=80')",
@@ -132,7 +164,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24">
+      {/* Company Profile */}
+      <section className="bg-white px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.42fr_0.58fr]">
           <div data-aos="fade-right">
             <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
@@ -147,13 +180,13 @@ export default function AboutPage() {
             className="space-y-5 text-[17px] font-normal leading-[1.75] text-[#555555]"
             data-aos="fade-left"
           >
-            <p>
+            <p className="text-justify">
               We create and support digital properties that solve everyday
               business and customer needs across multiple sectors. Our work
               brings together online visibility, service delivery, practical
               planning, and customer-first experiences.
             </p>
-            <p>
+            <p className="text-justify">
               Through platforms such as VM Academy, Village My City, GoJobin,
               Loan Vidhi, and VM Home Mart, Vidi Meth connects people with
               education, property, career, finance, and commerce opportunities.
@@ -162,51 +195,45 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#f4f7fb] px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24">
+      {/* Our Platforms (New Redesign layout with vibrant colored icons & justified text) */}
+      <section className="bg-white px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-20 border-t border-slate-100">
         <div className="mx-auto w-full max-w-7xl">
-          <div className="mx-auto max-w-4xl text-center" data-aos="fade-up">
-            <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
+          <div className="mb-14" data-aos="fade-up">
+            <h2 className="text-[32px] font-bold tracking-tight text-[#111827]">
               Our Platforms
-            </p>
-            <h2 className="text-[32px] font-semibold leading-[1.2] text-[#005f91] sm:text-[40px]">
-              One network, focused digital brands.
             </h2>
-            <p className="mx-auto mt-5 max-w-3xl text-[17px] font-normal leading-[1.68] text-[#555555]">
-              Each platform is designed around a clear user need, from
-              admission guidance and job discovery to finance support, property
-              listings, online shopping, and future digital services.
-            </p>
+            <div className="mt-3 flex items-center gap-3 border-l-2 border-[#1d6b9e] pl-3 text-[15px] font-normal text-slate-600">
+              Through innovation and collaboration, we build specialized digital platforms to empower education, career, real estate, finance, and commerce.
+            </div>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-x-10 gap-y-14 md:grid-cols-3">
             {platforms.map((platform, index) => (
               <article
                 key={platform.name}
-                className="group flex min-h-[320px] flex-col rounded-lg border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(10,31,68,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#0077c8]/35 hover:shadow-[0_24px_64px_rgba(0,119,200,0.14)] sm:p-7"
+                className="flex flex-col items-center text-center group"
                 data-aos="fade-up"
-                data-aos-delay={index * 80}
+                data-aos-delay={index * 90}
               >
-                <div className="mb-6 flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#1b8b4b]">
-                      {platform.category}
-                    </p>
-                    <h3 className="mt-3 text-[24px] font-semibold leading-tight text-[#0a1f44]">
-                      {platform.name}
-                    </h3>
-                  </div>
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#f5fbff] text-sm font-semibold text-[#0077c8] ring-1 ring-[#0077c8]/15">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                <div className={`mb-5 flex h-14 w-14 items-center justify-center rounded-2xl ${platform.color} ring-1 shadow-sm transition-transform duration-300 group-hover:scale-110`}>
+                  {platform.icon}
                 </div>
-                <p className="text-[16px] font-normal leading-[1.68] text-[#555555]">
+                <h3 className="text-xl font-bold text-[#111827]">
+                  {platform.name}
+                </h3>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-[#1d6b9e]">
+                  {platform.category}
+                </p>
+                <p className="mt-3 text-[14.5px] font-normal leading-[1.7] text-slate-600 text-justify">
                   {platform.text}
                 </p>
                 <a
                   href={platform.href}
-                  className="mt-auto pt-7 text-[15px] font-semibold text-[#0077c8] transition hover:text-[#0a1f44]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 text-sm font-semibold text-[#1d6b9e] hover:underline"
                 >
-                  {platform.url}
+                  Visit {platform.url} &rarr;
                 </a>
               </article>
             ))}
@@ -214,7 +241,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24">
+      {/* Why Choose Us Section (Restored as it was previously) */}
+      <section className="bg-[#f4f7fb] px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24 border-t border-slate-100">
         <div className="mx-auto w-full max-w-7xl">
           <div className="mx-auto max-w-4xl text-center" data-aos="fade-up">
             <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
@@ -229,17 +257,17 @@ export default function AboutPage() {
             {reasons.map((reason, index) => (
               <article
                 key={reason.title}
-                className="rounded-lg border border-[#0077c8]/10 bg-[#f6fbff] p-5 shadow-[0_12px_34px_rgba(10,31,68,0.06)]"
+                className="rounded-lg border border-[#0077c8]/10 bg-white p-5 shadow-[0_12px_34px_rgba(10,31,68,0.06)]"
                 data-aos="zoom-in"
                 data-aos-delay={index * 55}
               >
-                <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#0077c8] ring-1 ring-[#0077c8]/15 [&_svg]:h-5 [&_svg]:w-5 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round">
+                <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#f6fbff] text-[#0077c8] ring-1 ring-[#0077c8]/15 [&_svg]:h-5 [&_svg]:w-5 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round">
                   <CheckIcon />
                 </span>
                 <h3 className="text-[17px] font-semibold leading-tight text-[#0a1f44]">
                   {reason.title}
                 </h3>
-                <p className="mt-3 text-[14px] font-normal leading-[1.58] text-[#555555]">
+                <p className="mt-3 text-[14px] font-normal leading-[1.58] text-[#555555] text-justify">
                   {reason.text}
                 </p>
               </article>
@@ -248,25 +276,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#071326] px-5 py-14 text-white sm:px-8 lg:px-10">
-        <div className="mx-auto grid w-full max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat, index) => (
-            <article
-              key={stat.label}
-              className="rounded-lg border border-white/10 bg-white/8 p-7 text-center"
-              data-aos="fade-up"
-              data-aos-delay={index * 90}
-            >
-              <p className="text-[40px] font-semibold leading-none">
-                {stat.value}
-              </p>
-              <h3 className="mt-3 text-[16px] font-normal text-white/72">
-                {stat.label}
-              </h3>
-            </article>
-          ))}
-        </div>
-      </section>
+      {/* Stats Counter */}
+      <StatsCounterSection />
 
       <Footer />
     </main>

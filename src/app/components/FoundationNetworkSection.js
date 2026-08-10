@@ -25,7 +25,7 @@ const networkSlides = [
   {
     category: "Career Platform",
     title: "GoJobin",
-    image: "/gojobinsection-image.jpeg",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
     href: "https://www.gojobin.com/",
     tags: ["Jobs", "Hiring", "Training", "Career"],
     description:
@@ -124,6 +124,7 @@ export default function FoundationNetworkSection() {
                       src={slide.image}
                       alt={slide.title}
                       fill
+                      unoptimized
                       sizes="(min-width: 1024px) 55vw, 100vw"
                       priority={index === 0}
                       className="h-full w-full object-cover object-left"

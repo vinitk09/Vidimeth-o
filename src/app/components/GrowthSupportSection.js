@@ -18,7 +18,7 @@ const supportTiles = [
   },
   {
     title: "Talent",
-    image: "/b1.jpeg",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
     text: "Review strategies to recruit top candidates in your industry.",
   },
   {
@@ -28,7 +28,7 @@ const supportTiles = [
   },
   {
     title: "Safeguards",
-    image: "/b3.jpeg",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
     text: "Reduce your risk and protect your growing business.",
   },
 ];
@@ -68,6 +68,7 @@ export default function GrowthSupportSection() {
                   src={tile.image}
                   alt={tile.title}
                   fill
+                  unoptimized
                   sizes="(min-width: 1280px) 20vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover opacity-58 transition duration-500 group-hover:scale-105 group-hover:opacity-75"
                 />
