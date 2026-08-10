@@ -1,26 +1,26 @@
 const stats = [
   {
-    value: "5+",
-    title: "Business Verticals",
-    text: "Digital services across marketing, advertising, management, administration, and client support.",
+    value: "01",
+    title: "Concept & Online Marketing",
+    text: "Delivering powerful concept and online marketing strategies in India and globally.",
     className: "lg:mt-14",
   },
   {
-    value: "360",
-    title: "Marketing Approach",
-    text: "Concept marketing and online marketing planned for practical business visibility.",
+    value: "02",
+    title: "Advertising & Direct Marketing",
+    text: "Targeted advertising and direct marketing to reach your ideal audience effectively.",
     className: "",
   },
   {
-    value: "100%",
-    title: "Client Focus",
-    text: "High-quality services and products shaped around client requirements.",
+    value: "03",
+    title: "Business Management",
+    text: "Comprehensive business management and administration to streamline your operations.",
     className: "",
   },
   {
-    value: "1",
-    title: "Integrated Partner",
-    text: "A single support point for direct marketing, office functions, and business growth.",
+    value: "04",
+    title: "Quality Services",
+    text: "Providing high-quality services, office functions, and products to our valued clients.",
     className: "lg:mt-4",
   },
 ];
@@ -45,14 +45,10 @@ export default function WhatWeDoSection() {
             Digital services built to help businesses move forward.
           </h2>
           <p className="mt-6 text-[17px] font-normal leading-[1.68] text-[#555555]">
-            We carry on in India or elsewhere the business of concept marketing
-            and online marketing, advertising, business management, business
-            administration, office function, direct marketing and provide high
-            quality services and products to clients.
+            To carry on in India or elsewhere the business of concept marketing and online marketing, advertising, business management, business administration, office function, direct marketing and to provide high quality of services and products to clients.
           </p>
           <p className="mt-5 text-[17px] font-normal leading-[1.68] text-[#555555]">
-            Our services provide master planning for you. Our aim is to provide
-            one-stop effective digital marketing solutions for all businesses.
+            <strong>Our Services:</strong> We provide master planning for you. Our aim is to provide one stop effective digital marketing solutions for all businesses. Our digital marketing expertise includes:
           </p>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2">

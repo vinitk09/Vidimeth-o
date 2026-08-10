@@ -11,7 +11,7 @@ const networkSlides = [
     href: "https://www.vmacademys.com/",
     tags: ["Admissions", "Courses", "Guidance", "Campus"],
     description:
-      "A focused education platform for learners who need clear guidance, course discovery, college support, and digital access to academic opportunities. VM Academy helps students and institutions connect through practical information, simplified journeys, and dependable support.",
+      "VMAcademy (www.vmacademys.com) online education portal that provides education related services and products. Find the Course and College, which is best for you. VM Academy is India’s leading college and course selection platform with information. vmacademys.com is a one-stop-solution making course and college selection easy for students looking to pursue undergraduate (UG) and postgraduate (PG) courses in India, also accessible to users on the move through the website’s mobile site. vmacademys.com offers easy access to detailed information on career choice, courses, admission criteria, eligibility, exam, fees, placement statistics, reviews, scholarships, latest updates etc. Our motive to find the easiest way for those students who are suffering to find a good college to achieve their life goals. vmacademys.com also assists aspirants in post examination guidance; admission related queries and real insights for choosing right institutes. We offer specific information for students interested in UG/PG courses in India across the most popular educational streams – Management, Engineering, Computer Application, Medical, Dental, Pharmacy, Paramedical, Veterinary Science, Education, Law, Hotel Management, Mass Communication, Animation, Design, Architecture, Agriculture, Arts, Commerce, Science, Vocational, Aviation etc.",
   },
   {
     category: "Property Network",
@@ -20,7 +20,7 @@ const networkSlides = [
     href: "https://www.villagemycity.com/",
     tags: ["Property", "Listing", "Local", "Connect"],
     description:
-      "A property and local discovery network designed to bring residential, commercial, and location-based opportunities closer to users. Village My City supports smarter discovery for buyers, sellers, tenants, and local communities through a clean digital presence.",
+      "VillageMyCity (www.villagemycity.com) is a Real Estate Property Portal in India. anywhere, any time; Just One Click to Sell your Items or Products. VillageMyCity platform for finding buyers and sellers to purchase or sell goods and services. Our vision for buyers and sellers is to “Meet Online, transact offline”. Post your Ads: Individual Owner, Builder & Promoters and Agents & Dealers.",
   },
   {
     category: "Career Platform",
@@ -29,7 +29,7 @@ const networkSlides = [
     href: "https://www.gojobin.com/",
     tags: ["Jobs", "Hiring", "Training", "Career"],
     description:
-      "A career support platform that helps candidates find relevant openings and gives employers a better way to reach talent. GoJobin focuses on practical hiring, job discovery, candidate support, and employment pathways for growing teams and job seekers.",
+      "Gojobin.com India’s leading Job Site provides you the best opportunity to find the right job today! GoJobin has become a prominent name in the recruitment industry. Gojobin.com is India’s most innovative and fastest growing recruitment portal. A platform for Candidates and Employers to find their perfect matches. Our Service Online Recruitment Solution Provider, Staffing & Recruiting. Gojobin.com classified recruitment online business. GoJobin is an online employment solution for people seeking jobs and the employers who need great people. Gojobin.com is the best free Job posting sites in India. GoJobin is one of the best job portals for freshers, offers opportunities to trained and experienced professionals, useful if you are a fresher who is searching for a job. GoJobin is the most popular sites for freshers and user reviews are outstanding when compared to other job sites in India.",
   },
   {
     category: "Finance Support",
@@ -38,7 +38,7 @@ const networkSlides = [
     href: "https://www.loanvidhi.com/",
     tags: ["Loans", "Finance", "Planning", "Support"],
     description:
-      "A finance-focused initiative created to simplify loan awareness, product discovery, and user support. Loan Vidhi helps customers understand options, compare needs, and move toward financial decisions with better clarity and more confidence.",
+      "LoanVidhi is a service provider of Insurance, Financial affairs, Monetary affairs, Real Estate affairs. LoanVidhi is one of the leading financial consultants who deal in loans & Insurance services. LoanVidhi offering our services to arrange Secured and Un-Secured Loans from various banks, doing financial planning which helps the customer to understand his future needs and we work towards that common objective which does include Portfolio management services. Our aim is to bring in innovative ideas and cutting edge technology to transform the Indian financial sector.",
   },
   {
     category: "Retail Network",
@@ -47,7 +47,7 @@ const networkSlides = [
     href: "https://www.vmhomemart.com/",
     tags: ["Home", "Retail", "Shopping", "Lifestyle"],
     description:
-      "A home and lifestyle marketplace concept built for convenient product discovery and customer-friendly shopping. VM Home Mart brings everyday home needs, retail categories, and digital commerce support together under the Vidi Meth business network.",
+      "VMhomeMart (www.vmhomemart.com) is the best of e-commerce in the fast-growing Indian market. The company focuses on goods such as electronics, fashion, kitchen item etc. VMhomeMART is a marketplace that allows users to offer, sell and buy just about anything in a variety of pricing formats and locations. The actual contract for sale is directly between the sellers and buyers. VMhomeMART a complete online shopping store.",
   },
 ];
 
@@ -126,7 +126,7 @@ export default function FoundationNetworkSection() {
                       fill
                       sizes="(min-width: 1024px) 55vw, 100vw"
                       priority={index === 0}
-                      className="h-full w-full object-fill"
+                      className="h-full w-full object-cover object-left"
                     />
                   </div>
 
@@ -143,7 +143,7 @@ export default function FoundationNetworkSection() {
                       <h3 className="text-[30px] font-semibold leading-[1.15] text-[#20242d] sm:text-[36px]">
                         {slide.title}
                       </h3>
-                      <p className="mt-6 max-w-3xl text-[16px] font-normal leading-[1.75] text-[#5d6470] sm:text-[17px]">
+                      <p className="mt-6 max-w-3xl text-[16px] font-normal leading-[1.75] text-[#5d6470] sm:text-[17px] line-clamp-5 sm:line-clamp-6 lg:line-clamp-[8]">
                         {slide.description}
                       </p>
 

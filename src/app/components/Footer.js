@@ -19,8 +19,8 @@ const quickLinks = [
 ];
 
 const legalLinks = [
-  { label: "Grievance", href: "https://vidimeth.com/grievance/" },
-  { label: "Privacy Policy", href: "https://vidimeth.com/privacy-policy/" },
+  { label: "Grievance", href: "/grievance" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms of Use", href: "https://vidimeth.com/terms-of-use/" },
   { label: "Disclaimer", href: "https://vidimeth.com/disclaimer/" },
 ];
@@ -183,15 +183,25 @@ export default function Footer() {
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 text-sm font-normal leading-5 text-white/70 lg:flex-row lg:items-center lg:justify-between">
           <p>&copy; 2024 Vidi Meth Digital Services (OPC) Private Limited.</p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
-            {legalLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="transition hover:text-white"
-              >
-                {link.label}
-              </a>
-            ))}
+            {legalLinks.map((link) =>
+              link.href.startsWith("/") ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="transition hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="transition hover:text-white"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </div>
         </div>
       </div>

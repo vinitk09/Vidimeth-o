@@ -4,32 +4,32 @@ const supportTiles = [
   {
     title: "Benefits",
     image: "/b5.png",
-    text: "Offer more to your employees while continuing to grow your business.",
+    text: "We offer more to your employees while still growing your business.",
   },
   {
     title: "Expansion",
     image: "/b2.png",
-    text: "Find new ways to innovate and take your company to the next level.",
+    text: "Look for new ways to innovate and bring your company to the next level.",
   },
   {
     title: "Marketing",
     image: "/b4.png",
-    text: "Use advanced marketing strategies to support steady business growth.",
+    text: "Find advanced marketing strategies to motive business growth.",
   },
   {
     title: "Talent",
     image: "/b1.jpeg",
-    text: "Review strategies to recruit strong candidates for your industry.",
+    text: "Review strategies to recruit top candidates in your industry.",
   },
   {
     title: "Money",
     image: "/b6.png",
-    text: "Focus on financial techniques that support confident expansion.",
+    text: "Learn what financial techniques to focus on during expansion.",
   },
   {
     title: "Safeguards",
     image: "/b3.jpeg",
-    text: "Reduce risk and protect the progress of your growing business.",
+    text: "Reduce your risk and protect your growing business.",
   },
 ];
 
@@ -46,7 +46,7 @@ export default function GrowthSupportSection() {
               Business Growth
             </p>
             <h2 className="max-w-sm text-[28px] font-medium leading-[1.28] sm:text-[32px]">
-              We help your Business grow with clarity.
+              We help your Business / Grow up your business
             </h2>
             <p className="mt-6 max-w-md text-[17px] font-normal leading-[1.7] text-white/78">
               Vidi Meth Digital Services supports businesses with practical

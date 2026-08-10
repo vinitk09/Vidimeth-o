@@ -25,6 +25,15 @@ const slides = [
 
 const welcomeHighlights = [
   {
+    label: "Concept Marketing",
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+        <circle cx="12" cy="12" r="5" />
+      </svg>
+    ),
+  },
+  {
     label: "Online Marketing",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -56,7 +65,35 @@ const welcomeHighlights = [
     ),
   },
   {
-    label: "Quality Services",
+    label: "Business Administration",
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2" />
+        <path d="M9 14h6M9 10h6M9 18h2" />
+      </svg>
+    ),
+  },
+  {
+    label: "Office Function",
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
+        <path d="M9 7h2M9 11h2M9 15h2M13 7h2M13 11h2M13 15h2" />
+      </svg>
+    ),
+  },
+  {
+    label: "Direct Marketing",
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="6" />
+        <circle cx="12" cy="12" r="2" />
+      </svg>
+    ),
+  },
+  {
+    label: "High Quality Services",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 3.75 18.25 6v5.25c0 4.25-2.45 7.25-6.25 9-3.8-1.75-6.25-4.75-6.25-9V6L12 3.75Z" />

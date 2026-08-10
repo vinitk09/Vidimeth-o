@@ -76,7 +76,7 @@ const reasons = [
   },
   {
     title: "Our Reputation",
-    text: "Within the industry is impeccable.",
+    text: "within the Industry is impeccable.",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 3.75 18.25 6v5.25c0 4.25-2.45 7.25-6.25 9-3.8-1.75-6.25-4.75-6.25-9V6L12 3.75Z" />
@@ -97,7 +97,7 @@ const reasons = [
   },
   {
     title: "Social Media",
-    text: "Facebook, Twitter, LinkedIn. Technology has changed the way we live, play, work, communicate, shop and advertise. We embrace the ever-changing world of technology and seek the best applications to serve clients personally and efficiently.",
+    text: "Facebook, Twitter, LinkedIn …Technology has changed the way we live, play, work, communicate, shop and advertise. We embrace the ever-changing world of technology and are always seeking the best applications to serve our clients personally and efficiently.",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 20.25a8.25 8.25 0 1 0 0-16.5 8.25 8.25 0 0 0 0 16.5Z" />
@@ -109,7 +109,7 @@ const reasons = [
   },
   {
     title: "Commitment",
-    text: "Commitment is a term that we honour. We are trusted to fulfil promises and take care of our clients' concerns. We take a proactive approach to technology, understand day-to-day needs, and stand by our values.",
+    text: "Commitment is a term that we honour. We are trusted to fulfil promises and take care of our clients’ concerns. We’re the trusted partner that takes a proactive approach to your technology. We’re the fellow small business owner that understand your day-to-day needs. We’re the built-in technology support staff that’s always there when you need us. We Stand by Our Values. Our Clients Are Happy.",
     icon: (
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M7.25 12.75 10.5 16l6.25-7" />
@@ -192,10 +192,7 @@ export default function WhyChooseUsSection() {
             Why Choose Vidi Meth Digital Services?
           </h2>
           <p className="mt-5 text-[16px] font-normal leading-[1.58] text-[#555555]">
-            Businesses depend on us for expertise, quality, and customer
-            service. We work with colleges, real estate organisations,
-            companies, designers, architects, government agencies, and business
-            owners to transform the way they work.
+            Businesses have come to depend on us for our expertise, quality, and customer service. We’ve worked with college/university, real estate organisation, company, designers, architects, government agencies and business owners from a range of industries to transform the way they work.
           </p>
 
           <div className="mt-7 grid gap-3 xl:grid-cols-2">

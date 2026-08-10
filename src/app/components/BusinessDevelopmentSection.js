@@ -7,32 +7,32 @@ const businessCards = [
   {
     image: "/b1.jpeg",
     title: "Use Networking Opportunities",
-    text: "Search for new opportunities and make the most of every business resource.",
+    text: "To search for new opportunities and use most of your resources.",
   },
   {
     image: "/b2.png",
-    title: "Establish Strong Relationships",
-    text: "Build trust, credibility, and transparency with customers and partners.",
+    title: "Establish strong relationships with customers",
+    text: "To preserve trust, credibility, and transparency.",
   },
   {
     image: "/b3.jpeg",
-    title: "Support Communities",
-    text: "Create meaningful partnerships by staying involved with communities and causes.",
+    title: "Support communities and charities",
+    text: "To have partnerships with other successful businesses, consider getting involved in charity.",
   },
   {
     image: "/b4.png",
-    title: "Discover New Markets",
-    text: "Identify fresh markets, study demand, and expand with a clear growth plan.",
+    title: "Make use of social media",
+    text: "You can use Facebook, LinkedIn, and Instagram to promote your product, get in touch with customers, and sell.",
   },
   {
     image: "/b5.png",
-    title: "Improve Business Strategy",
-    text: "Use focused planning to increase revenue, partnerships, and long-term value.",
+    title: "Implement referral programs",
+    text: "we support your company has an excellent reputation and loyal customers; you can consider referral programs.",
   },
   {
     image: "/b6.png",
-    title: "Strengthen Client Success",
-    text: "Deliver reliable support and better solutions for every client relationship.",
+    title: "Gather a team of professionals",
+    text: "Our team plays an important role in your business success and development of your company.",
   },
 ];
 
@@ -75,7 +75,7 @@ export default function BusinessDevelopmentSection() {
     });
   };
 
-  const scrollToCard = (index) => {
+  const scrollToPage = (index) => {
     const slider = sliderRef.current;
     const step = getStep();
 
@@ -83,7 +83,9 @@ export default function BusinessDevelopmentSection() {
       return;
     }
 
-    slider.scrollTo({ left: index * step, behavior: "smooth" });
+    // Each dot represents 2 cards, so multiply index by 2
+    slider.scrollTo({ left: index * 2 * step, behavior: "smooth" });
+    // Force active index to update immediately and reflect the clicked dot
     setActiveIndex(index);
   };
 
@@ -95,8 +97,18 @@ export default function BusinessDevelopmentSection() {
       return;
     }
 
+    const scrollLeft = slider.scrollLeft;
+    const maxScroll = slider.scrollWidth - slider.clientWidth;
+
+    // If we are at the very end of the scroll, highlight the last dot (index 2)
+    if (scrollLeft >= maxScroll - 8) {
+      setActiveIndex(2);
+      return;
+    }
+
+    // Divide by 2 since each dot represents 2 cards
     setActiveIndex(
-      Math.min(businessCards.length - 1, Math.round(slider.scrollLeft / step)),
+      Math.min(2, Math.round((scrollLeft / step) / 2))
     );
   };
 
@@ -138,8 +150,8 @@ export default function BusinessDevelopmentSection() {
           <p className="mx-auto mt-5 max-w-3xl text-[17px] font-normal leading-[1.68] text-[#555555]">
             Goals can include revenue growth, expansion to new markets,
             strategic partnerships, and more. Great business development
-            strategies help you increase your revenue, reach new markets, and
-            build lasting partnerships.
+            strategies that will help you fulfill your goals. Make use of these
+            to increase your revenue, reach new markets, or partnerships.
           </p>
         </div>
 
@@ -204,17 +216,17 @@ export default function BusinessDevelopmentSection() {
         </div>
 
         <div className="flex justify-center gap-2">
-          {businessCards.map((card, index) => (
+          {Array.from({ length: 3 }).map((_, index) => (
             <button
-              key={card.title}
+              key={`dot-${index}`}
               type="button"
-              onClick={() => scrollToCard(index)}
+              onClick={() => scrollToPage(index)}
               className={`h-2.5 rounded-full transition-all ${
                 activeIndex === index
                   ? "w-8 bg-[#0077c8]"
                   : "w-2.5 bg-[#0077c8]/25 hover:bg-[#0077c8]/50"
               }`}
-              aria-label={`Go to business development card ${index + 1}`}
+              aria-label={`Go to business development page ${index + 1}`}
             />
           ))}
         </div>
