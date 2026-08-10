@@ -63,12 +63,7 @@ export default function WhatWeDoSection() {
             ))}
           </div>
 
-          <a
-            href="/contact"
-            className="mt-9 inline-flex w-fit rounded-full bg-[#0aa64f] px-9 py-3 text-base font-semibold text-white shadow-[0_12px_28px_rgba(10,166,79,0.24)] transition hover:bg-[#087d3e]"
-          >
-            Contact Us
-          </a>
+
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2">

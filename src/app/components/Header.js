@@ -9,8 +9,6 @@ const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "Our Services", href: "/our-services" },
   { label: "Our Divisions", href: "/our-divisions" },
-  { label: "FAQs", href: "/faqs" },
-  { label: "Contact Us", href: "/contact" },
 ];
 
 function MenuIcon({ isOpen }) {
@@ -58,7 +56,7 @@ export default function Header() {
       <nav className="relative mx-auto flex min-h-20 w-full max-w-7xl items-center gap-4 px-4 py-2 pr-16 font-sans sm:px-6 sm:pr-20 lg:px-8 lg:pr-24 xl:pr-8">
         <Link
           href="/"
-          className="flex shrink-0 items-center"
+          className="flex shrink-0 items-center gap-3"
           aria-label="Vidi Meth Digital Services home"
         >
           <Image
@@ -67,8 +65,16 @@ export default function Header() {
             width={112}
             height={112}
             priority
-            className="h-14 w-14 rounded-full object-cover shadow-md ring-1 ring-slate-200 sm:h-16 sm:w-16"
+            className="h-12 w-12 rounded-full object-cover shadow-md ring-1 ring-slate-200 sm:h-14 sm:w-14"
           />
+          <div className="flex flex-col justify-center">
+            <span className="text-[15px] font-bold leading-tight text-[#0a1f44] sm:text-[17px]">
+              Vidi Meth Digital Services
+            </span>
+            <span className="text-[11px] font-medium text-[#0077c8] sm:text-[12px]">
+              OPC Private Limited
+            </span>
+          </div>
         </Link>
 
         <div className="ml-auto hidden items-center gap-2 xl:flex">

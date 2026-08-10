@@ -54,13 +54,7 @@ export default function GrowthSupportSection() {
               strategy, financial focus, and safeguards that keep progress
               steady.
             </p>
-            <a
-              href="/contact"
-              className="mt-9 inline-flex w-fit items-center rounded-full border border-white/70 px-7 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white transition hover:border-[#39b76f] hover:bg-[#39b76f]"
-            >
-              See More
-              <span className="ml-3 text-lg leading-none">-</span>
-            </a>
+
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
