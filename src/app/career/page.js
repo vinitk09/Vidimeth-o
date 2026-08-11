@@ -1,19 +1,19 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import StatsCounterSection from "../components/StatsCounterSection";
-import OurDivisionsContent from "./OurDivisionsContent";
+import CareerContent from "./CareerContent";
 
 export const metadata = {
-  title: "Our Divisions | Vidi Meth Digital Services",
+  title: "Careers | Vidi Meth Digital Services",
   description:
-    "Explore the specialized business divisions of Vidi Meth Digital Services across education, real estate, job recruitment, financial advisory, and retail e-commerce.",
+    "Explore job openings and career opportunities at Vidi Meth Digital Services across digital marketing, software development, finance, and online education.",
 };
 
-export default function OurDivisionsPage() {
+export default function CareerPage() {
   return (
     <main className="overflow-x-hidden no-scrollbar bg-white pt-20">
       <Header />
-      <OurDivisionsContent />
+      <CareerContent />
       <StatsCounterSection />
       <Footer />
     </main>

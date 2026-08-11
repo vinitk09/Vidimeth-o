@@ -69,7 +69,7 @@ function CustomIcon({ type }) {
 const aboutLinks = [
   { label: "About Us", href: "/about", icon: "info" },
   { label: "Contact Us", href: "/contact", icon: "contact" },
-  { label: "Career", href: "https://vidimeth.com/career/", icon: "briefcase" },
+  { label: "Career", href: "/career", icon: "briefcase" },
   { label: "FAQs", href: "/faqs", icon: "faq" },
 ];
 

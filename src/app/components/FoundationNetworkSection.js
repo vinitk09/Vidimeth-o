@@ -7,7 +7,7 @@ const networkSlides = [
   {
     category: "Education Solutions",
     title: "VM Academy",
-    image: "/vmdivision.png",
+    image: "/vm.png",
     href: "https://www.vmacademys.com/",
     tags: ["Admissions", "Courses", "Guidance", "Campus"],
     description:
@@ -16,7 +16,7 @@ const networkSlides = [
   {
     category: "Property Network",
     title: "Village My City",
-    image: "/villagemycity.png",
+    image: "/village.png",
     href: "https://www.villagemycity.com/",
     tags: ["Property", "Listing", "Local", "Connect"],
     description:
@@ -25,7 +25,7 @@ const networkSlides = [
   {
     category: "Career Platform",
     title: "GoJobin",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+    image: "/gojobinsection-image.jpeg",
     href: "https://www.gojobin.com/",
     tags: ["Jobs", "Hiring", "Training", "Career"],
     description:
@@ -34,7 +34,7 @@ const networkSlides = [
   {
     category: "Finance Support",
     title: "Loan Vidhi",
-    image: "/loanvidhi.png",
+    image: "/loanslider.png",
     href: "https://www.loanvidhi.com/",
     tags: ["Loans", "Finance", "Planning", "Support"],
     description:
@@ -85,7 +85,7 @@ export default function FoundationNetworkSection() {
 
   return (
     <section className="bg-[#f4f6f9] px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24">
-      <div className="mx-auto w-full max-w-7xl">
+      <div className="mx-auto w-full max-w-6xl">
         <div className="max-w-5xl" data-aos="fade-up">
           <div className="mb-5 flex flex-wrap items-center gap-5">
             <h2 className="text-[28px] font-semibold leading-[1.22] text-[#005f91] sm:text-[34px]">
@@ -109,7 +109,7 @@ export default function FoundationNetworkSection() {
           data-aos="fade-up"
           data-aos-delay="120"
         >
-          <div className="relative overflow-hidden rounded-lg shadow-[0_22px_70px_rgba(10,31,68,0.13)]">
+          <div className="relative overflow-hidden rounded-2xl shadow-[0_22px_70px_rgba(10,31,68,0.11)] ring-1 ring-slate-200/80">
             <div
               className="flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${activeIndex * 100}%)` }}
@@ -117,42 +117,42 @@ export default function FoundationNetworkSection() {
               {networkSlides.map((slide, index) => (
                 <article
                   key={slide.title}
-                  className="grid min-w-full overflow-hidden rounded-lg bg-white ring-1 ring-slate-200/80 lg:min-h-[520px] lg:grid-cols-[0.55fr_0.45fr]"
+                  className="grid min-w-full items-stretch bg-white p-4 sm:p-5 lg:grid-cols-[0.52fr_0.48fr] lg:gap-4 lg:p-6 lg:min-h-[440px]"
                 >
-                  <div className="relative min-h-[320px] overflow-hidden bg-[#eef3f8] lg:min-h-full">
+                  <div className="relative min-h-[260px] w-full overflow-hidden rounded-2xl bg-[#eef3f8] sm:min-h-[320px] lg:h-full lg:min-h-[380px]">
                     <Image
                       src={slide.image}
                       alt={slide.title}
                       fill
                       unoptimized
-                      sizes="(min-width: 1024px) 55vw, 100vw"
+                      sizes="(min-width: 1024px) 52vw, 100vw"
                       priority={index === 0}
-                      className="h-full w-full object-cover object-left"
+                      className="h-full w-full object-cover object-top rounded-2xl"
                     />
                   </div>
 
-                  <div className="relative flex min-h-[520px] flex-col justify-center px-6 pb-24 pt-10 sm:px-10 lg:px-12 lg:py-10">
-                    <span className="pointer-events-none absolute right-8 top-7 text-[56px] font-semibold leading-none text-[#1f2168]/5 sm:text-[72px]">
+                  <div className="relative flex flex-col justify-center px-4 pb-12 pt-6 sm:px-6 lg:px-8 lg:py-4">
+                    <span className="pointer-events-none absolute right-8 top-6 text-[48px] font-semibold leading-none text-[#1f2168]/5 sm:text-[60px]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
                     <div className="relative z-10">
-                      <p className="mb-5 flex items-center gap-4 text-[15px] font-semibold uppercase tracking-[0.28em] text-[#1f2168]">
-                        <span className="h-px w-8 bg-[#1f2168]/50" />
+                      <p className="mb-3 flex items-center gap-3 text-[14px] font-semibold uppercase tracking-[0.25em] text-[#1f2168]">
+                        <span className="h-px w-6 bg-[#1f2168]/50" />
                         {slide.category}
                       </p>
-                      <h3 className="text-[30px] font-semibold leading-[1.15] text-[#20242d] sm:text-[36px]">
+                      <h3 className="text-[24px] font-semibold leading-[1.15] text-[#20242d] sm:text-[28px]">
                         {slide.title}
                       </h3>
-                      <p className="mt-6 max-w-3xl text-[16px] font-normal leading-[1.75] text-[#5d6470] sm:text-[17px] line-clamp-5 sm:line-clamp-6 lg:line-clamp-[8]">
+                      <p className="mt-4 max-w-3xl text-[15px] font-normal leading-[1.65] text-[#5d6470] line-clamp-3 sm:line-clamp-4">
                         {slide.description}
                       </p>
 
-                      <div className="mt-8 flex flex-wrap gap-3">
+                      <div className="mt-5 flex flex-wrap gap-2">
                         {slide.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-md border border-[#0077c8]/15 bg-[#f5fbff] px-3 py-2 text-sm font-semibold text-[#0077c8]"
+                            className="rounded-md border border-[#0077c8]/15 bg-[#f5fbff] px-2.5 py-1 text-xs sm:text-sm font-semibold text-[#0077c8]"
                           >
                             {tag}
                           </span>
@@ -161,7 +161,7 @@ export default function FoundationNetworkSection() {
 
                       <a
                         href={slide.href}
-                        className="mt-9 inline-flex w-fit items-center rounded-md bg-[#20242d] px-7 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(32,36,45,0.18)] transition hover:bg-[#0077c8]"
+                        className="mt-6 inline-flex w-fit items-center rounded-md bg-[#20242d] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(32,36,45,0.18)] transition hover:bg-[#0077c8]"
                       >
                         Read More
                         <span className="ml-3 text-lg leading-none">-</span>
@@ -204,11 +204,10 @@ export default function FoundationNetworkSection() {
                 key={slide.title}
                 type="button"
                 onClick={() => setActiveIndex(index)}
-                className={`h-2.5 rounded-full transition-all ${
-                  activeIndex === index
-                    ? "w-9 bg-[#0077c8]"
-                    : "w-2.5 bg-[#0077c8]/25 hover:bg-[#0077c8]/50"
-                }`}
+                className={`h-2.5 rounded-full transition-all ${activeIndex === index
+                  ? "w-9 bg-[#0077c8]"
+                  : "w-2.5 bg-[#0077c8]/25 hover:bg-[#0077c8]/50"
+                  }`}
                 aria-label={`Show ${slide.title}`}
               />
             ))}

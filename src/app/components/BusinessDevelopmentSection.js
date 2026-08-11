@@ -138,8 +138,8 @@ export default function BusinessDevelopmentSection() {
   }, [isPaused]);
 
   return (
-    <section className="bg-[#f6fbff] px-5 py-16 text-[#0a1f44] sm:px-8 lg:px-10 lg:py-24">
-      <div className="mx-auto w-full max-w-7xl">
+    <section className="bg-[#f6fbff] px-5 py-14 text-[#0a1f44] sm:px-8 lg:px-10 lg:py-20">
+      <div className="mx-auto w-full max-w-6xl">
         <div className="mx-auto max-w-4xl text-center" data-aos="fade-up">
           <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
             Growth Strategy
@@ -186,11 +186,11 @@ export default function BusinessDevelopmentSection() {
           {businessCards.map((card, index) => (
             <article
               key={card.title}
-              className="group min-w-full snap-start overflow-hidden rounded-lg border border-[#0077c8]/10 bg-white shadow-[0_16px_44px_rgba(10,31,68,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,119,200,0.16)] sm:min-w-[calc((100%-24px)/2)] lg:min-w-[calc((100%-48px)/3)]"
+              className="group min-w-full snap-start overflow-hidden rounded-2xl border border-[#0077c8]/10 bg-white shadow-[0_12px_36px_rgba(10,31,68,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,119,200,0.15)] sm:min-w-[calc((100%-24px)/2)] lg:min-w-[calc((100%-48px)/3)]"
               data-aos="fade-up"
               data-aos-delay={index * 90}
             >
-              <div className="relative aspect-[1.42/1] overflow-hidden bg-slate-100">
+              <div className="relative aspect-[1.85/1] overflow-hidden bg-slate-100">
                 <Image
                   src={card.image}
                   alt={card.title}
@@ -199,16 +199,16 @@ export default function BusinessDevelopmentSection() {
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition duration-500 group-hover:scale-105"
                 />
-                <span className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-white/95 text-sm font-semibold text-[#0077c8] shadow-md">
+                <span className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-xs font-bold text-[#0077c8] shadow-md">
                   {String(index + 1).padStart(2, "0")}
                 </span>
               </div>
 
-              <div className="min-h-48 px-6 py-7 text-center">
-                <h3 className="mx-auto max-w-sm text-xl font-semibold leading-[1.28] text-[#0a1f44]">
+              <div className="flex min-h-[140px] flex-col justify-center px-5 py-5 text-center">
+                <h3 className="mx-auto max-w-sm text-lg font-semibold leading-[1.3] text-[#0a1f44]">
                   {card.title}
                 </h3>
-                <p className="mx-auto mt-3 max-w-sm text-[16px] font-normal leading-[1.62] text-[#555555]">
+                <p className="mx-auto mt-2 max-w-sm text-[14px] font-normal leading-[1.55] text-[#555555]">
                   {card.text}
                 </p>
               </div>

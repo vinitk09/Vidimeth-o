@@ -145,7 +145,7 @@ export default function Home() {
             data-aos="fade-right"
           >
             <Image
-              src="/welcomebanner2.png"
+              src="/welcome.png"
               alt="Welcome to Vidimeth"
               width={1158}
               height={1364}
