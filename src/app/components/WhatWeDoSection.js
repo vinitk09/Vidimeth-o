@@ -41,13 +41,13 @@ export default function WhatWeDoSection() {
           <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
             What We Do
           </p>
-          <h2 className="text-[32px] font-medium leading-[1.2] text-[#1f2168] sm:text-[38px]">
+          <h2 className="text-[32px] font-bold leading-[1.2] text-black sm:text-[38px]">
             Digital services built to help businesses move forward.
           </h2>
-          <p className="mt-6 text-[17px] font-normal leading-[1.68] text-[#555555]">
+          <p className="mt-6 text-[16px] font-normal leading-[1.68] text-[#555555]">
             To carry on in India or elsewhere the business of concept marketing and online marketing, advertising, business management, business administration, office function, direct marketing and to provide high quality of services and products to clients.
           </p>
-          <p className="mt-5 text-[17px] font-normal leading-[1.68] text-[#555555]">
+          <p className="mt-5 text-[16px] font-normal leading-[1.68] text-[#555555]">
             <strong>Our Services:</strong> We provide master planning for you. Our aim is to provide one stop effective digital marketing solutions for all businesses. Our digital marketing expertise includes:
           </p>
 
@@ -70,18 +70,22 @@ export default function WhatWeDoSection() {
           {stats.map((item) => (
             <article
               key={item.title}
-              className={`rounded-lg bg-[#1f2168] p-7 text-white shadow-[0_22px_58px_rgba(31,33,104,0.18)] transition duration-300 hover:-translate-y-1 hover:bg-[#0077c8] ${item.className}`}
+              className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#1f2168] via-[#1a1c59] to-[#0d0f36] p-7 text-white shadow-[0_16px_36px_rgba(31,33,104,0.28),0_6px_16px_rgba(0,0,0,0.14)] border-t border-l border-white/25 border-b border-r border-black/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_26px_60px_rgba(0,119,200,0.38),0_12px_28px_rgba(0,0,0,0.22)] hover:border-cyan-400/40 ${item.className}`}
               data-aos="zoom-in"
             >
-              <p className="text-[34px] font-medium leading-none">
-                {item.value}
-              </p>
-              <h3 className="mt-5 text-[18px] font-semibold leading-[1.28]">
+              <div className="flex items-center justify-between">
+                <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-[#0077c8] via-[#0092db] to-[#00a86b] text-[22px] font-extrabold text-white shadow-[0_8px_20px_rgba(0,119,200,0.45)] ring-1 ring-white/35 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  {item.value}
+                </span>
+                <span className="h-2.5 w-2.5 rounded-full bg-[#39b76f] shadow-[0_0_12px_#39b76f]" />
+              </div>
+              <h3 className="mt-6 text-[20px] font-bold leading-[1.3] text-white transition-colors group-hover:text-cyan-300">
                 {item.title}
               </h3>
-              <p className="mt-4 text-[15px] font-normal leading-[1.55] text-white/88">
+              <p className="mt-3 text-[15px] font-normal leading-[1.6] text-slate-200/90">
                 {item.text}
               </p>
+              <div className="pointer-events-none absolute -bottom-10 -right-10 h-32 w-32 rounded-full bg-cyan-400/10 blur-2xl transition-all duration-300 group-hover:scale-150 group-hover:bg-cyan-400/25" />
             </article>
           ))}
         </div>

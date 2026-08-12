@@ -45,10 +45,10 @@ export default function GrowthSupportSection() {
             <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#39b76f]">
               Business Growth
             </p>
-            <h2 className="max-w-sm text-[28px] font-medium leading-[1.28] sm:text-[32px]">
+            <h2 className="max-w-sm text-[28px] font-bold leading-[1.28] sm:text-[32px]">
               We help your Business / Grow up your business
             </h2>
-            <p className="mt-6 max-w-md text-[17px] font-normal leading-[1.7] text-white/78">
+            <p className="mt-6 max-w-md text-[16px] font-normal leading-[1.7] text-white/78">
               Vidi Meth Digital Services supports businesses with practical
               growth planning, marketing direction, expansion ideas, talent
               strategy, financial focus, and safeguards that keep progress
@@ -74,7 +74,7 @@ export default function GrowthSupportSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-[#07143a]/78 via-[#07143a]/50 to-black/82" />
                 <div className="relative z-10 flex h-full min-h-56 flex-col justify-between p-6">
-                  <h3 className="text-[22px] font-semibold leading-tight text-white">
+                  <h3 className="text-[22px] font-bold leading-tight text-white">
                     {tile.title}
                   </h3>
                   <p className="text-[15px] font-normal leading-[1.58] text-white/82">

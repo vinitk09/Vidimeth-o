@@ -144,10 +144,10 @@ export default function BusinessDevelopmentSection() {
           <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
             Growth Strategy
           </p>
-          <h2 className="text-[30px] font-semibold leading-[1.2] text-[#005f91] sm:text-[36px] lg:text-[40px]">
+          <h2 className="text-[30px] font-bold leading-[1.2] text-black sm:text-[36px] lg:text-[36px]">
             Business Development
           </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-[17px] font-normal leading-[1.68] text-[#555555]">
+          <p className="mx-auto mt-5 max-w-3xl text-[16px] font-normal leading-[1.68] text-[#555555]">
             Goals can include revenue growth, expansion to new markets,
             strategic partnerships, and more. Great business development
             strategies that will help you fulfill your goals. Make use of these
@@ -205,7 +205,7 @@ export default function BusinessDevelopmentSection() {
               </div>
 
               <div className="flex min-h-[140px] flex-col justify-center px-5 py-5 text-center">
-                <h3 className="mx-auto max-w-sm text-lg font-semibold leading-[1.3] text-[#0a1f44]">
+                <h3 className="mx-auto max-w-sm text-lg font-bold leading-[1.3] text-black">
                   {card.title}
                 </h3>
                 <p className="mx-auto mt-2 max-w-sm text-[14px] font-normal leading-[1.55] text-[#555555]">
@@ -222,11 +222,10 @@ export default function BusinessDevelopmentSection() {
               key={`dot-${index}`}
               type="button"
               onClick={() => scrollToPage(index)}
-              className={`h-2.5 rounded-full transition-all ${
-                activeIndex === index
-                  ? "w-8 bg-[#0077c8]"
-                  : "w-2.5 bg-[#0077c8]/25 hover:bg-[#0077c8]/50"
-              }`}
+              className={`h-2.5 rounded-full transition-all ${activeIndex === index
+                ? "w-8 bg-[#0077c8]"
+                : "w-2.5 bg-[#0077c8]/25 hover:bg-[#0077c8]/50"
+                }`}
               aria-label={`Go to business development page ${index + 1}`}
             />
           ))}

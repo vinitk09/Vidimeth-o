@@ -71,17 +71,39 @@ const mainFeatures = [
     ),
     color: "from-rose-500/10 to-pink-500/10 text-rose-600 border-rose-100",
   },
+  {
+    title: "Unwavering Commitment",
+    text: "Commitment is a term that we honour. We are trusted to fulfil promises and take proactive care of your business.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+      </svg>
+    ),
+    color: "from-red-500/10 to-rose-500/10 text-red-600 border-red-100",
+  },
+  {
+    title: "Results-Driven Strategy",
+    text: "Targeted marketing and administration strategies tailored to drive measurable growth, market reach, and ROI.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+        <polyline points="16 7 22 7 22 13" />
+      </svg>
+    ),
+    color: "from-indigo-500/10 to-violet-500/10 text-indigo-600 border-indigo-100",
+  },
+  {
+    title: "Quality & Excellence",
+    text: "Rigorous standards across all services ensuring high-impact digital products and long-term client satisfaction.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+      </svg>
+    ),
+    color: "from-teal-500/10 to-emerald-500/10 text-teal-600 border-teal-100",
+  },
 ];
-
-const featuredCommitment = {
-  title: "Unwavering Commitment",
-  text: "Commitment is a term that we honour. We are trusted to fulfil promises, take proactive care of your technology, and stand firmly by our values so our clients remain happy.",
-  icon: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-    </svg>
-  ),
-};
 
 export default function WhyChooseUsSection() {
   return (
@@ -95,24 +117,24 @@ export default function WhyChooseUsSection() {
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#0a1f44] sm:text-4xl">
             Why Businesses Depend On Us
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-600">
+          <p className="mt-4 text-[16px] leading-relaxed text-slate-600">
             Businesses have come to depend on us for our expertise, quality, and customer service across universities, real estate, government agencies, and business owners.
           </p>
         </div>
 
-        {/* 6 Grid Cards */}
+        {/* 9 Grid Cards (3x3 on Desktop) */}
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {mainFeatures.map((feature, idx) => (
             <div
               key={feature.title}
               data-aos="fade-up"
-              data-aos-delay={idx * 60}
+              data-aos-delay={idx * 50}
               className={`group relative rounded-2xl border bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0077c8]/40 hover:shadow-xl hover:shadow-[#0077c8]/5 ${feature.color.split(" ").pop()}`}
             >
               <div className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${feature.color.replace(/border-\S+/, '')} ring-1 ring-inset ring-slate-900/5 transition-transform duration-300 group-hover:scale-110`}>
                 <div className="h-6 w-6">{feature.icon}</div>
               </div>
-              <h3 className="text-lg font-semibold text-[#0a1f44] group-hover:text-[#0077c8] transition-colors">
+              <h3 className="text-lg font-bold text-[#0a1f44] group-hover:text-[#0077c8] transition-colors">
                 {feature.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
@@ -121,32 +143,6 @@ export default function WhyChooseUsSection() {
             </div>
           ))}
         </div>
-
-        {/* 7th Featured Card: Commitment (Full Width) */}
-        <div
-          data-aos="fade-up"
-          data-aos-delay="400"
-          className="mt-6 rounded-2xl border border-blue-200/80 bg-gradient-to-r from-blue-50/80 via-indigo-50/50 to-sky-50/80 p-7 sm:p-8 shadow-sm transition-all duration-300 hover:shadow-md"
-        >
-          <div className="flex flex-col md:flex-row md:items-center gap-6">
-            <div className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-[#0077c8] shadow-sm ring-1 ring-blue-100">
-              <div className="h-7 w-7">{featuredCommitment.icon}</div>
-            </div>
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#0077c8]">
-                Core Value
-              </span>
-              <h3 className="text-xl font-bold text-[#0a1f44]">
-                7. {featuredCommitment.title}
-              </h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-slate-700 max-w-4xl">
-                {featuredCommitment.text}
-              </p>
-            </div>
-          </div>
-        </div>
-
-
       </div>
     </section>
   );

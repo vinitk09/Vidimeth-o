@@ -46,10 +46,10 @@ export default function ClientTestimonialsSection() {
           <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
             Testimonials
           </p>
-          <h2 className="text-[30px] font-semibold leading-[1.2] text-[#005f91] sm:text-[36px]">
+          <h2 className="text-[30px] font-bold leading-[1.2] text-black sm:text-[36px]">
             What Our Client Says
           </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-[17px] font-normal leading-[1.68] text-[#555555]">
+          <p className="mx-auto mt-5 max-w-2xl text-[16px] font-normal leading-[1.68] text-[#555555]">
             Practical guidance, reliable support, and business development
             strategies shaped around real client growth.
           </p>
@@ -59,11 +59,10 @@ export default function ClientTestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <article
               key={testimonial.name}
-              className={`relative overflow-hidden rounded-lg border bg-white p-7 shadow-[0_18px_50px_rgba(10,31,68,0.08)] ${
-                index === 1
-                  ? "border-[#0077c8]/28 lg:-translate-y-4"
-                  : "border-slate-200"
-              }`}
+              className={`relative overflow-hidden rounded-lg border bg-white p-7 shadow-[0_18px_50px_rgba(10,31,68,0.08)] ${index === 1
+                ? "border-[#0077c8]/28 lg:-translate-y-4"
+                : "border-slate-200"
+                }`}
               data-aos="fade-up"
               data-aos-delay={index * 120}
             >

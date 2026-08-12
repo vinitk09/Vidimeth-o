@@ -155,12 +155,12 @@ export default function Home() {
 
           <div className="mx-auto max-w-2xl lg:mx-0" data-aos="fade-left">
             <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
-              Welcome
+              Welcome To
             </p>
-            <h1 className="max-w-xl text-[30px] font-semibold leading-[1.22] text-[#0077c8] sm:text-[34px] lg:text-[38px]">
-              Welcome To Vidi Meth Digital Services (OPC) Private Limited.
+            <h1 className="max-w-xl text-[30px] font-bold leading-[1.22] text-black sm:text-[34px] lg:text-[30px]">
+              Vidi Meth Digital Services (OPC) Private Limited.
             </h1>
-            <p className="mt-5 max-w-2xl text-[17px] font-normal leading-[1.68] tracking-normal text-[#555555]">
+            <p className="mt-5 max-w-2xl text-[16px] font-normal leading-[1.68] tracking-normal text-[#555555]">
               To carry on in India or elsewhere the business of concept
               marketing and online marketing, advertising, business management,
               business administration, office function, direct marketing and to

@@ -88,12 +88,12 @@ export default function FoundationNetworkSection() {
       <div className="mx-auto w-full max-w-6xl">
         <div className="max-w-5xl" data-aos="fade-up">
           <div className="mb-5 flex flex-wrap items-center gap-5">
-            <h2 className="text-[28px] font-semibold leading-[1.22] text-[#005f91] sm:text-[34px]">
+            <h2 className="text-[20px] font-bold leading-[1.22] text-black sm:text-[30px]">
               Facilitating Global Business Networks
             </h2>
             <span className="h-0.5 w-28 bg-[#4d65ff]" />
           </div>
-          <p className="max-w-4xl text-[16px] font-normal leading-[1.72] text-[#1d2736] sm:text-[17px]">
+          <p className="max-w-4xl text-[16px] font-normal leading-[1.72] text-[#1d2736] sm:text-[16px]">
             We highly value collaborative relationships with our partners.
             Together, we create practical digital platforms for education,
             careers, property, finance, retail, and shared business growth.
