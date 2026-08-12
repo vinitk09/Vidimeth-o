@@ -12,17 +12,6 @@ export default function GrievancePage() {
           <h1 className="text-[32px] font-bold leading-tight sm:text-[40px]">
             Grievance
           </h1>
-          <nav className="mt-4 flex flex-wrap items-center gap-2 text-sm font-medium text-white/80">
-            <Link href="/" className="flex items-center gap-2 hover:text-white transition">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.99 8.994a.75.75 0 1 1-1.06 1.06L12 5.42 3.54 13.895a.75.75 0 0 1-1.06-1.06l8.99-8.994ZM3.75 14.25v5a2.25 2.25 0 0 0 2.25 2.25h12a2.25 2.25 0 0 0 2.25-2.25v-5a.75.75 0 0 1 1.5 0v5A3.75 3.75 0 0 1 18 23H6a3.75 3.75 0 0 1-3.75-3.75v-5a.75.75 0 0 1 1.5 0Z" />
-              </svg>
-            </Link>
-            <span className="text-white/50">›</span>
-            <span>Vidi Meth Digital Services</span>
-            <span className="text-white/50">›</span>
-            <span className="text-white">Grievance</span>
-          </nav>
         </div>
       </section>
 

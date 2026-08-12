@@ -71,16 +71,6 @@ export default function ContactPage() {
           <h1 className="text-[40px] font-semibold leading-none sm:text-[54px] lg:text-[64px]">
             Contact Us
           </h1>
-          <nav
-            className="mt-5 flex items-center justify-center gap-3 text-[15px] font-normal text-white/82"
-            aria-label="Breadcrumb"
-          >
-            <a href="/" className="transition hover:text-white">
-              Home
-            </a>
-            <span className="h-1.5 w-1.5 rounded-full bg-white/55" />
-            <span className="text-white">Contact Us</span>
-          </nav>
         </div>
       </section>
 

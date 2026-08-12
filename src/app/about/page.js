@@ -148,19 +148,9 @@ export default function AboutPage() {
         }}
       >
         <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
-          <h1 className="text-[40px] font-semibold leading-none sm:text-[54px] lg:text-[64px]">
+          <h1 className="text-[40px] font-bold leading-none sm:text-[34px] lg:text-[44px]">
             About Us
           </h1>
-          <nav
-            className="mt-5 flex items-center justify-center gap-3 text-[15px] font-normal text-white/82"
-            aria-label="Breadcrumb"
-          >
-            <a href="/" className="transition hover:text-white">
-              Home
-            </a>
-            <span className="h-1.5 w-1.5 rounded-full bg-white/55" />
-            <span className="text-white">About Us</span>
-          </nav>
         </div>
       </section>
 
@@ -171,13 +161,13 @@ export default function AboutPage() {
             <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
               Company Profile
             </p>
-            <h2 className="text-[32px] font-semibold leading-[1.18] text-[#005f91] sm:text-[40px]">
+            <h2 className="text-[26px] font-semibold leading-[1.18] text-black sm:text-[28px]">
               An established name in the online industry.
             </h2>
           </div>
 
           <div
-            className="space-y-5 text-[17px] font-normal leading-[1.75] text-[#555555]"
+            className="space-y-5 text-[15px] font-normal leading-[1.75] text-[#555555]"
             data-aos="fade-left"
           >
             <p className="text-justify">
@@ -248,7 +238,7 @@ export default function AboutPage() {
             <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
               Why Choose Us
             </p>
-            <h2 className="text-[32px] font-semibold leading-[1.2] text-[#005f91] sm:text-[40px]">
+            <h2 className="text-[32px] font-bold leading-[1.2] text-black sm:text-[30px]">
               Quality service with practical business thinking.
             </h2>
           </div>

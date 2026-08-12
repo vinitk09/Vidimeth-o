@@ -83,17 +83,17 @@ const divisionLinks = [
 
 const legalLinks = [
   { label: "Privacy Policy", href: "/privacy-policy", icon: "privacy" },
-  { label: "Terms of Use", href: "https://vidimeth.com/terms-of-use/", icon: "terms" },
+  { label: "Terms of Use", href: "/terms-of-use", icon: "terms" },
   { label: "Grievances", href: "/grievance", icon: "grievance" },
-  { label: "Disclaimer", href: "https://vidimeth.com/disclaimer/", icon: "disclaimer" },
+  { label: "Disclaimer", href: "/disclaimer", icon: "disclaimer" },
 ];
 
 export default function Footer() {
   return (
     <footer className="bg-[#05070c] text-white font-sans text-sm border-t border-white/10">
       {/* Main Footer Container */}
-      <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {/* Column 1: Company Logo & Info */}
           <div className="lg:col-span-1 space-y-4">
             <div className="flex items-center gap-3.5">
@@ -125,36 +125,12 @@ export default function Footer() {
             <div className="inline-block rounded-md bg-white/10 px-3 py-1 text-[11px] font-mono font-medium text-white/80 border border-white/10">
               CIN: U52100JH2017OPC009718
             </div>
-
-            {/* Social Icons */}
-            <div className="pt-2">
-              <p className="text-[11px] font-bold uppercase tracking-wider text-white/60 mb-3">
-                CONNECT WITH US
-              </p>
-              <div className="flex gap-2">
-                {[
-                  { type: "facebook", href: "https://vidimeth.com/" },
-                  { type: "twitter", href: "https://vidimeth.com/" },
-                  { type: "instagram", href: "https://vidimeth.com/" },
-                  { type: "linkedin", href: "https://vidimeth.com/" },
-                ].map((item) => (
-                  <a
-                    key={item.type}
-                    href={item.href}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white shadow-sm border border-white/10 transition hover:bg-[#0077c8] hover:text-white"
-                    aria-label={`Vidi Meth ${item.type}`}
-                  >
-                    <CustomIcon type={item.type} />
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Column 2: ABOUT */}
           <div>
             <SectionHeading title="ABOUT" />
-            <ul className="space-y-3 text-[13.5px]">
+            <ul className="space-y-2.5 text-[13.5px]">
               {aboutLinks.map((link) => (
                 <li key={link.label}>
                   {link.href.startsWith("/") ? (
@@ -182,7 +158,7 @@ export default function Footer() {
           {/* Column 3: DIVISIONS */}
           <div>
             <SectionHeading title="DIVISIONS" />
-            <ul className="space-y-3 text-[13.5px]">
+            <ul className="space-y-2.5 text-[13.5px]">
               {divisionLinks.map((link) => (
                 <li key={link.label}>
                   <a
@@ -202,7 +178,7 @@ export default function Footer() {
           {/* Column 4: LEGAL */}
           <div>
             <SectionHeading title="LEGAL" />
-            <ul className="space-y-3 text-[13.5px]">
+            <ul className="space-y-2.5 text-[13.5px]">
               {legalLinks.map((link) => (
                 <li key={link.label}>
                   {link.href.startsWith("/") ? (
@@ -228,10 +204,10 @@ export default function Footer() {
           </div>
 
           {/* Column 5: CONTACT */}
-          <div className="space-y-5">
+          <div className="space-y-4">
             <SectionHeading title="CONTACT" />
 
-            <div className="space-y-4 text-[13px]">
+            <div className="space-y-3 text-[13px]">
               {/* Registered Office */}
               <div className="flex gap-3">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white/10 shadow-sm border border-white/10 text-[#0077c8]">
@@ -265,10 +241,29 @@ export default function Footer() {
                 </div>
               </div>
 
-              {/* Tax Details */}
-              <div className="pt-2 text-xs text-white/60 space-y-1 border-t border-white/10">
-                <p><span className="font-semibold text-white/80">GSTIN:</span> 20AAFCV8003N1ZC</p>
-                <p><span className="font-semibold text-white/80">PAN No:</span> AAFCV8003N</p>
+              {/* Tax Details & Social Icons */}
+              <div className="pt-2 text-xs text-white/60 flex flex-wrap items-center justify-between gap-2 border-t border-white/10">
+                <div className="space-y-0.5">
+                  <p><span className="font-semibold text-white/80">GSTIN:</span> 20AAFCV8003N1ZC</p>
+                  <p><span className="font-semibold text-white/80">PAN:</span> AAFCV8003N</p>
+                </div>
+
+                <div className="flex gap-1.5">
+                  {[
+                    { type: "facebook", href: "https://vidimeth.com/", label: "Facebook" },
+                    { type: "twitter", href: "https://vidimeth.com/", label: "Twitter" },
+                    { type: "linkedin", href: "https://vidimeth.com/", label: "LinkedIn" },
+                  ].map((item) => (
+                    <a
+                      key={item.type}
+                      href={item.href}
+                      className="flex h-7 w-7 items-center justify-center rounded-md bg-white/10 text-white shadow-sm border border-white/10 transition hover:bg-[#0077c8] hover:text-white"
+                      aria-label={`Vidi Meth ${item.label}`}
+                    >
+                      <CustomIcon type={item.type} />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -276,7 +271,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Copyright Bar */}
-      <div className="border-t border-white/10 bg-[#0a0d14] px-5 py-4 sm:px-8 lg:px-10 text-xs text-white/60">
+      <div className="border-t border-white/10 bg-[#0a0d14] px-5 py-2.5 sm:px-8 lg:px-10 text-xs text-white/60">
         <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <p>&copy; 2026 Vidi Meth Digital Services (OPC) Private Limited. All rights reserved.</p>
         </div>

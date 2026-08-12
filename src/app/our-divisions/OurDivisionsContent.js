@@ -145,17 +145,6 @@ export default function OurDivisionsContent() {
           <p className="mt-4 mx-auto max-w-2xl text-[15px] text-white/85 font-normal leading-relaxed">
             Vidi Meth Digital Services brings together specialized digital portals spanning online education, real estate marketplace, job recruitment, financial advisory, and retail e-commerce.
           </p>
-
-          <nav
-            className="mt-6 flex items-center justify-center gap-3 text-[14px] font-medium text-white/80"
-            aria-label="Breadcrumb"
-          >
-            <a href="/" className="transition hover:text-[#38bdf8]">
-              Home
-            </a>
-            <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
-            <span className="text-[#38bdf8] font-semibold">Our Divisions</span>
-          </nav>
         </div>
       </section>
 

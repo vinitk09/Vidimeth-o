@@ -307,17 +307,6 @@ export default function CareerContent() {
           <p className="mt-4 mx-auto max-w-2xl text-[15px] text-white/85 font-normal leading-relaxed">
             We are looking for dedicated professionals in digital marketing, web development, student counseling, and financial services to build long-term careers with us.
           </p>
-
-          <nav
-            className="mt-6 flex items-center justify-center gap-3 text-[14px] font-medium text-white/80"
-            aria-label="Breadcrumb"
-          >
-            <Link href="/" className="transition hover:text-[#38bdf8]">
-              Home
-            </Link>
-            <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
-            <span className="text-[#38bdf8] font-semibold">Careers</span>
-          </nav>
         </div>
       </section>
 

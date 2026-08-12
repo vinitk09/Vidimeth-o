@@ -144,17 +144,6 @@ export default function OurServicesPage() {
           <p className="mx-auto mt-3 max-w-2xl text-[16px] font-normal leading-relaxed text-slate-300 sm:text-[18px]">
             Empowering individuals and enterprises across India with specialized solutions in insurance, education, finance, property, and e-commerce.
           </p>
-
-          <nav
-            className="mt-6 flex items-center justify-center gap-3 text-[14px] font-medium text-slate-300"
-            aria-label="Breadcrumb"
-          >
-            <a href="/" className="transition hover:text-white">
-              Home
-            </a>
-            <span className="h-1.5 w-1.5 rounded-full bg-slate-500" />
-            <span className="text-white">Our Services</span>
-          </nav>
         </div>
       </section>
 
