@@ -11,7 +11,7 @@ import StatsCounterSection from "./components/StatsCounterSection";
 
 const slides = [
   {
-    src: "/vmbanner.png",
+    src: "/vmbn.png",
     alt: "VM Academy course and college guidance banner",
   },
   {
@@ -122,7 +122,7 @@ export default function Home() {
               fill
               sizes="100vw"
               priority={index === 0}
-              className="object-cover"
+              className="object-contain"
             />
           </div>
         ))}
@@ -149,7 +149,7 @@ export default function Home() {
               alt="Welcome to Vidimeth"
               width={1158}
               height={1364}
-              className="h-auto w-full object-cover"
+              className="h-auto w-full object-contain"
             />
           </div>
 
