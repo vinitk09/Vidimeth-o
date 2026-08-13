@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import WhatWeDoSection from "./components/WhatWeDoSection";
 import WhyChooseUsSection from "./components/WhyChooseUsSection";
 import StatsCounterSection from "./components/StatsCounterSection";
+import FloatingActions from "./components/FloatingActions";
 
 const slides = [
   {

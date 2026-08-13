@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "aos/dist/aos.css";
 import AosInitializer from "./components/AosInitializer";
+import FloatingActions from "./components/FloatingActions";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
       <body>
         <AosInitializer />
         {children}
+        <FloatingActions />
       </body>
     </html>
   );
