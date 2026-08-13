@@ -60,6 +60,11 @@ export default function StatsCounterSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [visibleCards, setVisibleCards] = useState(3);
+  const [imgErrors, setImgErrors] = useState({});
+
+  const handleImageError = (id) => {
+    setImgErrors((prev) => ({ ...prev, [id]: true }));
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -157,14 +162,26 @@ export default function StatsCounterSection() {
                 className="w-full shrink-0 px-3 sm:w-1/2 lg:w-1/3"
               >
                 <article className="group relative flex h-[360px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#0d1f3c] shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-[#0077c8]/50 hover:shadow-2xl hover:shadow-[#0077c8]/20">
-                  <div className="relative h-36 w-full shrink-0 overflow-hidden bg-slate-800">
-                    <Image
-                      src={article.image}
-                      alt={article.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d1f3c] via-transparent to-transparent" />
+                  <div className="relative h-36 w-full shrink-0 overflow-hidden bg-gradient-to-br from-[#0077c8] via-[#005f91] to-[#071326] flex items-center justify-center">
+                    {!article.image || imgErrors[article.id] ? (
+                      <div className="flex flex-col items-center justify-center p-4 text-center">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-extrabold text-sm mb-1.5 shadow-md">
+                          VM
+                        </div>
+                        <span className="text-[11px] font-bold uppercase tracking-widest text-cyan-300">
+                          {article.category || "Vidi Meth News"}
+                        </span>
+                      </div>
+                    ) : (
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        onError={() => handleImageError(article.id)}
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d1f3c] via-transparent to-transparent pointer-events-none" />
                   </div>
 
                   <div className="flex flex-1 flex-col justify-between p-4 sm:p-5">

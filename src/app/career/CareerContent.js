@@ -152,7 +152,7 @@ const initialJobs = [
   },
   {
     id: 6,
-    title: "Financial Loan Officer | Loan Vidhi",
+    title: "Financial Loan Officer | LOAN vidhi",
     company: "Vidi Meth Digital Services",
     location: "Ranchi",
     category: "Finance",
@@ -160,7 +160,7 @@ const initialJobs = [
     postedDate: "Posted 1 week ago",
     skills: ["Loan Verification", "Client Advisory", "Banking Documentation"],
     description:
-      "Assist clients in understanding loan requirements, evaluating financial documentation, and coordinating with bank partners for loan processing under our Loan Vidhi division.",
+      "Assist clients in understanding loan requirements, evaluating financial documentation, and coordinating with bank partners for loan processing under our LOAN vidhi division.",
     responsibilities: [
       "Review client loan applications and check supporting financial documents.",
       "Explain loan options, interest structures, and repayment terms to applicants clearly.",
@@ -289,48 +289,45 @@ export default function CareerContent() {
     <div className="bg-[#f8fafc] text-[#1d2736] font-sans">
       {/* Clean Professional Hero Section */}
       <section
-        className="relative flex min-h-[380px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 pt-28 pb-20 text-center text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(5, 11, 34, 0.75), rgba(5, 11, 34, 0.82)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1800&q=80')",
+            "linear-gradient(to bottom, rgba(5, 11, 34, 0.78), rgba(5, 11, 34, 0.88)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=2000&q=80')",
         }}
       >
-        <div className="relative mx-auto w-full max-w-4xl" data-aos="fade-up">
-          <span className="inline-block rounded-md bg-[#0077c8]/20 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#38bdf8] border border-[#38bdf8]/30 mb-4">
-            Careers & Current Vacancies
-          </span>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />
 
-          <h1 className="text-[36px] font-bold tracking-tight leading-tight sm:text-[48px] lg:text-[56px]">
-            Join Our Team at Vidi Meth
+        <div className="relative mx-auto w-full max-w-4xl" data-aos="fade-up">
+          <h1 className="text-[36px] font-bold tracking-tight leading-tight sm:text-[48px] lg:text-[54px]">
+            Build Your Career at Vidi Meth
           </h1>
-          
-          <p className="mt-4 mx-auto max-w-2xl text-[15px] text-white/85 font-normal leading-relaxed">
-            We are looking for dedicated professionals in digital marketing, web development, student counseling, and financial services to build long-term careers with us.
-          </p>
         </div>
       </section>
 
       {/* Main Content Area */}
       <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-        
-        {/* Search & Filter Header Box (Exact structure matching original design without emojis) */}
-        <div className="mb-10 rounded-xl bg-[#f1f5f9] p-6 shadow-sm border border-slate-200" data-aos="fade-up">
-          
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-[#005f91]">
-              Search Current Openings
-            </h2>
+
+        {/* Search & Filter Header Box */}
+        <div className="mb-10 rounded-2xl bg-gradient-to-r from-sky-50/70 via-white to-sky-50/50 p-6 sm:p-8 shadow-[0_15px_45px_rgba(0,119,200,0.07)] border border-sky-100" data-aos="fade-up">
+
+          <div className="mb-5 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#0077c8]" />
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#0077c8]">
+                Search Open Positions
+              </h2>
+            </div>
             <button
               type="button"
               onClick={resetFilters}
-              className="text-xs font-semibold text-slate-500 hover:text-[#005f91] underline"
+              className="text-xs font-semibold text-slate-500 hover:text-[#0077c8] transition underline"
             >
               Clear Filters
             </button>
           </div>
 
           <form onSubmit={handleSearchSubmit} className="grid gap-4 md:grid-cols-12 items-center">
-            
+
             {/* Keywords Input */}
             <div className="md:col-span-5">
               <label htmlFor="search-keywords" className="sr-only">Keywords</label>
@@ -339,8 +336,8 @@ export default function CareerContent() {
                 type="text"
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
-                placeholder="Keywords"
-                className="w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:border-[#005f91] focus:outline-none focus:ring-1 focus:ring-[#005f91]"
+                placeholder="Job title or key skill..."
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm text-slate-800 placeholder-slate-400 outline-none transition focus:border-[#0077c8] focus:bg-white focus:ring-2 focus:ring-[#0077c8]/20"
               />
             </div>
 
@@ -351,9 +348,9 @@ export default function CareerContent() {
                 id="search-location"
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className="w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#005f91] focus:outline-none focus:ring-1 focus:ring-[#005f91]"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#0077c8] focus:bg-white focus:ring-2 focus:ring-[#0077c8]/20"
               >
-                <option value="">Location</option>
+                <option value="">Location (All)</option>
                 <option value="Jamshedpur">Jamshedpur</option>
                 <option value="Ranchi">Ranchi</option>
                 <option value="Remote">Work from Home / Remote</option>
@@ -367,7 +364,7 @@ export default function CareerContent() {
                 id="search-category"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 focus:border-[#005f91] focus:outline-none focus:ring-1 focus:ring-[#005f91]"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[#0077c8] focus:bg-white focus:ring-2 focus:ring-[#0077c8]/20"
               >
                 <option value="">All Departments</option>
                 <option value="Administration">Administration</option>
@@ -382,7 +379,7 @@ export default function CareerContent() {
             <div className="md:col-span-1 flex justify-stretch">
               <button
                 type="submit"
-                className="flex w-full items-center justify-center rounded-md bg-[#005f91] py-3 text-white transition hover:bg-[#004a73] focus:outline-none focus:ring-2 focus:ring-[#005f91]"
+                className="flex w-full items-center justify-center rounded-xl bg-[#0077c8] py-3 text-white shadow-md transition hover:bg-[#005f91] hover:shadow-lg focus:outline-none"
                 aria-label="Search Jobs"
               >
                 <svg
@@ -399,7 +396,7 @@ export default function CareerContent() {
 
         {/* Filter Applied Indicator */}
         {(activeFilter.keyword || activeFilter.location || activeFilter.category) && (
-          <div className="mb-6 flex items-center justify-between rounded-md bg-blue-50 px-4 py-2.5 text-xs text-[#005f91] border border-blue-200">
+          <div className="mb-6 flex items-center justify-between rounded-xl bg-sky-50 px-4 py-3 text-xs text-[#0077c8] border border-sky-200">
             <span>
               Active Filter:{" "}
               <strong>
@@ -414,7 +411,7 @@ export default function CareerContent() {
             </span>
             <button
               onClick={resetFilters}
-              className="font-semibold underline hover:text-[#004a73]"
+              className="font-semibold underline hover:text-[#005f91]"
             >
               Reset
             </button>
@@ -422,28 +419,28 @@ export default function CareerContent() {
         )}
 
         {/* Job Listings Header */}
-        <div className="mb-6 flex items-center justify-between border-b border-slate-200 pb-3">
-          <h2 className="text-xl font-bold text-slate-900">
+        <div className="mb-6 flex items-center justify-between border-b border-slate-200/80 pb-4">
+          <h2 className="text-xl font-bold text-[#0a1f44]">
             Available Positions ({filteredJobs.length})
           </h2>
           <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-            Vidi Meth Employment
+            Vidi Meth Opportunities
           </span>
         </div>
 
-        {/* Job Cards List (Clean, humanized layout without emojis) */}
+        {/* Job Cards List */}
         {filteredJobs.length > 0 ? (
-          <div className="space-y-5">
+          <div className="space-y-6">
             {filteredJobs.map((job) => (
               <article
                 key={job.id}
-                className="group rounded-md border border-slate-200 bg-white p-6 shadow-sm transition hover:border-[#005f91]/40 hover:shadow-md"
+                className="group rounded-2xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-sm transition-all duration-300 hover:border-sky-300 hover:shadow-xl hover:-translate-y-1"
                 data-aos="fade-up"
               >
-                <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                  
+                <div className="flex flex-col sm:flex-row sm:items-start gap-5">
+
                   {/* Company Logo Badge */}
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded border border-slate-200 bg-white p-1">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-sky-100 bg-gradient-to-br from-sky-50 to-white p-2.5 shadow-sm">
                     <Image
                       src="/vidimethlogo1.png"
                       alt="Vidi Meth Logo"
@@ -455,48 +452,43 @@ export default function CareerContent() {
 
                   {/* Main Job Content */}
                   <div className="flex-1">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                       <div>
-                        <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#005f91] transition-colors">
+                        <h3 className="text-lg font-bold text-black group-hover:text-[#0077c8] transition-colors">
                           {job.title}
                         </h3>
-                        <p className="text-xs text-slate-500 font-medium mt-0.5">
+                        <p className="text-xs text-slate-500 font-semibold mt-0.5">
                           {job.company}
                         </p>
                       </div>
 
                       {/* Location & Posted Date */}
                       <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600">
-                        <span className="flex items-center gap-1">
-                          <svg className="h-3.5 w-3.5 text-slate-500" fill="currentColor" viewBox="0 0 24 24">
+                        <span className="flex items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-1 font-semibold text-slate-700">
+                          <svg className="h-3.5 w-3.5 text-[#0077c8]" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                           </svg>
-                          <span className="font-semibold text-[#005f91]">{job.location}</span>
+                          <span>{job.location}</span>
                         </span>
-                        <span className="flex items-center gap-1">
-                          <svg className="h-3.5 w-3.5 text-slate-400" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z" />
-                          </svg>
-                          <span>{job.postedDate}</span>
-                        </span>
-                        <span className="rounded bg-slate-100 px-2.5 py-0.5 font-semibold text-slate-700">
+                        <span className="rounded-lg bg-sky-50 px-3 py-1 font-bold text-[#0077c8] border border-sky-100">
                           {job.type}
                         </span>
+                        <span className="text-slate-400 font-medium">{job.postedDate}</span>
                       </div>
                     </div>
 
                     {/* Short Description */}
-                    <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                    <p className="mt-3.5 text-sm text-slate-600 leading-relaxed">
                       {job.description}
                     </p>
 
                     {/* Clean Skills Row */}
                     {job.skills && (
-                      <div className="mt-3 flex flex-wrap gap-1.5">
+                      <div className="mt-4 flex flex-wrap gap-2">
                         {job.skills.map((skill) => (
                           <span
                             key={skill}
-                            className="rounded bg-slate-100 px-2.5 py-0.5 text-xs text-slate-600 border border-slate-200"
+                            className="rounded-lg bg-sky-50/70 text-[#0077c8] border border-sky-100 px-3 py-1 font-semibold text-xs"
                           >
                             {skill}
                           </span>
@@ -505,18 +497,18 @@ export default function CareerContent() {
                     )}
 
                     {/* Action Buttons */}
-                    <div className="mt-4 flex flex-wrap items-center gap-2.5 pt-3 border-t border-slate-100">
+                    <div className="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100">
                       <button
                         onClick={() => setApplyingJob(job)}
-                        className="rounded bg-[#005f91] px-4 py-1.5 text-xs font-semibold text-white transition hover:bg-[#004a73]"
+                        className="rounded-full bg-[#0077c8] px-5 py-2 text-xs font-bold text-white shadow-md transition-all hover:bg-[#005f91] hover:shadow-lg hover:-translate-y-0.5"
                       >
                         Quick Apply
                       </button>
                       <button
                         onClick={() => setReadingJob(job)}
-                        className="rounded border border-slate-300 bg-white px-4 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+                        className="rounded-full border border-slate-300 bg-white px-5 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
                       >
-                        Read More
+                        Read Details
                       </button>
                     </div>
                   </div>
@@ -526,16 +518,16 @@ export default function CareerContent() {
           </div>
         ) : (
           /* Empty State */
-          <div className="rounded-md border border-dashed border-slate-300 bg-white p-10 text-center">
-            <h3 className="text-base font-bold text-slate-800">
+          <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center">
+            <h3 className="text-lg font-bold text-[#0a1f44]">
               No openings match your search
             </h3>
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-2 text-xs text-slate-500">
               Please clear your search filters to view all available positions.
             </p>
             <button
               onClick={resetFilters}
-              className="mt-4 rounded bg-[#005f91] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#004a73]"
+              className="mt-5 rounded-full bg-[#0077c8] px-6 py-2.5 text-xs font-bold text-white transition hover:bg-[#005f91]"
             >
               Reset Filters
             </button>
@@ -543,62 +535,33 @@ export default function CareerContent() {
         )}
       </section>
 
-      {/* Recruitment Process Section */}
-      <section className="bg-white border-t border-slate-200 px-5 py-14 sm:px-8 lg:px-10 lg:py-16">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-10 text-center" data-aos="fade-up">
-            <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-              Application & Hiring Steps
-            </h2>
-            <p className="mt-2 text-xs text-slate-600">
-              Our straightforward four-step hiring process for prospective team members.
-            </p>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {hiringSteps.map((stepItem, idx) => (
-              <div
-                key={stepItem.step}
-                className="rounded-lg border border-slate-200 bg-[#f8fafc] p-5 shadow-sm"
-                data-aos="fade-up"
-                data-aos-delay={idx * 60}
-              >
-                <span className="inline-block rounded bg-blue-100 px-2.5 py-0.5 text-xs font-bold text-[#005f91] mb-2">
-                  Step {stepItem.step}
-                </span>
-                <h3 className="text-sm font-bold text-slate-900">
-                  {stepItem.title}
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-600">
-                  {stepItem.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Why Work With Vidi Meth Section */}
-      <section className="bg-slate-50 border-t border-slate-200 px-5 py-14 sm:px-8 lg:px-10 lg:py-16">
+      <section className="bg-slate-50/80 border-t border-slate-200/80 px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-10 text-center" data-aos="fade-up">
-            <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+          <div className="mb-12 text-center" data-aos="fade-up">
+            <span className="mb-2 inline-block rounded-full bg-[#0077c8]/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#0077c8]">
+              Culture &amp; Benefits
+            </span>
+            <h2 className="text-2xl font-bold text-black sm:text-3xl lg:text-4xl">
               Why Work With Us
             </h2>
-            <p className="mt-2 text-xs text-slate-600">
-              We provide a supportive, ethical, and growth-oriented workplace for our employees.
+            <p className="mt-2 text-sm text-slate-600 max-w-xl mx-auto">
+              We provide a supportive, ethical, and growth-oriented workplace for all our team members.
             </p>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {culturePerks.map((perk, index) => (
               <div
                 key={perk.title}
-                className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
+                className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:border-[#0077c8]/40 hover:shadow-lg hover:-translate-y-1"
                 data-aos="fade-up"
                 data-aos-delay={index * 60}
               >
-                <h3 className="text-sm font-bold text-slate-900 text-[#005f91]">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-sky-100 text-[#0077c8] font-bold">
+                  {index + 1}
+                </div>
+                <h3 className="text-base font-bold text-black">
                   {perk.title}
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-slate-600">

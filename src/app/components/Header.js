@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 
 const navLinks = [
@@ -26,7 +27,7 @@ const exploreLinks = [
     href: "/terms-of-use",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
         <polyline points="14 2 14 8 20 8" />
         <line x1="16" y1="13" x2="8" y2="13" />
         <line x1="16" y1="17" x2="8" y2="17" />
@@ -134,9 +135,14 @@ function NavItem({ link, className, onClick }) {
 }
 
 export default function Header() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExploreOpen, setIsExploreOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const dropdownRef = useRef(null);
+
+  const isHomePage = pathname === "/";
+  const useDarkText = isScrolled || isHomePage;
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -148,8 +154,30 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-slate-200 bg-white text-[#0a1f44] shadow-[0_8px_26px_rgba(10,31,68,0.08)]">
+    <header
+      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
+        isHomePage
+          ? "border-b border-slate-200 bg-white text-[#0a1f44] shadow-[0_8px_26px_rgba(10,31,68,0.08)]"
+          : isScrolled
+          ? "border-b border-slate-200 bg-white/95 text-[#0a1f44] shadow-[0_8px_26px_rgba(10,31,68,0.08)] backdrop-blur-md"
+          : "border-b border-white/15 bg-transparent text-white"
+      }`}
+    >
       <nav className="relative mx-auto flex min-h-20 w-full max-w-7xl items-center gap-4 px-4 py-2 pr-16 font-sans sm:px-6 sm:pr-20 lg:px-8 lg:pr-24 xl:pr-8">
         <Link
           href="/"
@@ -165,10 +193,18 @@ export default function Header() {
             className="h-12 w-12 rounded-full object-cover shadow-md ring-1 ring-slate-200 sm:h-14 sm:w-14"
           />
           <div className="flex flex-col justify-center">
-            <span className="text-[15px] font-bold leading-tight text-[#0a1f44] sm:text-[17px]">
+            <span
+              className={`text-[15px] font-bold leading-tight transition-colors sm:text-[17px] ${
+                useDarkText ? "text-[#0a1f44]" : "text-white"
+              }`}
+            >
               Vidi Meth Digital Services
             </span>
-            <span className="text-[11px] font-medium text-[#0077c8] sm:text-[12px]">
+            <span
+              className={`text-[11px] font-medium transition-colors sm:text-[12px] ${
+                useDarkText ? "text-[#0077c8]" : "text-sky-300 font-semibold"
+              }`}
+            >
               OPC Private Limited
             </span>
           </div>
@@ -179,7 +215,11 @@ export default function Header() {
             <NavItem
               key={link.href}
               link={link}
-              className="nav-link rounded-md px-4 py-2 text-[15px] font-bold transition hover:text-[#0077c8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8]"
+              className={`nav-link rounded-md px-4 py-2 text-[15px] font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${
+                useDarkText
+                  ? "text-[#0a1f44] hover:text-[#0077c8]"
+                  : "text-white hover:bg-white/10 hover:text-white"
+              }`}
             />
           ))}
 
@@ -193,13 +233,21 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setIsExploreOpen((prev) => !prev)}
-              className="nav-link flex items-center gap-1.5 rounded-md px-4 py-2 text-[15px] font-bold text-[#0a1f44] transition hover:text-[#0077c8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8]"
+              className={`nav-link flex items-center gap-1.5 rounded-md px-4 py-2 text-[15px] font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${
+                useDarkText
+                  ? "text-[#0a1f44] hover:text-[#0077c8]"
+                  : "text-white hover:bg-white/10 hover:text-white"
+              }`}
               aria-expanded={isExploreOpen}
             >
               Explore
               <svg
                 className={`h-4 w-4 transition-transform duration-200 ${
-                  isExploreOpen ? "rotate-180 text-[#0077c8]" : "text-slate-400"
+                  isExploreOpen
+                    ? "rotate-180 text-[#0077c8]"
+                    : useDarkText
+                    ? "text-slate-500"
+                    : "text-white/70"
                 }`}
                 viewBox="0 0 24 24"
                 fill="none"
@@ -274,7 +322,11 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setIsMenuOpen((current) => !current)}
-          className="absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md border border-slate-200 bg-white text-[#0a1f44] shadow-sm transition hover:border-[#0077c8]/35 hover:text-[#0077c8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] sm:right-6 lg:right-8 xl:hidden [&_svg]:h-6 [&_svg]:w-6 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round"
+          className={`absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] sm:right-6 lg:right-8 xl:hidden [&_svg]:h-6 [&_svg]:w-6 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round ${
+            useDarkText
+              ? "border border-slate-200 bg-white/90 text-[#0a1f44] shadow-sm hover:border-[#0077c8]/35 hover:text-[#0077c8]"
+              : "border border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20"
+          }`}
           aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMenuOpen}
           aria-controls="site-mobile-menu"

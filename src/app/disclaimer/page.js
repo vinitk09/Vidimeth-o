@@ -6,12 +6,12 @@ import Footer from "../components/Footer";
 
 export default function DisclaimerPage() {
   return (
-    <main className="min-h-screen bg-[#f8fafc] pt-20">
+    <main className="min-h-screen bg-[#f8fafc] pt-0">
       <Header />
 
       {/* Header Banner */}
       <section
-        className="relative flex min-h-[340px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 pt-28 pb-20 text-center text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
             "linear-gradient(to bottom, rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.82)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80')",

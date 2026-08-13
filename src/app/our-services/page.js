@@ -122,12 +122,12 @@ export default function OurServicesPage() {
       : services.filter((s) => s.category === activeCategory);
 
   return (
-    <main className="overflow-x-hidden no-scrollbar bg-[#f8fafc] pt-20">
+    <main className="overflow-x-hidden no-scrollbar bg-[#f8fafc] pt-0">
       <Header />
 
       {/* Hero Header */}
       <section
-        className="relative flex min-h-[340px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 pt-28 pb-20 text-center text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
             "linear-gradient(to bottom, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.80)), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=2000&q=80')",

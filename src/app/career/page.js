@@ -1,6 +1,5 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import StatsCounterSection from "../components/StatsCounterSection";
 import CareerContent from "./CareerContent";
 
 export const metadata = {
@@ -11,10 +10,9 @@ export const metadata = {
 
 export default function CareerPage() {
   return (
-    <main className="overflow-x-hidden no-scrollbar bg-white pt-20">
+    <main className="overflow-x-hidden no-scrollbar bg-white pt-0">
       <Header />
       <CareerContent />
-      <StatsCounterSection />
       <Footer />
     </main>
   );

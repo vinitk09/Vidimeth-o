@@ -59,11 +59,10 @@ function StarRatingInput({ rating, setRating }) {
           className="p-1 focus:outline-none transition-transform hover:scale-110"
         >
           <svg
-            className={`h-7 w-7 ${
-              star <= (hover || rating)
-                ? "fill-[#f4b400] text-[#f4b400]"
-                : "fill-slate-200 text-slate-300"
-            }`}
+            className={`h-7 w-7 ${star <= (hover || rating)
+              ? "fill-[#f4b400] text-[#f4b400]"
+              : "fill-slate-200 text-slate-300"
+              }`}
             viewBox="0 0 24 24"
           >
             <path d="M12 3.75 14.55 8.9l5.7.82-4.12 4 .97 5.66L12 16.7l-5.1 2.68.97-5.66-4.12-4 5.7-.82L12 3.75Z" />
@@ -83,9 +82,8 @@ function StarIcons({ rating }) {
       {Array.from({ length: 5 }).map((_, idx) => (
         <svg
           key={idx}
-          className={`h-4 w-4 ${
-            idx < rating ? "fill-[#f4b400] text-[#f4b400]" : "fill-slate-200 text-slate-200"
-          }`}
+          className={`h-4 w-4 ${idx < rating ? "fill-[#f4b400] text-[#f4b400]" : "fill-slate-200 text-slate-200"
+            }`}
           viewBox="0 0 24 24"
         >
           <path d="M12 3.75 14.55 8.9l5.7.82-4.12 4 .97 5.66L12 16.7l-5.1 2.68.97-5.66-4.12-4 5.7-.82L12 3.75Z" />
@@ -178,32 +176,32 @@ export default function ReviewPage() {
     <div className="bg-[#f8fafc] text-[#1d2736] font-sans min-h-screen flex flex-col justify-between">
       <Header />
 
-      <main className="flex-grow">
+      <main className="flex-grow pt-0">
         {/* Hero Section */}
         <section
-          className="relative flex min-h-[340px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 py-16 text-center text-white sm:px-8 lg:px-10"
+          className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 pt-28 pb-20 text-center text-white sm:px-8 lg:px-10"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(5, 11, 34, 0.82), rgba(5, 11, 34, 0.88)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1800&q=80')",
+              "linear-gradient(rgba(5, 11, 34, 0.82), rgba(5, 11, 34, 0.88)), url('https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=2000&q=80')",
           }}
         >
-          <div className="relative mx-auto w-full max-w-4xl" data-aos="fade-up">
-            <span className="inline-block rounded-md bg-[#0077c8]/20 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#38bdf8] border border-[#38bdf8]/30 mb-4">
+          <div className="relative mx-auto mt-6 sm:mt-8 w-full max-w-4xl" data-aos="fade-up">
+            {/* <span className="inline-block rounded-md bg-[#0077c8]/20 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#38bdf8] border border-[#38bdf8]/30 mb-4">
               Client Feedback & Reviews
-            </span>
+            </span> */}
             <h1 className="text-[34px] font-bold tracking-tight leading-tight sm:text-[46px] lg:text-[52px]">
               Share Your Experience
             </h1>
-            <p className="mt-4 mx-auto max-w-2xl text-[15px] text-white/85 font-normal leading-relaxed">
+            {/* <p className="mt-4 mx-auto max-w-2xl text-[15px] text-white/85 font-normal leading-relaxed">
               We value your partnership! Your honest feedback helps us enhance our digital services across education, property, recruitment, finance, and e-commerce.
-            </p>
+            </p> */}
           </div>
         </section>
 
         {/* Main Content Area */}
         <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-          <div className="grid gap-10 lg:grid-cols-12">
-            
+          <div className="grid gap-10 lg:grid-cols-12 items-start">
+
             {/* Left Column: Client Review Form */}
             <div className="lg:col-span-7">
               <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm sm:p-9">
@@ -366,8 +364,8 @@ export default function ReviewPage() {
             </div>
 
             {/* Right Column: User-Facing Guidelines & Verified Reviews Showcase */}
-            <div className="lg:col-span-5 space-y-6">
-              
+            <div className="lg:col-span-5 sticky top-24 self-start z-20 space-y-6">
+
               {/* Review Standards & Guidelines Card */}
               <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
                 <h3 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
@@ -401,53 +399,6 @@ export default function ReviewPage() {
                       <p className="mt-0.5">Your email address will remain confidential and is only used for verification purposes.</p>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Verified Client Testimonials Preview Card */}
-              <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                  <h3 className="text-base font-bold text-slate-900">
-                    Verified Client Reviews ({approvedReviews.length})
-                  </h3>
-                  <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200">
-                    Active Feedback
-                  </span>
-                </div>
-
-                <div className="mt-5 space-y-4 max-h-[380px] overflow-y-auto pr-1">
-                  {approvedReviews.map((rev) => (
-                    <div key={rev.id} className="rounded-xl border border-slate-100 bg-slate-50/80 p-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2.5">
-                          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0077c8] text-xs font-bold text-white shadow-2xs">
-                            {rev.name.slice(0, 2).toUpperCase()}
-                          </span>
-                          <div>
-                            <p className="text-xs font-bold text-slate-900">{rev.name}</p>
-                            <p className="text-[10px] font-medium text-slate-500">{rev.role}</p>
-                          </div>
-                        </div>
-                        <StarIcons rating={rev.rating} />
-                      </div>
-                      <p className="mt-3 text-xs leading-relaxed text-slate-600 italic">
-                        &ldquo;{rev.quote}&rdquo;
-                      </p>
-                      <div className="mt-3 flex items-center justify-between text-[10px] text-slate-400 border-t border-slate-200/60 pt-2">
-                        <span className="font-semibold text-[#0077c8]">{rev.division}</span>
-                        <span>{rev.date}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-slate-100 text-center">
-                  <Link href="/" className="text-xs font-semibold text-[#0077c8] hover:underline flex items-center justify-center gap-1">
-                    <span>Explore testimonials on Homepage</span>
-                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </Link>
                 </div>
               </div>
 

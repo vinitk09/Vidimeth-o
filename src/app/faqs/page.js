@@ -51,14 +51,14 @@ function PlusIcon() {
 
 export default function FaqsPage() {
   return (
-    <main className="overflow-x-hidden no-scrollbar bg-white pt-20">
+    <main className="overflow-x-hidden no-scrollbar bg-white pt-0">
       <Header />
 
       <section
-        className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 pt-28 pb-20 text-center text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(5, 11, 34, 0.62), rgba(5, 11, 34, 0.66)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80')",
+            "linear-gradient(rgba(5, 11, 34, 0.72), rgba(5, 11, 34, 0.82)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2000&q=80')",
         }}
       >
         <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">

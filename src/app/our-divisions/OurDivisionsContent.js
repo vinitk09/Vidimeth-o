@@ -22,6 +22,7 @@ const divisions = [
       "Post-examination admission guidance & eligibility insights",
       "Information across Engineering, Medical, Management & Law",
     ],
+    tags: ["Education", "Colleges", "Courses", "Admissions", "Guidance"],
   },
   {
     id: "realestate",
@@ -41,6 +42,7 @@ const divisions = [
       "Direct platform for builders, promoters & real estate agents",
       "Meet online, transact offline property ecosystem",
     ],
+    tags: ["Real Estate", "Properties", "Listings", "Builders", "Local"],
   },
   {
     id: "recruitment",
@@ -60,10 +62,11 @@ const divisions = [
       "Curated vacancies for freshers & experienced candidates",
       "End-to-end online staffing & employment solutions",
     ],
+    tags: ["Jobs", "Hiring", "Recruitment", "Careers", "Staffing"],
   },
   {
     id: "finance",
-    name: "Loan Vidhi",
+    name: "LOAN vidhi",
     category: "Financial Consultancy",
     domain: "www.loanvidhi.com",
     href: "https://www.loanvidhi.com/",
@@ -79,6 +82,7 @@ const divisions = [
       "Custom financial planning & portfolio management",
       "Insurance & real estate monetary advisory",
     ],
+    tags: ["Finance", "Loans", "Insurance", "Advisory", "Portfolio"],
   },
   {
     id: "ecommerce",
@@ -98,6 +102,7 @@ const divisions = [
       "Wide selection across electronics, fashion & home needs",
       "Reliable online shopping experience with secure ordering",
     ],
+    tags: ["E-Commerce", "Retail", "Shopping", "Electronics", "Lifestyle"],
   },
 ];
 
@@ -122,24 +127,24 @@ export default function OurDivisionsContent() {
     <div className="bg-[#f8fafc] text-[#1d2736] font-sans">
       {/* Hero Banner Section */}
       <section
-        className="relative flex min-h-[380px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[380px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 pt-28 pb-20 text-center text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(5, 11, 34, 0.72), rgba(5, 11, 34, 0.78)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80')",
+            "linear-gradient(rgba(5, 11, 34, 0.75), rgba(5, 11, 34, 0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80')",
         }}
       >
         <div className="relative mx-auto w-full max-w-4xl" data-aos="fade-up">
-          <span className="inline-block rounded-md bg-[#0077c8]/20 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#38bdf8] border border-[#38bdf8]/30 mb-4">
+          {/* <span className="inline-block rounded-md bg-[#0077c8]/20 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#38bdf8] border border-[#38bdf8]/30 mb-4">
             Specialized Business Ecosystem
-          </span>
+          </span> */}
 
           <h1 className="text-[36px] font-bold tracking-tight leading-tight sm:text-[48px] lg:text-[56px]">
-            Our Digital Divisions
+            Our Divisions
           </h1>
 
-          <p className="mt-4 mx-auto max-w-2xl text-[15px] text-white/85 font-normal leading-relaxed">
+          {/* <p className="mt-4 mx-auto max-w-2xl text-[15px] text-white/85 font-normal leading-relaxed">
             Vidi Meth Digital Services brings together specialized digital portals spanning online education, real estate marketplace, job recruitment, financial advisory, and retail e-commerce.
-          </p>
+          </p> */}
         </div>
       </section>
 
@@ -151,7 +156,7 @@ export default function OurDivisionsContent() {
           <p className="text-xs font-bold uppercase tracking-widest text-[#005f91]">
             Business Network
           </p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">
             Specialized Platforms Built for Scale
           </h2>
           <p className="mt-3 text-sm text-slate-600 max-w-2xl mx-auto">
@@ -248,21 +253,31 @@ export default function OurDivisionsContent() {
                   ))}
                 </div>
 
-
+                {/* Tags Row */}
+                <div className="mt-5 flex flex-wrap gap-1.5">
+                  {division.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded bg-slate-100 px-2.5 py-0.5 text-xs text-slate-600 border border-slate-200"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               {/* Action Button */}
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs text-slate-500 font-medium">
+                {/* <span className="text-xs text-slate-500 font-medium">
                   Official Portal
-                </span>
+                </span> */}
                 <a
                   href={division.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-xs font-semibold text-white transition ${division.buttonStyle}`}
                 >
-                  <span>Visit {division.domain}</span>
+                  <span>{division.domain}</span>
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
@@ -277,7 +292,7 @@ export default function OurDivisionsContent() {
       <section className="bg-white border-t border-slate-200 px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center" data-aos="fade-up">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            <h2 className="text-2xl font-bold tracking-tight text-black sm:text-3xl">
               Why Our Multi-Division Ecosystem Delivers Excellence
             </h2>
             <p className="mt-3 text-sm text-slate-600">
@@ -290,7 +305,7 @@ export default function OurDivisionsContent() {
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-blue-100 text-[#005f91] font-bold">
                 01
               </div>
-              <h3 className="text-base font-bold text-slate-900">Dedicated Specialization</h3>
+              <h3 className="text-base font-bold text-black">Dedicated Specialization</h3>
               <p className="mt-2 text-xs leading-relaxed text-slate-600">
                 Each platform is engineered to address domain-specific requirements in education, recruitment, property, finance, and commerce.
               </p>
@@ -300,7 +315,7 @@ export default function OurDivisionsContent() {
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-blue-100 text-[#005f91] font-bold">
                 02
               </div>
-              <h3 className="text-base font-bold text-slate-900">Verified Trust & Security</h3>
+              <h3 className="text-base font-bold text-black">Verified Trust & Security</h3>
               <p className="mt-2 text-xs leading-relaxed text-slate-600">
                 We prioritize user data privacy, verified listing standards, and ethical service delivery across all our web properties.
               </p>
