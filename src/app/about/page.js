@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import StatsCounterSection from "../components/StatsCounterSection";
 
 export const metadata = {
   title: "About Vidi Meth Digital Services",
@@ -271,9 +270,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* Stats Counter */}
-      <StatsCounterSection />
 
       <Footer />
     </main>

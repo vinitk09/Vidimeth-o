@@ -181,7 +181,7 @@ export default function ClientTestimonialsSection() {
 
         {/* Testimonials Slider Container with Outward Controls */}
         <div
-          className="relative mt-12 group/slider px-4 sm:px-8 lg:px-10"
+          className="relative mt-8 sm:mt-12 group/slider px-1 sm:px-8 lg:px-10"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           data-aos="fade-up"
@@ -190,10 +190,10 @@ export default function ClientTestimonialsSection() {
           <button
             type="button"
             onClick={handlePrev}
-            className="absolute -left-2 sm:-left-6 lg:-left-7 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-[0_8px_25px_rgba(0,0,0,0.15)] transition-all hover:bg-[#0077c8] hover:text-white hover:border-[#0077c8] hover:scale-110 focus:outline-none"
+            className="absolute -left-2 sm:-left-6 lg:-left-7 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-[0_8px_25px_rgba(0,0,0,0.15)] transition-all hover:bg-[#0077c8] hover:text-white hover:border-[#0077c8] hover:scale-110 focus:outline-none"
             aria-label="Previous Testimonial"
           >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="15 18 9 12 15 6" />
             </svg>
           </button>
@@ -202,10 +202,10 @@ export default function ClientTestimonialsSection() {
           <button
             type="button"
             onClick={handleNext}
-            className="absolute -right-2 sm:-right-6 lg:-right-7 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-[0_8px_25px_rgba(0,0,0,0.15)] transition-all hover:bg-[#0077c8] hover:text-white hover:border-[#0077c8] hover:scale-110 focus:outline-none"
+            className="absolute -right-2 sm:-right-6 lg:-right-7 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-[0_8px_25px_rgba(0,0,0,0.15)] transition-all hover:bg-[#0077c8] hover:text-white hover:border-[#0077c8] hover:scale-110 focus:outline-none"
             aria-label="Next Testimonial"
           >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </button>
@@ -213,95 +213,105 @@ export default function ClientTestimonialsSection() {
           {/* Slider Track */}
           <div className="overflow-hidden py-3">
             <div
-              className="flex transition-transform duration-500 ease-in-out gap-6"
+              className="flex transition-transform duration-500 ease-in-out"
               style={{
                 transform: `translateX(-${activeIndex * (100 / visibleCards)}%)`,
               }}
             >
-            {testimonials.map((testimonial, index) => {
-              const initials =
-                testimonial.initials ||
-                (testimonial.name
-                  ? testimonial.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .slice(0, 2)
-                      .toUpperCase()
-                  : "VM");
+              {testimonials.map((testimonial, index) => {
+                const initials =
+                  testimonial.initials ||
+                  (testimonial.name
+                    ? testimonial.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")
+                        .slice(0, 2)
+                        .toUpperCase()
+                    : "VM");
 
-              return (
-                <div
-                  key={testimonial.id || index}
-                  style={{
-                    flex: `0 0 calc(${100 / visibleCards}% - ${(24 * (visibleCards - 1)) / visibleCards}px)`,
-                  }}
-                  className="min-w-0"
-                >
-                  <article className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-slate-200 bg-white p-7 shadow-[0_14px_40px_rgba(10,31,68,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#0077c8]/40 hover:shadow-lg">
-                    <div className="absolute right-6 top-6 text-[#0077c8]/12 [&_svg]:h-16 [&_svg]:w-16 [&_svg]:fill-current">
-                      <QuoteIcon />
-                    </div>
+                return (
+                  <div
+                    key={testimonial.id || index}
+                    className="w-full shrink-0 px-2 sm:px-3 sm:w-1/2 lg:w-1/3"
+                  >
+                    <article className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-[0_14px_40px_rgba(10,31,68,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#0077c8]/40 hover:shadow-lg">
+                      <div className="absolute right-4 top-4 sm:right-6 sm:top-6 text-[#0077c8]/10 [&_svg]:h-10 [&_svg]:w-10 sm:[&_svg]:h-16 sm:[&_svg]:w-16 [&_svg]:fill-current">
+                        <QuoteIcon />
+                      </div>
 
-                    <div>
-                      <div className="relative z-10 flex items-center gap-4">
-                        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0077c8] to-[#004f85] text-[15px] font-semibold text-white shadow-[0_10px_24px_rgba(0,119,200,0.22)]">
-                          {initials}
-                        </span>
-                        <div>
-                          <h3 className="text-[17px] font-semibold leading-tight text-[#0a1f44]">
-                            {testimonial.name}
-                          </h3>
-                          <p className="mt-1 text-xs font-medium text-[#647084]">
-                            {testimonial.role || "Client"}{" "}
-                            {testimonial.division ? `• ${testimonial.division}` : ""}
-                          </p>
+                      <div>
+                        <div className="relative z-10 flex items-center gap-3 sm:gap-4">
+                          <span className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0077c8] to-[#004f85] text-xs sm:text-[15px] font-bold text-white shadow-[0_10px_24px_rgba(0,119,200,0.22)]">
+                            {initials}
+                          </span>
+                          <div>
+                            <h3 className="text-base sm:text-[17px] font-bold leading-tight text-[#0a1f44]">
+                              {testimonial.name}
+                            </h3>
+                            <p className="mt-0.5 text-xs font-medium text-[#647084]">
+                              {testimonial.role || "Client"}{" "}
+                              {testimonial.division ? `• ${testimonial.division}` : ""}
+                            </p>
+                          </div>
                         </div>
+
+                        <p className="relative z-10 mt-4 sm:mt-6 text-xs sm:text-[15px] font-normal leading-relaxed text-[#555555] text-justify">
+                          &ldquo;{testimonial.quote}&rdquo;
+                        </p>
                       </div>
 
-                      <p className="relative z-10 mt-6 text-[15px] font-normal leading-[1.75] text-[#555555] text-justify">
-                        &ldquo;{testimonial.quote}&rdquo;
-                      </p>
-                    </div>
-
-                    <div className="relative z-10 mt-7 pt-4 border-t border-slate-100 flex items-center justify-between">
-                      <div className="flex gap-1 [&_svg]:h-4 [&_svg]:w-4">
-                        {Array.from({ length: 5 }).map((_, starIndex) => (
-                          <StarIcon
-                            key={starIndex}
-                            filled={starIndex < (testimonial.rating || 5)}
-                          />
-                        ))}
+                      <div className="relative z-10 mt-5 sm:mt-7 pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <div className="flex gap-1 [&_svg]:h-3.5 [&_svg]:w-3.5 sm:[&_svg]:h-4 sm:[&_svg]:w-4">
+                          {Array.from({ length: 5 }).map((_, starIndex) => (
+                            <StarIcon
+                              key={starIndex}
+                              filled={starIndex < (testimonial.rating || 5)}
+                            />
+                          ))}
+                        </div>
+                        <span className="text-[10px] sm:text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                          Verified Review
+                        </span>
                       </div>
-                      <span className="text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                        Verified Review
-                      </span>
-                    </div>
-                  </article>
-                </div>
-              );
-            })}
+                    </article>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile Dot Indicators */}
+          <div className="mt-4 flex items-center justify-center gap-1.5 sm:hidden">
+            {testimonials.map((_, dotIdx) => (
+              <button
+                key={dotIdx}
+                type="button"
+                onClick={() => setActiveIndex(dotIdx)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeIndex === dotIdx ? "w-6 bg-[#0077c8]" : "w-2 bg-slate-300"
+                }`}
+                aria-label={`Go to slide ${dotIdx + 1}`}
+              />
+            ))}
+          </div>
+          {/* Desktop Pagination Dots */}
+          <div className="mt-8 hidden sm:flex justify-center items-center gap-2">
+            {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setActiveIndex(idx)}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  activeIndex === idx
+                    ? "w-8 bg-[#0077c8]"
+                    : "w-2.5 bg-slate-300 hover:bg-slate-400"
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
           </div>
         </div>
-      </div>
-
-        {/* Pagination Dots */}
-        <div className="mt-8 flex justify-center items-center gap-2">
-          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => setActiveIndex(idx)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                activeIndex === idx
-                  ? "w-8 bg-[#0077c8]"
-                  : "w-2.5 bg-slate-300 hover:bg-slate-400"
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
-        </div>
-
       </div>
     </section>
   );
