@@ -141,16 +141,19 @@ export default function Home() {
       <section className="bg-white px-5 py-16 text-[#0a1f44] sm:px-8 lg:px-10 lg:py-24">
         <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[0.88fr_1.12fr]">
           <div
-            className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg border border-slate-200 bg-slate-50 shadow-[0_18px_50px_rgba(10,31,68,0.12)]"
+            className="group relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-sky-100 bg-gradient-to-b from-white via-slate-50 to-sky-50/60 p-3 shadow-[0_24px_60px_rgba(0,119,200,0.18),0_10px_25px_rgba(10,31,68,0.08)] ring-1 ring-slate-900/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_75px_rgba(0,119,200,0.28)]"
             data-aos="fade-right"
           >
-            <Image
-              src="/welcome.png"
-              alt="Welcome to Vidimeth"
-              width={1158}
-              height={1364}
-              className="h-auto w-full object-contain"
-            />
+            <div className="relative overflow-hidden rounded-xl border border-slate-200/80 bg-white">
+              <Image
+                src="/welcome.png"
+                alt="Welcome to Vidimeth"
+                width={1158}
+                height={1364}
+                className="h-auto w-full object-contain transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+            </div>
+            <div className="pointer-events-none absolute -bottom-10 -left-10 h-36 w-36 rounded-full bg-[#0077c8]/10 blur-2xl transition-all duration-500 group-hover:scale-150" />
           </div>
 
           <div className="mx-auto max-w-2xl lg:mx-0" data-aos="fade-left">

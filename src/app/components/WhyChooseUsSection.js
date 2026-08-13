@@ -107,7 +107,7 @@ const mainFeatures = [
 
 export default function WhyChooseUsSection() {
   return (
-    <section className="bg-slate-50 py-20 px-5 sm:px-8 lg:px-10 overflow-hidden">
+    <section className="bg-slate-200 py-20 px-5 sm:px-8 lg:px-10 overflow-hidden">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">

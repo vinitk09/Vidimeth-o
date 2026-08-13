@@ -229,7 +229,7 @@ export default function AboutPage() {
                   rel="noopener noreferrer"
                   className="mt-4 text-sm font-semibold text-[#1d6b9e] hover:underline"
                 >
-                  Visit {platform.url} &rarr;
+                  {platform.url} &rarr;
                 </a>
               </article>
             ))}
