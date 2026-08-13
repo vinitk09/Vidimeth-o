@@ -94,19 +94,19 @@ export default function Footer() {
     <footer className="bg-[#05070c] text-white font-sans text-sm border-t border-white/10">
       {/* Main Footer Container */}
       <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-12">
           {/* Column 1: Company Logo & Info */}
-          <div className="lg:col-span-1 space-y-4">
+          <div className="lg:col-span-3 space-y-4">
             <div className="flex items-center gap-3.5">
               <Image
                 src="/vidimethlogo1.png"
                 alt="Vidi Meth Digital Services"
                 width={56}
                 height={56}
-                className="h-14 w-14 rounded-full bg-white object-cover ring-2 ring-white/20"
+                className="h-14 w-14 rounded-full bg-white object-cover ring-2 ring-white/20 shrink-0"
               />
               <div>
-                <p className="text-base font-bold leading-tight text-white">
+                <p className="text-base font-bold leading-tight text-white whitespace-nowrap">
                   Vidi Meth Digital Services
                 </p>
                 <p className="mt-0.5 text-xs font-normal text-white/70">
@@ -129,7 +129,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: ABOUT */}
-          <div>
+          <div className="lg:col-span-2">
             <SectionHeading title="ABOUT" />
             <ul className="space-y-2.5 text-[13.5px]">
               {aboutLinks.map((link) => (
@@ -157,7 +157,7 @@ export default function Footer() {
           </div>
 
           {/* Column 3: DIVISIONS */}
-          <div>
+          <div className="lg:col-span-2">
             <SectionHeading title="DIVISIONS" />
             <ul className="space-y-2.5 text-[13.5px]">
               {divisionLinks.map((link) => (
@@ -177,7 +177,7 @@ export default function Footer() {
           </div>
 
           {/* Column 4: LEGAL */}
-          <div>
+          <div className="lg:col-span-2">
             <SectionHeading title="LEGAL" />
             <ul className="space-y-2.5 text-[13.5px]">
               {legalLinks.map((link) => (
@@ -205,7 +205,7 @@ export default function Footer() {
           </div>
 
           {/* Column 5: CONTACT */}
-          <div className="space-y-4">
+          <div className="lg:col-span-3 space-y-4">
             <SectionHeading title="CONTACT" />
 
             <div className="space-y-3 text-[13px]">
