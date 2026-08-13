@@ -19,7 +19,7 @@ body {
   height: auto;
   margin: 0;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
 }
 
@@ -30,14 +30,15 @@ body {
 html {
   background: #ffffff;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
+  scroll-behavior: smooth;
   width: 100%;
 }
 
 main {
   height: auto;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img,

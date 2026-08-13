@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import StatsCounterSection from "../components/StatsCounterSection";
@@ -141,10 +142,10 @@ export default function AboutPage() {
 
       {/* Banner */}
       <section
-        className="relative flex min-h-[340px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[340px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(5, 11, 34, 0.58), rgba(5, 11, 34, 0.62)), url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=80')",
+            "linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=2000&q=80')",
         }}
       >
         <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
@@ -157,17 +158,22 @@ export default function AboutPage() {
       {/* Company Profile */}
       <section className="bg-white px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.42fr_0.58fr]">
-          <div data-aos="fade-right">
-            <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
-              Company Profile
-            </p>
-            <h2 className="text-[26px] font-semibold leading-[1.18] text-black sm:text-[28px]">
-              An established name in the online industry.
-            </h2>
+          <div
+            className="relative min-h-[240px] w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-[0_12px_36px_rgba(10,31,68,0.08)] lg:h-full lg:min-h-0"
+            data-aos="fade-right"
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+              alt="Vidi Meth Digital Services Company Profile"
+              fill
+              unoptimized
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              className="object-cover"
+            />
           </div>
 
           <div
-            className="space-y-5 text-[15px] font-normal leading-[1.75] text-[#555555]"
+            className="space-y-5 text-[16px] font-normal leading-[1.75] text-black"
             data-aos="fade-left"
           >
             <p className="text-justify">

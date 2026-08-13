@@ -3,27 +3,27 @@ import Image from "next/image";
 const supportTiles = [
   {
     title: "Benefits",
-    image: "/b5.png",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
     text: "We offer more to your employees while still growing your business.",
   },
   {
     title: "Expansion",
-    image: "/b2.png",
+    image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=80",
     text: "Look for new ways to innovate and bring your company to the next level.",
   },
   {
     title: "Marketing",
-    image: "/b4.png",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
     text: "Find advanced marketing strategies to motive business growth.",
   },
   {
     title: "Talent",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1528819622765-d6bcf132f793?auto=format&fit=crop&w=800&q=80",
     text: "Review strategies to recruit top candidates in your industry.",
   },
   {
     title: "Money",
-    image: "/b6.png",
+    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
     text: "Learn what financial techniques to focus on during expansion.",
   },
   {

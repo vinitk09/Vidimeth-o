@@ -249,19 +249,31 @@ export default function Footer() {
                   <p><span className="font-semibold text-white/80">PAN:</span> AAFCV8003N</p>
                 </div>
 
-                <div className="flex gap-1.5">
+                <div className="flex flex-wrap items-center gap-2 pt-1">
                   {[
-                    { type: "facebook", href: "https://vidimeth.com/", label: "Facebook" },
-                    { type: "twitter", href: "https://vidimeth.com/", label: "Twitter" },
-                    { type: "linkedin", href: "https://vidimeth.com/", label: "LinkedIn" },
+                    { type: "facebook", href: "https://www.facebook.com/vidimeth", label: "Facebook" },
+                    { type: "twitter", href: "https://x.com/vidimeth", label: "Twitter" },
+                    { type: "linkedin", href: "https://www.linkedin.com/company/vidimeth/", label: "LinkedIn" },
                   ].map((item) => (
                     <a
                       key={item.type}
                       href={item.href}
-                      className="flex h-7 w-7 items-center justify-center rounded-md bg-white/10 text-white shadow-sm border border-white/10 transition hover:bg-[#0077c8] hover:text-white"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white shadow-md border border-white/15 transition-all duration-300 hover:bg-[#0077c8] hover:border-[#0077c8] hover:scale-110 focus:outline-none"
                       aria-label={`Vidi Meth ${item.label}`}
                     >
-                      <CustomIcon type={item.type} />
+                      <svg className="h-5 w-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        {item.type === "facebook" && (
+                          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                        )}
+                        {item.type === "twitter" && (
+                          <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+                        )}
+                        {item.type === "linkedin" && (
+                          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                        )}
+                      </svg>
                     </a>
                   ))}
                 </div>

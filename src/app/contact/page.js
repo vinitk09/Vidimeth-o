@@ -43,15 +43,17 @@ function Icon({ type }) {
 
 function Field({ label, type = "text", className = "" }) {
   return (
-    <label className={`block ${className}`}>
-      <span className="sr-only">{label}</span>
+    <div className={`block ${className}`}>
+      <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700">
+        {label}
+      </label>
       <input
         type={type}
         name={label.toLowerCase().replaceAll(" ", "-")}
-        placeholder={label}
-        className="h-14 w-full rounded-md border border-slate-200 bg-white px-5 text-[16px] font-normal text-[#0a1f44] shadow-sm outline-none transition placeholder:text-[#596579] focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/12"
+        placeholder={`Enter your ${label.toLowerCase()}`}
+        className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 text-sm font-medium text-slate-900 shadow-2xs outline-none transition-all duration-200 placeholder:text-slate-400 focus:border-[#0077c8] focus:bg-white focus:ring-4 focus:ring-[#0077c8]/12 hover:border-slate-300"
       />
-    </label>
+    </div>
   );
 }
 
@@ -61,42 +63,42 @@ export default function ContactPage() {
       <Header />
 
       <section
-        className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(5, 11, 34, 0.62), rgba(5, 11, 34, 0.66)), url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=80')",
+            "linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.80)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2000&q=80')",
         }}
       >
         <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
-          <h1 className="text-[40px] font-semibold leading-none sm:text-[54px] lg:text-[64px]">
+          <h1 className="text-[40px] font-semibold leading-none sm:text-[40px] lg:text-[52px]">
             Contact Us
           </h1>
         </div>
       </section>
 
-      <section className="bg-[#f4f7fb] px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24">
-        <div className="mx-auto max-w-4xl text-center" data-aos="fade-up">
+      <section className="bg-[#f8fafc] px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-7xl text-center" data-aos="fade-up">
           <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
             Get In Touch
           </p>
-          <h2 className="text-[32px] font-semibold leading-[1.2] text-[#005f91] sm:text-[42px]">
+          <h2 className="text-[32px] font-semibold leading-[1.2] text-black sm:text-[32px]">
             We are ready to help you.
           </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-[17px] font-normal leading-[1.68] text-[#555555]">
+          <p className="mx-auto mt-5 max-w-4xl text-[16px] font-normal leading-[1.68] text-[#555555]">
             Send us your enquiry and our team will connect with you for
             services, partnerships, support, or business information.
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid w-full max-w-7xl gap-6 lg:grid-cols-3">
+        <div className="mx-auto mt-12 grid w-full max-w-7xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {contactCards.map((card, index) => {
             const content = (
-              <article className="flex h-full gap-4 rounded-lg border border-slate-200 bg-white p-6 shadow-[0_14px_38px_rgba(10,31,68,0.06)]">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#eef8ff] text-[#0077c8] ring-1 ring-[#0077c8]/12 [&_svg]:h-6 [&_svg]:w-6 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[1.8] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round">
+              <article className="group h-full rounded-2xl border border-slate-200/80 bg-white p-7 shadow-[0_12px_36px_rgba(10,31,68,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-[#0077c8]/40 hover:shadow-lg">
+                <span className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-[#0077c8]/10 text-[#0077c8] transition-transform duration-300 group-hover:scale-110 [&_svg]:h-7 [&_svg]:w-7 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[1.8] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round">
                   <Icon type={card.icon} />
                 </span>
                 <div>
-                  <h3 className="text-[18px] font-semibold text-[#0a1f44]">
+                  <h3 className="text-[18px] font-bold text-black">
                     {card.title}
                   </h3>
                   <p className="mt-2 text-[15px] font-normal leading-[1.58] text-[#555555]">
@@ -128,58 +130,71 @@ export default function ContactPage() {
           })}
         </div>
 
-        <div className="mx-auto mt-12 grid w-full max-w-7xl overflow-hidden rounded-lg bg-white shadow-[0_22px_70px_rgba(10,31,68,0.11)] lg:grid-cols-[0.38fr_0.62fr]">
+        {/* Modern Form Container Card */}
+        <div className="mx-auto mt-14 grid w-full max-w-7xl overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_24px_70px_rgba(10,31,68,0.09)] lg:grid-cols-[0.4fr_0.6fr]">
+          {/* Left Info Panel */}
           <div
-            className="bg-[#071326] p-8 text-white sm:p-10 lg:p-12"
+            className="relative overflow-hidden bg-gradient-to-br from-[#071326] via-[#0a1e3d] to-[#004f85] p-8 text-white sm:p-10 lg:p-12"
             data-aos="fade-right"
           >
-            <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-white/64">
-              Contact Form
+            <div className="absolute -top-12 -right-12 h-48 w-48 rounded-full bg-[#0077c8]/20 blur-3xl" />
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#38bdf8]">
+              Send Us A Message
             </p>
-            <h2 className="text-[30px] font-semibold leading-[1.18] sm:text-[36px]">
+            <h2 className="text-[28px] font-bold leading-[1.2] text-white sm:text-[32px]">
               Share your requirement with us.
             </h2>
-            <p className="mt-5 text-[16px] font-normal leading-[1.7] text-white/74">
+            <p className="mt-4 text-[14px] font-normal leading-[1.7] text-slate-300">
               Fill in the form and tell us what you need. We will review your
               message and respond during working hours.
             </p>
-            <div className="mt-8 rounded-md border border-white/12 bg-white/8 p-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-white/64">
+
+            <div className="mt-10 rounded-xl border border-white/15 bg-white/10 p-5 backdrop-blur-md">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-cyan-300">
                 Company Details
               </p>
-              <p className="mt-3 text-[15px] leading-[1.65] text-white/78">
-                CIN: U52100JH2017OPC009718
+              <p className="mt-3 text-[14.5px] leading-[1.65] text-slate-200">
+                <span className="font-semibold text-white">CIN:</span> U52100JH2017OPC009718
                 <br />
-                GSTIN: 20AAFCV8003N1ZC
+                <span className="font-semibold text-white">GSTIN:</span> 20AAFCV8003N1ZC
                 <br />
-                PAN: AAFCV8003N
+                <span className="font-semibold text-white">PAN:</span> AAFCV8003N
               </p>
             </div>
           </div>
 
+          {/* Right Form Fields */}
           <form
-            className="grid gap-5 bg-[#d9e1e1] p-6 sm:grid-cols-2 sm:p-9 lg:p-12"
+            className="grid gap-5 bg-white p-7 sm:grid-cols-2 sm:p-10 lg:p-12"
             data-aos="fade-left"
           >
             <Field label="Name" />
             <Field label="E-Mail" type="email" />
             <Field label="Phone Number" type="tel" />
             <Field label="Subject" />
-            <label className="block sm:col-span-2">
-              <span className="sr-only">Message Here</span>
+
+            <div className="sm:col-span-2">
+              <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700">
+                Message Here
+              </label>
               <textarea
                 name="message"
-                placeholder="Message Here"
-                rows={6}
-                className="w-full resize-none rounded-md border border-slate-200 bg-white px-5 py-4 text-[16px] font-normal text-[#0a1f44] shadow-sm outline-none transition placeholder:text-[#596579] focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/12"
+                placeholder="Write your message here..."
+                rows={5}
+                className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50/80 p-4 text-sm font-medium text-slate-900 shadow-2xs outline-none transition-all duration-200 placeholder:text-slate-400 focus:border-[#0077c8] focus:bg-white focus:ring-4 focus:ring-[#0077c8]/12 hover:border-slate-300"
               />
-            </label>
-            <div className="sm:col-span-2 flex justify-center pt-4">
+            </div>
+
+            <div className="sm:col-span-2 flex justify-end pt-2">
               <button
                 type="submit"
-                className="rounded-full bg-[#006dad] px-9 py-4 text-[15px] font-semibold text-white shadow-[0_16px_34px_rgba(0,109,173,0.24)] transition hover:bg-[#005485] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006dad]"
+                className="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-[#0077c8] to-[#005485] px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#0077c8]/25 transition-all duration-300 hover:from-[#005f91] hover:to-[#00426b] hover:shadow-xl hover:scale-[1.02] focus:outline-none"
               >
-                Submit Now
+                Submit Message
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
               </button>
             </div>
           </form>

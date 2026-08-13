@@ -20,7 +20,7 @@ const slides = [
   },
   {
     src: "/a1.png",
-    alt: "Village My City property banner",
+    alt: "VillageMyCity property banner",
   },
 ];
 
@@ -178,7 +178,7 @@ export default function Home() {
                   <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#0077c8] shadow-sm ring-1 ring-[#0077c8]/15 [&_svg]:h-7 [&_svg]:w-7 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[1.7] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round">
                     {item.icon}
                   </span>
-                  <span className="text-sm font-normal leading-5 text-[#0a1f44]">
+                  <span className="text-sm font-semibold leading-5 text-[#0a1f44]">
                     {item.label}
                   </span>
                 </div>

@@ -8,11 +8,11 @@ const services = [
   {
     id: "insurance-policy",
     title: "Insurance Policy",
-    category: "Financial & Insurance",
+    category: "Insurance & Risk",
     eyebrow: "Personalized Consultation",
     image:
       "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
-    badgeBg: "bg-sky-50 text-sky-700 ring-sky-200",
+    badgeBg: "bg-sky-100 text-sky-800 ring-sky-300/60",
     text: "Experience the difference of personalized consultations. Our experts take the time to understand your specific requirements, offering tailored guidance and strategies that align with your needs.",
     features: [
       "Customized Coverage Options",
@@ -24,11 +24,11 @@ const services = [
   {
     id: "quality-support",
     title: "Quality Support",
-    category: "Business Growth",
-    eyebrow: "Reliable Assistance",
+    category: "Assistance & Helpdesk",
+    eyebrow: "Reliable Support",
     image:
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-    badgeBg: "bg-emerald-50 text-emerald-700 ring-emerald-200",
+    badgeBg: "bg-emerald-100 text-emerald-800 ring-emerald-300/60",
     text: "Committed to excellence, our unwavering dedication ensures quality support. We prioritize satisfaction and consistently deliver beyond expectations with dependable service.",
     features: [
       "24/7 Priority Support Desk",
@@ -40,11 +40,11 @@ const services = [
   {
     id: "financial-planning",
     title: "Financial Planning Services",
-    category: "Financial & Insurance",
+    category: "Loans & Capital",
     eyebrow: "Financial Certainty",
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-    badgeBg: "bg-amber-50 text-amber-700 ring-amber-200",
+    badgeBg: "bg-amber-100 text-amber-800 ring-amber-300/60",
     text: "Navigate your financial journey confidently with Vidimeth.com. Prioritizing financial control, we provide services for effective planning, management, and better financial clarity.",
     features: [
       "Strategic Capital Management",
@@ -56,11 +56,11 @@ const services = [
   {
     id: "educational-empowerment",
     title: "Educational Empowerment",
-    category: "Education & Commerce",
-    eyebrow: "Learning Access",
+    category: "Education & Learning",
+    eyebrow: "Academic Access",
     image:
       "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80",
-    badgeBg: "bg-purple-50 text-purple-700 ring-purple-200",
+    badgeBg: "bg-purple-100 text-purple-800 ring-purple-300/60",
     text: "Empower yourself with Vidimeth.com's online education platform. Access courses, resources, and information to shape your educational path and support personal growth.",
     features: [
       "Course & College Selection Portal",
@@ -72,11 +72,11 @@ const services = [
   {
     id: "ecommerce-experiences",
     title: "E-commerce Experiences",
-    category: "Education & Commerce",
-    eyebrow: "Seamless Commerce",
+    category: "Retail & Marketplace",
+    eyebrow: "Digital Storefront",
     image:
       "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80",
-    badgeBg: "bg-rose-50 text-rose-700 ring-rose-200",
+    badgeBg: "bg-rose-100 text-rose-800 ring-rose-300/60",
     text: "Effortlessly navigate online commerce with Vidimeth.com. Our platform simplifies buying and selling, creating a user-friendly experience for consumers and businesses alike.",
     features: [
       "Multi-Category Digital Storefront",
@@ -88,11 +88,11 @@ const services = [
   {
     id: "blending-business",
     title: "Blending Business",
-    category: "Business Growth",
-    eyebrow: "Growth Innovation",
+    category: "Growth & Strategy",
+    eyebrow: "Business Innovation",
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
-    badgeBg: "bg-blue-50 text-blue-700 ring-blue-200",
+    badgeBg: "bg-blue-100 text-blue-800 ring-blue-300/60",
     text: "Unlock synergy with our blended business ideas services. We catalyze innovation and foster collaboration for stronger outcomes. Your vision and our expertise create a transformative blend.",
     features: [
       "Cross-Industry Concept Integration",
@@ -105,12 +105,13 @@ const services = [
 
 const categories = [
   "All Services",
-  "Financial & Insurance",
-  "Education & Commerce",
-  "Business Growth",
+  "Insurance & Risk",
+  "Assistance & Helpdesk",
+  "Loans & Capital",
+  "Education & Learning",
+  "Retail & Marketplace",
+  "Growth & Strategy",
 ];
-
-
 
 export default function OurServicesPage() {
   const [activeCategory, setActiveCategory] = useState("All Services");
@@ -126,24 +127,18 @@ export default function OurServicesPage() {
 
       {/* Hero Header */}
       <section
-        className="relative flex min-h-[340px] items-center justify-center overflow-hidden bg-[#050c1a] bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[340px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom, rgba(5, 12, 26, 0.75), rgba(5, 12, 26, 0.88)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1800&q=80')",
+            "linear-gradient(to bottom, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.80)), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=2000&q=80')",
         }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.2),transparent_50%)]" />
 
         <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
-          <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md border border-white/10 mb-4">
-            World-Class Solutions
-          </span>
-          <h1 className="text-[38px] font-extrabold tracking-tight sm:text-[52px] lg:text-[60px]">
-            Our Digital Services
+          <h1 className="text-[34px] font-bold tracking-tight sm:text-[42px] lg:text-[52px]">
+            Our Services
           </h1>
-          <p className="mx-auto mt-3 max-w-2xl text-[16px] font-normal leading-relaxed text-slate-300 sm:text-[18px]">
-            Empowering individuals and enterprises across India with specialized solutions in insurance, education, finance, property, and e-commerce.
-          </p>
         </div>
       </section>
 
@@ -155,29 +150,24 @@ export default function OurServicesPage() {
             <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#1b8b4b]">
               What We Offer
             </p>
-            <h2 className="text-[30px] font-bold text-[#0a1f44] sm:text-[40px]">
+            <h2 className="text-[30px] font-bold text-black sm:text-[34px]">
               Innovative Solutions Built For Growth
             </h2>
             <div className="mt-3 h-1 w-16 rounded-full bg-[#0077c8]" />
           </div>
 
           {/* Category Filter Pills */}
-          <div
-            className="mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-3"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
+          <div className="mt-8 flex flex-wrap justify-center gap-2" data-aos="fade-up">
             {categories.map((cat) => {
               const isActive = activeCategory === cat;
               return (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`rounded-full px-5 py-2.5 text-xs font-bold transition-all duration-300 sm:text-sm ${
-                    isActive
-                      ? "bg-[#0a1f44] text-white shadow-lg shadow-[#0a1f44]/20 scale-105"
-                      : "bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200"
-                  }`}
+                  className={`rounded-full px-4 py-2 text-xs font-bold transition-all duration-300 sm:text-xs ${isActive
+                    ? "bg-[#0a1f44] text-white shadow-md shadow-[#0a1f44]/20 scale-105"
+                    : "bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200"
+                    }`}
                 >
                   {cat}
                 </button>
@@ -185,112 +175,51 @@ export default function OurServicesPage() {
             })}
           </div>
 
-          {/* Grid of Service Cards */}
-          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {/* Grid of Compact Service Cards */}
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredServices.map((service, index) => (
               <article
                 key={service.id}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-[0_10px_30px_rgba(10,31,68,0.05)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0077c8]/30 hover:shadow-[0_20px_48px_rgba(0,119,200,0.12)]"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_14px_35px_rgba(10,31,68,0.08)] transition-all duration-300 hover:-translate-y-2 hover:border-[#0077c8]/50 hover:shadow-[0_24px_50px_rgba(0,119,200,0.18)]"
                 data-aos="fade-up"
                 data-aos-delay={index * 80}
               >
                 {/* Image Container with Top Badges */}
-                <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+                <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-slate-100 shrink-0">
                   <img
                     src={service.image}
                     alt={service.title}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
-                  
-                  {/* Category Pill */}
-                  <span className={`absolute left-4 top-4 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider ring-1 backdrop-blur-md ${service.badgeBg}`}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+
+                  {/* Unique Category Pill */}
+                  <span className={`absolute left-3.5 top-3.5 rounded-full px-3 py-1 text-[10.5px] font-bold uppercase tracking-wider ring-1 backdrop-blur-md ${service.badgeBg}`}>
                     {service.category}
                   </span>
 
                   {/* Number Badge */}
-                  <span className="absolute right-4 bottom-3 text-2xl font-black text-white/40 tracking-tighter">
+                  <span className="absolute right-3.5 bottom-2.5 text-xl font-black text-white/50 tracking-tighter">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
 
                 {/* Card Content Body */}
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-[#1b8b4b]">
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-[#1b8b4b]">
                     {service.eyebrow}
                   </p>
 
-                  <h3 className="mt-1.5 text-[21px] font-bold text-[#0a1f44] transition-colors group-hover:text-[#0077c8]">
+                  <h3 className="mt-1 text-lg font-bold text-black transition-colors group-hover:text-[#0077c8]">
                     {service.title}
                   </h3>
 
-                  <p className="mt-3 text-[14.5px] font-normal leading-relaxed text-slate-600 text-justify">
+                  <p className="mt-2.5 text-xs sm:text-[13.5px] font-normal leading-relaxed text-slate-600 text-justify">
                     {service.text}
                   </p>
                 </div>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Our Services Banner */}
-      <section className="bg-white border-t border-slate-200/80 px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-10 lg:grid-cols-2 items-center">
-            <div data-aos="fade-right">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#1b8b4b]">
-                Service Assurance
-              </span>
-              <h2 className="mt-2 text-[30px] font-bold leading-tight text-[#0a1f44] sm:text-[38px]">
-                Why Businesses Trust Vidi Meth Digital Services
-              </h2>
-              <p className="mt-4 text-[16px] leading-relaxed text-slate-600 text-justify">
-                We combine deep domain insights across education, real estate, jobs, finance, and e-commerce to deliver end-to-end digital solutions that yield concrete, measurable growth.
-              </p>
-
-              <div className="mt-8 grid grid-cols-2 gap-4">
-                {[
-                  { title: "Tailored Planning", desc: "Solutions built around your exact goals." },
-                  { title: "Transparent Pricing", desc: "No hidden charges, clear financial roadmap." },
-                  { title: "End-to-End Support", desc: "Continuous guidance from launch to scale." },
-                  { title: "Proven Track Record", desc: "Over 582+ successful client projects." },
-                ].map((item) => (
-                  <div key={item.title} className="rounded-xl border border-slate-100 bg-[#f8fafc] p-4 shadow-sm">
-                    <h4 className="text-sm font-bold text-[#0a1f44]">{item.title}</h4>
-                    <p className="mt-1 text-xs text-slate-500">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative overflow-hidden rounded-2xl bg-[#0a1f44] p-8 text-white shadow-xl lg:p-10" data-aos="fade-left">
-              <div className="absolute top-0 right-0 h-40 w-40 rounded-full bg-[#0077c8]/20 blur-3xl" />
-              <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#38bdf8]">
-                Get Started Today
-              </span>
-              <h3 className="mt-4 text-2xl font-bold leading-snug sm:text-3xl">
-                Ready to Elevate Your Digital Presence & Growth?
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-300">
-                Connect with our team of specialists to discuss your tailored requirements and unlock new growth opportunities.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href="/contact"
-                  className="rounded-xl bg-[#0077c8] px-6 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-[#005f91]"
-                >
-                  Contact Our Team
-                </a>
-                <a
-                  href="/about"
-                  className="rounded-xl bg-white/10 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/20 border border-white/15"
-                >
-                  Explore Company Profile
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </section>

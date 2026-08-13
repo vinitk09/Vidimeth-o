@@ -1,31 +1,69 @@
+"use client";
+
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 export default function TermsOfUsePage() {
   return (
-    <main className="min-h-screen bg-white pt-20">
+    <main className="min-h-screen bg-[#f8fafc] pt-20">
       <Header />
 
       {/* Header Banner */}
-      <section className="bg-[#005f91] py-16 text-white px-5 sm:px-8 lg:px-10">
-        <div className="mx-auto w-full max-w-7xl">
-          <h1 className="text-[32px] font-bold leading-tight sm:text-[40px]">
+      <section
+        className="relative flex min-h-[340px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 py-20 text-center text-white sm:px-8 lg:px-10"
+        style={{
+          backgroundImage:
+            "linear-gradient(to bottom, rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.82)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80')",
+        }}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />
+
+        <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
+          <span className="mb-3 inline-block rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
+            Legal & Governance
+          </span>
+          <h1 className="text-[34px] font-bold tracking-tight sm:text-[42px] lg:text-[52px]">
             Terms of Use
           </h1>
+          <p className="mx-auto mt-3 max-w-2xl text-sm font-normal text-slate-300 sm:text-base">
+            Rules, guidelines, policies, and conditions for accessing Vidi Meth Digital Services.
+          </p>
         </div>
       </section>
 
       {/* Content Section */}
-      <section className="px-5 py-12 sm:px-8 lg:px-10">
-        <div className="mx-auto w-full max-w-4xl text-[#333]">
-          <div className="prose prose-slate max-w-none text-[15px] leading-[1.75]">
+      <section className="px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
+        <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[280px_1fr] items-start">
+          
+          {/* Quick Nav Sidebar */}
+          <aside className="hidden lg:block sticky top-24 self-start z-20">
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_36px_rgba(10,31,68,0.06)]">
+              <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-[#0a1f44] border-b border-slate-100 pb-3 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#0077c8]" />
+                Terms Sections
+              </h3>
+              <nav className="space-y-1 text-xs font-medium text-slate-600">
+                <a href="#welcome" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Welcome & CIN</a>
+                <a href="#eligibility" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Eligibility</a>
+                <a href="#registration" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Registration</a>
+                <a href="#security" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Account Security</a>
+                <a href="#communications" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Communications</a>
+                <a href="#platform" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Transaction Platform</a>
+                <a href="#conduct" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">User Conduct & Rules</a>
+              </nav>
+            </div>
+          </aside>
 
-            {/* Introduction */}
-            <div className="mb-8 rounded-lg border border-slate-200 bg-slate-50/50 p-6 sm:p-8">
-              <h2 className="text-[22px] font-bold text-[#0a1f44] mb-4">
-                Welcome to Vidi Meth Digital Services OPC Private Limited !
-              </h2>
+          {/* Main Terms Document Paper Container */}
+          <div className="rounded-2xl border border-slate-200/80 bg-white p-6 sm:p-10 lg:p-12 shadow-[0_16px_45px_rgba(10,31,68,0.06)]" data-aos="fade-up">
+            <div className="prose prose-slate max-w-none text-[15px] leading-[1.8] text-slate-700">
+
+              {/* Introduction */}
+              <div id="welcome" className="scroll-mt-28 mb-8 rounded-2xl border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
+                <h2 className="text-[22px] font-bold text-[#0a1f44] mb-4">
+                  Welcome to Vidi Meth Digital Services OPC Private Limited !
+                </h2>
               <p className="mb-4 text-[14px] text-slate-600">
                 This document is an electronic record in terms of Information Technology Act, 2000 and rules there under as applicable and the amended provisions pertaining to electronic records in various statutes as amended by the Information Technology Act, 2000. This electronic record is generated by a computer system and does not require any physical or digital signatures.
               </p>
@@ -75,17 +113,27 @@ export default function TermsOfUsePage() {
             </div>
 
             {/* Eligibility */}
-            <h3 className="text-[20px] font-semibold text-[#0a1f44] mt-10 mb-3">Eligibility</h3>
-            <p className="mb-4">
+            <div id="eligibility" className="scroll-mt-28 pt-4 border-t border-slate-100">
+              <div className="flex items-center gap-3 mt-6 mb-3">
+                <span className="h-6 w-1 rounded-full bg-[#0077c8]" />
+                <h3 className="text-[20px] font-bold text-[#0a1f44] m-0">Eligibility</h3>
+              </div>
+              <p className="mb-4">
               The user should have completed 18 years of age and be competent to enter into a contract under Indian contract law. The Services are not available to minors under the age of eighteen (18) or to any Users suspended or removed from the Vidi Meth Digital Services system by Vidi Meth Digital Services for any reason whatsoever. If you are a minor i.e. under 18 years of age who is intending to avail the services of the Website should do so through his or her legal guardian in accordance with applicable law.
             </p>
             <p className="mb-8">
               VidiMeth Digital Services reserves the right to terminate your membership and / or refuse access to use the Services offered at the Website to new Users or to terminate access granted to existing Users at any time without according any reasons for doing so. You shall not have more than one active Account (defined hereunder) on the Website. Additionally, You are prohibited from selling, trading, or otherwise transferring Your Account to another person.
             </p>
 
+            </div>
+
             {/* Registration */}
-            <h3 className="text-[20px] font-semibold text-[#0a1f44] mt-8 mb-3">Registration</h3>
-            <p className="mb-3">On registration You agree to:</p>
+            <div id="registration" className="scroll-mt-28 pt-4 border-t border-slate-100">
+              <div className="flex items-center gap-3 mt-6 mb-3">
+                <span className="h-6 w-1 rounded-full bg-[#0077c8]" />
+                <h3 className="text-[20px] font-bold text-[#0a1f44] m-0">Registration</h3>
+              </div>
+              <p className="mb-3">On registration You agree to:</p>
             <ul className="list-disc pl-6 mb-8 space-y-2">
               <li>
                 Make Your contact details available to partners/business associates of the Platform. You may be contacted by the Platform or its partners for additional information and the registration process through email, Telephone, and SMS.
@@ -95,9 +143,15 @@ export default function TermsOfUsePage() {
               </li>
             </ul>
 
+            </div>
+
             {/* User Account, Password and Security */}
-            <h3 className="text-[20px] font-semibold text-[#0a1f44] mt-8 mb-3">User Account, Password and Security</h3>
-            <p className="mb-4">
+            <div id="security" className="scroll-mt-28 pt-4 border-t border-slate-100">
+              <div className="flex items-center gap-3 mt-6 mb-3">
+                <span className="h-6 w-1 rounded-full bg-[#0077c8]" />
+                <h3 className="text-[20px] font-bold text-[#0a1f44] m-0">User Account, Password and Security</h3>
+              </div>
+              <p className="mb-4">
               You may access and use the Website, You shall be responsible for maintaining the confidentiality and security of the Account Information, and are fully responsible for all activities that occur under Your log-in ID (Display Name) and Password. You agree to:
             </p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
@@ -111,15 +165,27 @@ export default function TermsOfUsePage() {
               If You provide any information that is untrue, inaccurate, not current or incomplete or We have reasonable grounds to suspect that such information is untrue, inaccurate, not current or incomplete, or not in accordance with this Terms of Use, We shall have the right to indefinitely suspend or terminate or block access of your membership on the Website and refuse to provide You with access to the Website.
             </p>
 
+            </div>
+
             {/* Communications */}
-            <h3 className="text-[20px] font-semibold text-[#0a1f44] mt-8 mb-3">Communications</h3>
-            <p className="mb-8">
+            <div id="communications" className="scroll-mt-28 pt-4 border-t border-slate-100">
+              <div className="flex items-center gap-3 mt-6 mb-3">
+                <span className="h-6 w-1 rounded-full bg-[#0077c8]" />
+                <h3 className="text-[20px] font-bold text-[#0a1f44] m-0">Communications</h3>
+              </div>
+              <p className="mb-8">
               When You use the Website or send emails or other data, information or communication to us, You agree and understand that You are communicating with Us through electronic records and You consent to receive communications via electronic records from Us periodically and as and when required. We may communicate with you by email or by such other mode of communication, electronic or otherwise.
             </p>
 
+            </div>
+
             {/* Platform for Transaction and Communication */}
-            <h3 className="text-[20px] font-semibold text-[#0a1f44] mt-8 mb-3">Platform for Transaction and Communication</h3>
-            <p className="mb-4">
+            <div id="platform" className="scroll-mt-28 pt-4 border-t border-slate-100">
+              <div className="flex items-center gap-3 mt-6 mb-3">
+                <span className="h-6 w-1 rounded-full bg-[#0077c8]" />
+                <h3 className="text-[20px] font-bold text-[#0a1f44] m-0">Platform for Transaction and Communication</h3>
+              </div>
+              <p className="mb-4">
               Platform for Communication the Website is only a venue where Users may meet and interact with one another for their transactions. Vidi Meth Digital Services is not and cannot be a party to or control in any manner any transaction between two Users of the Website.
             </p>
             <p className="mb-3 font-medium text-[#0a1f44]">Consequently:</p>
@@ -202,9 +268,15 @@ export default function TermsOfUsePage() {
               </li>
             </ol>
 
+            </div>
+
             {/* User Conduct and Rules on the Website */}
-            <h3 className="text-[20px] font-semibold text-[#0a1f44] mt-10 mb-3">User Conduct and Rules on the Website</h3>
-            <p className="mb-4">
+            <div id="conduct" className="scroll-mt-28 pt-4 border-t border-slate-100">
+              <div className="flex items-center gap-3 mt-6 mb-3">
+                <span className="h-6 w-1 rounded-full bg-[#0077c8]" />
+                <h3 className="text-[20px] font-bold text-[#0a1f44] m-0">User Conduct and Rules on the Website</h3>
+              </div>
+              <p className="mb-4">
               The user agrees and undertakes that the reviews, comments and other information provided or posted or uploaded on the website are not false, incomplete, distorted, manipulated, fraudulent or misleading. The user agrees, undertakes and confirms that when using or accessing the website shall be strictly governed by the following binding principle:
             </p>
             <p className="mb-3 font-medium text-[#0a1f44]">
@@ -816,9 +888,11 @@ export default function TermsOfUsePage() {
 
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <Footer />
-    </main>
-  );
+  <Footer />
+</main>
+);
 }
