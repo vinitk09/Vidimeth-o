@@ -14,7 +14,7 @@ export default function TermsOfUsePage() {
         className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 pt-28 pb-20 text-center text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom, rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.82)), url('https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=2000&q=80')",
+            "linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=2000&q=80')",
         }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />

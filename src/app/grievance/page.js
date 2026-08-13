@@ -52,31 +52,6 @@ export default function GrievancePage() {
       <section className="px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto w-full max-w-5xl space-y-10">
 
-          {/* Official Officer Contact Card */}
-          <div className="rounded-2xl border border-sky-100 bg-gradient-to-r from-sky-50/80 via-white to-sky-50/50 p-6 sm:p-8 shadow-[0_10px_30px_rgba(0,119,200,0.06)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6" data-aos="fade-up">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#0077c8]" />
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#0077c8]">Official Nodal Officer</h3>
-              </div>
-              <h2 className="text-[22px] font-bold text-[#0a1f44]">Grievance Redressal Officer</h2>
-              <p className="text-sm text-slate-600 mt-1 max-w-xl">
-                Vidi Meth Digital Services (OPC) Private Limited, 147 Aambagan Road, Sakchi, Jamshedpur – 831001, Jharkhand, India.
-              </p>
-            </div>
-            <div className="shrink-0 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-              <a
-                href="mailto:info@vidimeth.com"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#0077c8] px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[#005f91]"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                info@vidimeth.com
-              </a>
-            </div>
-          </div>
-
           {/* Form Container */}
           <div className="rounded-2xl border border-slate-200/80 bg-white p-6 sm:p-10 lg:p-12 shadow-[0_16px_45px_rgba(10,31,68,0.06)]" data-aos="fade-up">
             {submitted ? (
