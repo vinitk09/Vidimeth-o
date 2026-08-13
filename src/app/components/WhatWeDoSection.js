@@ -42,7 +42,7 @@ export default function WhatWeDoSection() {
             What We Do
           </p>
           <h2 className="text-[32px] font-bold leading-[1.2] text-black sm:text-[38px]">
-            Digital services built to help businesses move forward.
+            Digital services built to help businesses move forward
           </h2>
           <p className="mt-6 text-[16px] font-normal leading-[1.68] text-[#555555]">
             To carry on in India or elsewhere the business of concept marketing and online marketing, advertising, business management, business administration, office function, direct marketing and to provide high quality of services and products to clients.

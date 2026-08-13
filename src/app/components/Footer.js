@@ -71,6 +71,7 @@ const aboutLinks = [
   { label: "Contact Us", href: "/contact", icon: "contact" },
   { label: "Career", href: "/career", icon: "briefcase" },
   { label: "FAQs", href: "/faqs", icon: "faq" },
+  { label: "Write a Review", href: "/review", icon: "info" },
 ];
 
 const divisionLinks = [

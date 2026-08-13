@@ -23,7 +23,7 @@ const platforms = [
     ),
   },
   {
-    name: "Village My City",
+    name: "VillageMyCity",
     url: "www.villagemycity.com",
     href: "https://www.villagemycity.com/",
     category: "Real Estate Portal",
@@ -49,7 +49,7 @@ const platforms = [
     ),
   },
   {
-    name: "Loan Vidhi",
+    name: "LOAN vidhi",
     url: "www.loanvidhi.com",
     href: "https://www.loanvidhi.com/",
     category: "Finance Services",
@@ -62,7 +62,7 @@ const platforms = [
     ),
   },
   {
-    name: "VM Home Mart",
+    name: "VMhomeMart",
     url: "www.vmhomemart.com",
     href: "https://www.vmhomemart.com/",
     category: "E-commerce Store",
@@ -177,8 +177,8 @@ export default function AboutPage() {
               planning, and customer-first experiences.
             </p>
             <p className="text-justify">
-              Through platforms such as VM Academy, Village My City, GoJobin,
-              Loan Vidhi, and VM Home Mart, Vidi Meth connects people with
+              Through platforms such as VM Academy, VillageMyCity, GoJobin,
+              Loan Vidhi, and VMhomeMART, Vidi Meth connects people with
               education, property, career, finance, and commerce opportunities.
             </p>
           </div>

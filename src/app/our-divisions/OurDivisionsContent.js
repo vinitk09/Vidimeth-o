@@ -22,11 +22,10 @@ const divisions = [
       "Post-examination admission guidance & eligibility insights",
       "Information across Engineering, Medical, Management & Law",
     ],
-    tags: ["Education", "Colleges", "Courses", "Admissions", "Guidance"],
   },
   {
     id: "realestate",
-    name: "Village My City",
+    name: "VillageMyCity",
     category: "Real Estate Network",
     domain: "www.villagemycity.com",
     href: "https://www.villagemycity.com/",
@@ -36,13 +35,12 @@ const divisions = [
     badgeStyle: "bg-emerald-50 text-[#16a34a] ring-emerald-200 border-emerald-100",
     buttonStyle: "bg-[#16a34a] hover:bg-[#15803d]",
     summary:
-      "A premier real estate property portal in India. Village My City connects buyers, sellers, property owners, builders, and dealers online for transparent, hassle-free property discovery and offline transactions.",
+      "A premier real estate property portal in India. VillageMyCity connects buyers, sellers, property owners, builders, and dealers online for transparent, hassle-free property discovery and offline transactions.",
     highlights: [
       "Verified property listings for buyers & sellers",
       "Direct platform for builders, promoters & real estate agents",
       "Meet online, transact offline property ecosystem",
     ],
-    tags: ["Real Estate", "Properties", "Listings", "Builders", "Local"],
   },
   {
     id: "recruitment",
@@ -62,7 +60,6 @@ const divisions = [
       "Curated vacancies for freshers & experienced candidates",
       "End-to-end online staffing & employment solutions",
     ],
-    tags: ["Jobs", "Hiring", "Recruitment", "Careers", "Staffing"],
   },
   {
     id: "finance",
@@ -82,11 +79,10 @@ const divisions = [
       "Custom financial planning & portfolio management",
       "Insurance & real estate monetary advisory",
     ],
-    tags: ["Finance", "Loans", "Insurance", "Advisory", "Portfolio"],
   },
   {
     id: "ecommerce",
-    name: "VM Home Mart",
+    name: "VMhomeMART",
     category: "E-Commerce Store",
     domain: "www.vmhomemart.com",
     href: "https://www.vmhomemart.com/",
@@ -102,7 +98,6 @@ const divisions = [
       "Wide selection across electronics, fashion & home needs",
       "Reliable online shopping experience with secure ordering",
     ],
-    tags: ["E-Commerce", "Retail", "Shopping", "Electronics", "Lifestyle"],
   },
 ];
 
@@ -141,7 +136,7 @@ export default function OurDivisionsContent() {
           <h1 className="text-[36px] font-bold tracking-tight leading-tight sm:text-[48px] lg:text-[56px]">
             Our Digital Divisions
           </h1>
-          
+
           <p className="mt-4 mx-auto max-w-2xl text-[15px] text-white/85 font-normal leading-relaxed">
             Vidi Meth Digital Services brings together specialized digital portals spanning online education, real estate marketplace, job recruitment, financial advisory, and retail e-commerce.
           </p>
@@ -150,7 +145,7 @@ export default function OurDivisionsContent() {
 
       {/* Main Divisions Showcase */}
       <section className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
-        
+
         {/* Section Heading & Category Filters */}
         <div className="mb-12 text-center" data-aos="fade-up">
           <p className="text-xs font-bold uppercase tracking-widest text-[#005f91]">
@@ -169,11 +164,10 @@ export default function OurDivisionsContent() {
               <button
                 key={filter.id}
                 onClick={() => setActiveCategory(filter.id)}
-                className={`rounded-md px-4 py-2 text-xs font-semibold transition ${
-                  activeCategory === filter.id
-                    ? "bg-[#005f91] text-white shadow-sm"
-                    : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50"
-                }`}
+                className={`rounded-md px-4 py-2 text-xs font-semibold transition ${activeCategory === filter.id
+                  ? "bg-[#005f91] text-white shadow-sm"
+                  : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50"
+                  }`}
               >
                 {filter.label}
               </button>
@@ -254,17 +248,7 @@ export default function OurDivisionsContent() {
                   ))}
                 </div>
 
-                {/* Tags Row */}
-                <div className="mt-5 flex flex-wrap gap-1.5">
-                  {division.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded bg-slate-100 px-2.5 py-0.5 text-xs text-slate-600 border border-slate-200"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+
               </div>
 
               {/* Action Button */}

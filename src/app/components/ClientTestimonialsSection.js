@@ -1,24 +1,74 @@
-const testimonials = [
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+
+const defaultTestimonials = [
   {
+    id: "default-1",
     name: "Laxmi Mahato",
     role: "Business Partner",
+    division: "Business Development",
     initials: "LM",
+    rating: 5,
     quote:
       "Exceptional business development insights. Your team's dedication to fostering opportunities has been a game-changer for our company.",
+    status: "approved",
   },
   {
+    id: "default-2",
     name: "Manab Kumar",
     role: "Finance Client",
+    division: "LOAN vidhi",
     initials: "MK",
+    rating: 5,
     quote:
       "Remarkable impact! Your innovative financial planning and business development strategies transformed our path, leading to sustained growth.",
+    status: "approved",
   },
   {
+    id: "default-3",
     name: "Nisha Sharma",
     role: "Growth Client",
+    division: "VM Academy",
     initials: "NS",
+    rating: 5,
     quote:
       "Business development strategies exceeded expectations, driving growth and ensuring sustained success. Truly an impactful partnership.",
+    status: "approved",
+  },
+  {
+    id: "default-4",
+    name: "Ankit Verma",
+    role: "Property Buyer",
+    division: "VillageMyCity",
+    initials: "AV",
+    rating: 5,
+    quote:
+      "VillageMyCity made property discovery so simple and transparent. We connected directly with verified sellers online and closed our deal hassle-free.",
+    status: "approved",
+  },
+  {
+    id: "default-5",
+    name: "Priya Sundaram",
+    role: "HR Manager",
+    division: "GoJobin",
+    initials: "PS",
+    rating: 5,
+    quote:
+      "GoJobin enabled us to post job openings for free and quickly connect with highly qualified candidates across multiple engineering & management streams.",
+    status: "approved",
+  },
+  {
+    id: "default-6",
+    name: "Vikram Malhotra",
+    role: "Retail Merchant",
+    division: "VMhomeMART",
+    initials: "VM",
+    rating: 5,
+    quote:
+      "VMhomeMART opened up direct online retail access for our electronics store. Customer reach and order management have been outstanding.",
+    status: "approved",
   },
 ];
 
@@ -30,72 +80,228 @@ function QuoteIcon() {
   );
 }
 
-function StarIcon() {
+function StarIcon({ filled }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={filled ? "fill-[#f4b400] text-[#f4b400]" : "fill-slate-200 text-slate-200"}
+    >
       <path d="M12 3.75 14.55 8.9l5.7.82-4.12 4 .97 5.66L12 16.7l-5.1 2.68.97-5.66-4.12-4 5.7-.82L12 3.75Z" />
     </svg>
   );
 }
 
 export default function ClientTestimonialsSection() {
+  const [testimonials, setTestimonials] = useState(defaultTestimonials);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [visibleCards, setVisibleCards] = useState(3);
+
+  // Load dynamically approved reviews from localStorage
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("vidimeth_reviews");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        const approvedOnly = parsed.filter((item) => item.status === "approved");
+        if (approvedOnly.length > 0) {
+          setTestimonials([...approvedOnly, ...defaultTestimonials]);
+        }
+      }
+    } catch (err) {
+      console.error("Failed to load reviews:", err);
+    }
+  }, []);
+
+  // Handle responsive visible card count
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setVisibleCards(1);
+      } else if (window.innerWidth < 1024) {
+        setVisibleCards(2);
+      } else {
+        setVisibleCards(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, testimonials.length - visibleCards);
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  // Auto-play timer for slider
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      handleNext();
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isPaused, maxIndex, testimonials.length]);
+
   return (
-    <section className="bg-white px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24">
+    <section className="bg-white px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24 overflow-hidden">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="mx-auto max-w-4xl text-center" data-aos="fade-up">
-          <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
-            Testimonials
-          </p>
-          <h2 className="text-[30px] font-bold leading-[1.2] text-black sm:text-[36px]">
-            What Our Client Says
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-[16px] font-normal leading-[1.68] text-[#555555]">
-            Practical guidance, reliable support, and business development
-            strategies shaped around real client growth.
-          </p>
+        
+        {/* Header with Title & Write Review Button */}
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end" data-aos="fade-up">
+          <div className="max-w-2xl">
+            <p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-[#1b8b4b]">
+              Client Feedback
+            </p>
+            <h2 className="text-[30px] font-bold leading-[1.2] text-black sm:text-[36px]">
+              What Our Clients Say
+            </h2>
+            <p className="mt-3 text-[16px] font-normal leading-[1.68] text-[#555555]">
+              Practical guidance, reliable support, and business development strategies shaped around real client growth.
+            </p>
+          </div>
+
+          <Link
+            href="/review"
+            className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-[#0077c8] px-5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-md transition hover:bg-[#005f91] hover:shadow-lg"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+            Write a Review
+          </Link>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {testimonials.map((testimonial, index) => (
-            <article
-              key={testimonial.name}
-              className={`relative overflow-hidden rounded-lg border bg-white p-7 shadow-[0_18px_50px_rgba(10,31,68,0.08)] ${index === 1
-                ? "border-[#0077c8]/28 lg:-translate-y-4"
-                : "border-slate-200"
-                }`}
-              data-aos="fade-up"
-              data-aos-delay={index * 120}
+        {/* Testimonials Slider Container with Outward Controls */}
+        <div
+          className="relative mt-12 group/slider px-4 sm:px-8 lg:px-10"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          data-aos="fade-up"
+        >
+          {/* Left Outward Arrow Button */}
+          <button
+            type="button"
+            onClick={handlePrev}
+            className="absolute -left-2 sm:-left-6 lg:-left-7 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-[0_8px_25px_rgba(0,0,0,0.15)] transition-all hover:bg-[#0077c8] hover:text-white hover:border-[#0077c8] hover:scale-110 focus:outline-none"
+            aria-label="Previous Testimonial"
+          >
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+
+          {/* Right Outward Arrow Button */}
+          <button
+            type="button"
+            onClick={handleNext}
+            className="absolute -right-2 sm:-right-6 lg:-right-7 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-[0_8px_25px_rgba(0,0,0,0.15)] transition-all hover:bg-[#0077c8] hover:text-white hover:border-[#0077c8] hover:scale-110 focus:outline-none"
+            aria-label="Next Testimonial"
+          >
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+
+          {/* Slider Track */}
+          <div className="overflow-hidden py-3">
+            <div
+              className="flex transition-transform duration-500 ease-in-out gap-6"
+              style={{
+                transform: `translateX(-${activeIndex * (100 / visibleCards)}%)`,
+              }}
             >
-              <div className="absolute right-6 top-6 text-[#0077c8]/12 [&_svg]:h-16 [&_svg]:w-16 [&_svg]:fill-current">
-                <QuoteIcon />
-              </div>
+            {testimonials.map((testimonial, index) => {
+              const initials =
+                testimonial.initials ||
+                (testimonial.name
+                  ? testimonial.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .slice(0, 2)
+                      .toUpperCase()
+                  : "VM");
 
-              <div className="relative z-10 flex items-center gap-4">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#0077c8] text-[15px] font-semibold text-white shadow-[0_10px_24px_rgba(0,119,200,0.22)]">
-                  {testimonial.initials}
-                </span>
-                <div>
-                  <h3 className="text-[17px] font-semibold leading-tight text-[#0a1f44]">
-                    {testimonial.name}
-                  </h3>
-                  <p className="mt-1 text-sm font-normal text-[#647084]">
-                    {testimonial.role}
-                  </p>
+              return (
+                <div
+                  key={testimonial.id || index}
+                  style={{
+                    flex: `0 0 calc(${100 / visibleCards}% - ${(24 * (visibleCards - 1)) / visibleCards}px)`,
+                  }}
+                  className="min-w-0"
+                >
+                  <article className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-slate-200 bg-white p-7 shadow-[0_14px_40px_rgba(10,31,68,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#0077c8]/40 hover:shadow-lg">
+                    <div className="absolute right-6 top-6 text-[#0077c8]/12 [&_svg]:h-16 [&_svg]:w-16 [&_svg]:fill-current">
+                      <QuoteIcon />
+                    </div>
+
+                    <div>
+                      <div className="relative z-10 flex items-center gap-4">
+                        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#0077c8] to-[#004f85] text-[15px] font-semibold text-white shadow-[0_10px_24px_rgba(0,119,200,0.22)]">
+                          {initials}
+                        </span>
+                        <div>
+                          <h3 className="text-[17px] font-semibold leading-tight text-[#0a1f44]">
+                            {testimonial.name}
+                          </h3>
+                          <p className="mt-1 text-xs font-medium text-[#647084]">
+                            {testimonial.role || "Client"}{" "}
+                            {testimonial.division ? `• ${testimonial.division}` : ""}
+                          </p>
+                        </div>
+                      </div>
+
+                      <p className="relative z-10 mt-6 text-[15px] font-normal leading-[1.75] text-[#555555] text-justify">
+                        &ldquo;{testimonial.quote}&rdquo;
+                      </p>
+                    </div>
+
+                    <div className="relative z-10 mt-7 pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <div className="flex gap-1 [&_svg]:h-4 [&_svg]:w-4">
+                        {Array.from({ length: 5 }).map((_, starIndex) => (
+                          <StarIcon
+                            key={starIndex}
+                            filled={starIndex < (testimonial.rating || 5)}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                        Verified Review
+                      </span>
+                    </div>
+                  </article>
                 </div>
-              </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
 
-              <p className="relative z-10 mt-7 text-[16px] font-normal leading-[1.75] text-[#555555]">
-                {testimonial.quote}
-              </p>
-
-              <div className="relative z-10 mt-7 flex gap-1 text-[#f4b400] [&_svg]:h-4 [&_svg]:w-4 [&_svg]:fill-current">
-                {Array.from({ length: 5 }).map((_, starIndex) => (
-                  <StarIcon key={starIndex} />
-                ))}
-              </div>
-            </article>
+        {/* Pagination Dots */}
+        <div className="mt-8 flex justify-center items-center gap-2">
+          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => setActiveIndex(idx)}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                activeIndex === idx
+                  ? "w-8 bg-[#0077c8]"
+                  : "w-2.5 bg-slate-300 hover:bg-slate-400"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
           ))}
         </div>
+
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ const newsArticles = [
   {
     id: 2,
     category: "Real Estate",
-    title: "Village My City Expands Real Estate Property Connect Platform",
+    title: "VillageMyCity Expands Real Estate Property Connect Platform",
     date: "July 28, 2026",
     image: "/a1.png",
     description:
@@ -37,7 +37,7 @@ const newsArticles = [
   {
     id: 4,
     category: "Finance",
-    title: "Loan Vidhi Expands Partnerships for Business & Personal Loans",
+    title: "LOAN vidhi Expands Partnerships for Business & Personal Loans",
     date: "June 30, 2026",
     image: "/loanslider.png",
     description:
@@ -47,7 +47,7 @@ const newsArticles = [
   {
     id: 5,
     category: "Retail",
-    title: "VM Home Mart Enhances Direct Seller E-Commerce Marketplace",
+    title: "VMhomeMART Enhances Direct Seller E-Commerce Marketplace",
     date: "June 12, 2026",
     image: "/vmhomemart-image.jpeg",
     description:
@@ -111,51 +111,53 @@ export default function StatsCounterSection() {
               Explore our latest platform announcements, media releases, and business network milestones.
             </p>
           </div>
-
-          {/* Slider Controls */}
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={handlePrev}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition hover:bg-[#0077c8] hover:border-[#0077c8]"
-              aria-label="Previous News"
-            >
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              onClick={handleNext}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-[#0077c8] text-white transition hover:bg-[#005f91]"
-              aria-label="Next News"
-            >
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
-          </div>
         </div>
 
-        {/* News Cards Slider (3 cards visible, slides 1 by 1) */}
+        {/* News Cards Slider Container with Outward Controls */}
         <div
-          className="mt-10 overflow-hidden"
+          className="relative mt-10 px-4 sm:px-8 lg:px-10"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <div
-            className="flex transition-transform duration-500 ease-out"
-            style={{
-              transform: `translateX(-${activeIndex * (100 / visibleCards)}%)`,
-            }}
+          {/* Left Outward Arrow Button */}
+          <button
+            type="button"
+            onClick={handlePrev}
+            className="absolute -left-2 sm:-left-6 lg:-left-7 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-[#0d1f3c] text-white shadow-[0_8px_25px_rgba(0,0,0,0.5)] transition-all hover:bg-[#0077c8] hover:border-[#0077c8] hover:scale-110 focus:outline-none"
+            aria-label="Previous News"
           >
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+
+          {/* Right Outward Arrow Button */}
+          <button
+            type="button"
+            onClick={handleNext}
+            className="absolute -right-2 sm:-right-6 lg:-right-7 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-[#0d1f3c] text-white shadow-[0_8px_25px_rgba(0,0,0,0.5)] transition-all hover:bg-[#0077c8] hover:border-[#0077c8] hover:scale-110 focus:outline-none"
+            aria-label="Next News"
+          >
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+
+          {/* Slider Track */}
+          <div className="overflow-hidden py-2">
+            <div
+              className="flex transition-transform duration-500 ease-out"
+              style={{
+                transform: `translateX(-${activeIndex * (100 / visibleCards)}%)`,
+              }}
+            >
             {newsArticles.map((article) => (
               <div
                 key={article.id}
                 className="w-full shrink-0 px-3 sm:w-1/2 lg:w-1/3"
               >
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0d1f3c] shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-[#0077c8]/50 hover:shadow-2xl hover:shadow-[#0077c8]/20">
-                  <div className="relative h-48 w-full overflow-hidden bg-slate-800">
+                <article className="group relative flex h-[360px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#0d1f3c] shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-[#0077c8]/50 hover:shadow-2xl hover:shadow-[#0077c8]/20">
+                  <div className="relative h-36 w-full shrink-0 overflow-hidden bg-slate-800">
                     <Image
                       src={article.image}
                       alt={article.title}
@@ -163,27 +165,26 @@ export default function StatsCounterSection() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0d1f3c] via-transparent to-transparent" />
-                    <span className="absolute top-4 left-4 rounded-full bg-[#0077c8] px-3 py-1 text-xs font-bold text-white shadow-md">
-                      {article.category}
-                    </span>
                   </div>
 
-                  <div className="flex flex-1 flex-col p-6">
-                    <span className="text-xs font-medium text-slate-400">
-                      {article.date}
-                    </span>
-                    <h3 className="mt-2 text-lg font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2">
-                      {article.title}
-                    </h3>
-                    <p className="mt-3 flex-1 text-sm text-slate-300/90 leading-relaxed line-clamp-3">
-                      {article.description}
-                    </p>
+                  <div className="flex flex-1 flex-col justify-between p-4 sm:p-5">
+                    <div>
+                      <span className="text-[11px] font-medium text-slate-400">
+                        {article.date}
+                      </span>
+                      <h3 className="mt-1 text-sm sm:text-base font-bold leading-snug text-white group-hover:text-cyan-300 transition-colors line-clamp-2">
+                        {article.title}
+                      </h3>
+                      <p className="mt-1.5 text-xs text-slate-300/90 leading-relaxed line-clamp-2 text-justify">
+                        {article.description}
+                      </p>
+                    </div>
 
                     <a
                       href={article.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#0077c8] transition-colors group-hover:text-cyan-300"
+                      className="mt-3 shrink-0 inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0077c8] transition-colors group-hover:text-cyan-300"
                     >
                       Read Full Article
                       <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -197,6 +198,7 @@ export default function StatsCounterSection() {
             ))}
           </div>
         </div>
+      </div>
 
         {/* Dot Indicators */}
         <div className="mt-8 flex justify-center items-center gap-2">
@@ -205,11 +207,10 @@ export default function StatsCounterSection() {
               key={idx}
               type="button"
               onClick={() => setActiveIndex(idx)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                activeIndex === idx
-                  ? "w-8 bg-[#0077c8]"
-                  : "w-2.5 bg-white/20 hover:bg-white/40"
-              }`}
+              className={`h-2.5 rounded-full transition-all duration-300 ${activeIndex === idx
+                ? "w-8 bg-[#0077c8]"
+                : "w-2.5 bg-white/20 hover:bg-white/40"
+                }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
           ))}
