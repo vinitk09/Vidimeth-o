@@ -10,21 +10,6 @@ import WhyChooseUsSection from "./components/WhyChooseUsSection";
 import StatsCounterSection from "./components/StatsCounterSection";
 import FloatingActions from "./components/FloatingActions";
 
-const slides = [
-  {
-    src: "/vmbn.png",
-    alt: "VM Academy course and college guidance banner",
-  },
-  {
-    src: "/gojobinbanner.png",
-    alt: "GoJobin find your dream jobs banner",
-  },
-  {
-    src: "/a1.png",
-    alt: "VillageMyCity property banner",
-  },
-];
-
 const welcomeHighlights = [
   {
     label: "Concept Marketing",
@@ -128,32 +113,23 @@ export default function Home() {
     <main className="overflow-x-hidden no-scrollbar bg-white pt-20">
       <Header />
 
-      <section className="hero-slider no-scrollbar relative overflow-hidden bg-[#eef7ff]">
-        {slides.map((slide, index) => (
-          <div
-            className="hero-slide absolute inset-0"
-            style={{ "--slide-index": index }}
-            key={slide.src}
-          >
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              sizes="100vw"
-              priority={index === 0}
-              className="object-contain"
-            />
-          </div>
-        ))}
-
-        <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3">
-          {slides.map((slide, index) => (
-            <span
-              key={slide.src}
-              className="hero-dot block h-2.5 w-8 rounded-full bg-white/70"
-              style={{ "--slide-index": index }}
-            />
-          ))}
+      {/* Hero Banner Section (Responsive Banner without image cutoff) */}
+      <section
+        className="relative w-full overflow-hidden bg-[#eef7ff]"
+        data-aos="fade-left"
+        data-aos-duration="1000"
+        data-aos-once="true"
+      >
+        <div className="relative w-full flex items-center justify-center">
+          <Image
+            src="/banner (1).png"
+            alt="Vidi Meth Digital Services Banner"
+            width={1920}
+            height={720}
+            priority
+            unoptimized
+            className="w-full h-auto max-h-[680px] object-contain"
+          />
         </div>
       </section>
 

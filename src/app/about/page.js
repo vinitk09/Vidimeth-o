@@ -194,7 +194,7 @@ export default function AboutPage() {
             className="flex flex-col justify-center space-y-4 text-slate-800"
             data-aos="fade-left"
           >
-            <h2 className="text-2xl font-bold text-black sm:text-[32px]">
+            <h2 className="text-2xl font-bold text-black sm:text-[30px]">
               Empowering Digital Innovation Across India
             </h2>
             <p className="text-base sm:text-[16px]  text-slate-700 font-normal">

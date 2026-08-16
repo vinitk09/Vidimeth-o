@@ -46,14 +46,6 @@ const networkSlides = [
   },
 ];
 
-function ArrowIcon({ direction }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d={direction === "left" ? "m15 6-6 6 6 6" : "m9 6 6 6-6 6"} />
-    </svg>
-  );
-}
-
 function getNextIndex(currentIndex) {
   return currentIndex === networkSlides.length - 1 ? 0 : currentIndex + 1;
 }
@@ -65,17 +57,29 @@ function getPreviousIndex(currentIndex) {
 export default function FoundationNetworkSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [expandedSlides, setExpandedSlides] = useState({});
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
   const toggleExpand = (index) => {
-    setExpandedSlides((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }));
+    setExpandedIndex((prev) => (prev === index ? null : index));
+  };
+
+  const handleNext = () => {
+    setExpandedIndex(null);
+    setActiveIndex((currentIndex) => getNextIndex(currentIndex));
+  };
+
+  const handlePrev = () => {
+    setExpandedIndex(null);
+    setActiveIndex((currentIndex) => getPreviousIndex(currentIndex));
+  };
+
+  const handleSelectSlide = (index) => {
+    setExpandedIndex(null);
+    setActiveIndex(index);
   };
 
   useEffect(() => {
-    if (isPaused || Object.values(expandedSlides).some(Boolean)) {
+    if (isPaused || expandedIndex !== null) {
       return undefined;
     }
 
@@ -84,7 +88,7 @@ export default function FoundationNetworkSection() {
     }, 4200);
 
     return () => window.clearInterval(interval);
-  }, [isPaused, expandedSlides]);
+  }, [isPaused, expandedIndex]);
 
   return (
     <section className="bg-[#f4f6f9] px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24">
@@ -94,7 +98,6 @@ export default function FoundationNetworkSection() {
             <h2 className="text-[20px] font-bold  text-black sm:text-[32px]">
               Facilitating Global Business Networks
             </h2>
-            {/* <span className="h-0.5 w-28 bg-[#4d65ff]" /> */}
           </div>
           <p className="max-w-4xl text-[16px] font-normal leading-[1.72] text-[#1d2736] sm:text-[16px]">
             We highly value collaborative relationships with our partners.
@@ -115,15 +118,11 @@ export default function FoundationNetworkSection() {
           {/* Left Outward Arrow Button */}
           <button
             type="button"
-            onClick={() =>
-              setActiveIndex((currentIndex) =>
-                getPreviousIndex(currentIndex),
-              )
-            }
-            className="absolute -left-3 sm:-left-6 lg:-left-7 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-[0_8px_25px_rgba(0,0,0,0.15)] transition-all hover:bg-[#0077c8] hover:text-white hover:border-[#0077c8] hover:scale-110 focus:outline-none"
+            onClick={handlePrev}
+            className="absolute -left-3 sm:-left-6 lg:-left-7 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 shrink-0 aspect-square items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-[0_8px_25px_rgba(0,0,0,0.15)] transition-all hover:bg-[#0077c8] hover:text-white hover:border-[#0077c8] hover:scale-110 focus:outline-none"
             aria-label="Previous business network"
           >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="15 18 9 12 15 6" />
             </svg>
           </button>
@@ -131,13 +130,11 @@ export default function FoundationNetworkSection() {
           {/* Right Outward Arrow Button */}
           <button
             type="button"
-            onClick={() =>
-              setActiveIndex((currentIndex) => getNextIndex(currentIndex))
-            }
-            className="absolute -right-3 sm:-right-6 lg:-right-7 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-[0_8px_25px_rgba(0,0,0,0.15)] transition-all hover:bg-[#0077c8] hover:text-white hover:border-[#0077c8] hover:scale-110 focus:outline-none"
+            onClick={handleNext}
+            className="absolute -right-3 sm:-right-6 lg:-right-7 top-1/2 -translate-y-1/2 z-30 flex h-12 w-12 shrink-0 aspect-square items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 shadow-[0_8px_25px_rgba(0,0,0,0.15)] transition-all hover:bg-[#0077c8] hover:text-white hover:border-[#0077c8] hover:scale-110 focus:outline-none"
             aria-label="Next business network"
           >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </button>
@@ -145,7 +142,7 @@ export default function FoundationNetworkSection() {
           {/* Main Card Slider Box */}
           <div className="overflow-hidden rounded-2xl shadow-[0_22px_70px_rgba(10,31,68,0.11)] ring-1 ring-slate-200/80 bg-white">
             <div
-              className="flex transition-transform duration-700 ease-in-out"
+              className="flex items-start transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${activeIndex * 100}%)` }}
             >
               {networkSlides.map((slide, index) => (
@@ -153,7 +150,7 @@ export default function FoundationNetworkSection() {
                   key={slide.title}
                   className="grid min-w-full items-start bg-white p-4 sm:p-5 lg:grid-cols-[0.52fr_0.48fr] lg:gap-4 lg:p-6 lg:min-h-[440px]"
                 >
-                  <div className="relative h-[280px] sm:h-[360px] lg:h-[400px] w-full shrink-0 overflow-hidden rounded-2xl bg-[#eef3f8]">
+                  <div className="relative h-[220px] sm:h-[320px] lg:h-[400px] w-full shrink-0 overflow-hidden rounded-2xl bg-[#f8fafc] border border-slate-200/60 flex items-center justify-center p-2 sm:p-3">
                     <Image
                       src={slide.image}
                       alt={slide.title}
@@ -161,7 +158,7 @@ export default function FoundationNetworkSection() {
                       unoptimized
                       sizes="(min-width: 1024px) 52vw, 100vw"
                       priority={index === 0}
-                      className="h-full w-full object-cover object-top rounded-2xl"
+                      className="h-full w-full object-contain object-center rounded-xl"
                     />
                   </div>
 
@@ -178,7 +175,7 @@ export default function FoundationNetworkSection() {
                       <h3 className="text-[24px] font-semibold leading-[1.15] text-[#20242d] sm:text-[28px]">
                         {slide.title}
                       </h3>
-                      <p className={`mt-4 max-w-3xl text-[15px] font-normal leading-[1.65] text-[#5d6470] text-justify ${expandedSlides[index] ? "" : "line-clamp-6 sm:line-clamp-8 lg:line-clamp-8"
+                      <p className={`mt-4 max-w-3xl text-[15px] font-normal leading-[1.65] text-[#5d6470] text-justify ${expandedIndex === index ? "" : "line-clamp-6 sm:line-clamp-8 lg:line-clamp-8"
                         }`}>
                         {slide.description}
                       </p>
@@ -189,8 +186,8 @@ export default function FoundationNetworkSection() {
                           onClick={() => toggleExpand(index)}
                           className="inline-flex w-fit items-center gap-2 rounded-md bg-[#20242d] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(32,36,45,0.18)] transition hover:bg-[#0077c8] group/link focus:outline-none"
                         >
-                          {expandedSlides[index] ? "Read Less" : "Read More"}
-                          <svg className={`h-4 w-4 transition-transform duration-300 ${expandedSlides[index] ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          {expandedIndex === index ? "Read Less" : "Read More"}
+                          <svg className={`h-4 w-4 transition-transform duration-300 ${expandedIndex === index ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="6 9 12 15 18 9" />
                           </svg>
                         </button>
@@ -207,7 +204,7 @@ export default function FoundationNetworkSection() {
               <button
                 key={slide.title}
                 type="button"
-                onClick={() => setActiveIndex(index)}
+                onClick={() => handleSelectSlide(index)}
                 className={`h-2.5 rounded-full transition-all ${activeIndex === index
                   ? "w-9 bg-[#0077c8]"
                   : "w-2.5 bg-[#0077c8]/25 hover:bg-[#0077c8]/50"

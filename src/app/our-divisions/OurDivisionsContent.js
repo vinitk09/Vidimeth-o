@@ -203,24 +203,17 @@ export default function OurDivisionsContent() {
               <div>
                 {/* Header Row: Logo & Category Badge */}
                 <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-slate-100">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-14 w-32 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white p-2 shadow-2xs">
-                      <Image
-                        src={division.logo}
-                        alt={`${division.name} logo`}
-                        width={140}
-                        height={60}
-                        className="max-h-10 w-full object-contain"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#005f91] transition-colors">
-                        {division.name}
-                      </h3>
-                      <p className="text-xs font-medium text-slate-500">
-                        {division.domain}
-                      </p>
-                    </div>
+                  <div className="flex items-center gap-3.5">
+                    <Image
+                      src={division.logo}
+                      alt={`${division.name} logo`}
+                      width={56}
+                      height={56}
+                      className="h-12 w-auto shrink-0 object-contain"
+                    />
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-[#005f91] transition-colors">
+                      {division.name}
+                    </h3>
                   </div>
 
                   <span className={`rounded-md px-3 py-1 text-xs font-semibold border ${division.badgeStyle}`}>
@@ -236,12 +229,6 @@ export default function OurDivisionsContent() {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3 right-3 text-white">
-                    <p className="text-xs font-semibold tracking-wide">
-                      {division.domain}
-                    </p>
-                  </div>
                 </div>
 
                 {/* Summary Description */}
@@ -279,9 +266,6 @@ export default function OurDivisionsContent() {
 
               {/* Action Button */}
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                {/* <span className="text-xs text-slate-500 font-medium">
-                  Official Portal
-                </span> */}
                 <a
                   href={division.href}
                   target="_blank"
