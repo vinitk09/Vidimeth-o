@@ -48,11 +48,16 @@ export default function GrowthSupportSection() {
             <h2 className="max-w-sm text-[28px] font-bold leading-[1.28] sm:text-[32px]">
               We help your Business / Grow up your business
             </h2>
-            <p className="mt-6 max-w-md text-[16px] font-normal leading-[1.7] text-white/78">
+            <p className="mt-6 max-w-lg text-justify text-[15px] font-normal leading-relaxed text-white/85">
               Vidi Meth Digital Services supports businesses with practical
               growth planning, marketing direction, expansion ideas, talent
               strategy, financial focus, and safeguards that keep progress
-              steady.
+              steady. Our goal is to empower organizations with innovative
+              tools, strategic guidance, cutting-edge digital marketing, direct
+              advertising, and scalable management solutions designed for
+              sustained commercial success, long-term brand authority, risk
+              mitigation, and seamless operational excellence across
+              competitive Indian and global markets.
             </p>
 
           </div>

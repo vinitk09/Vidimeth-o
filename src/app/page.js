@@ -103,6 +103,24 @@ const welcomeHighlights = [
       </svg>
     ),
   },
+  {
+    label: "Online Education",
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+      </svg>
+    ),
+  },
+  {
+    label: "Real Estate Solutions",
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 21h18M3 10l9-7 9 7M5 10v11M19 10v11" />
+        <path d="M9 14h6v7H9z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Home() {
@@ -140,54 +158,36 @@ export default function Home() {
       </section>
 
       <section className="bg-white px-5 py-16 text-[#0a1f44] sm:px-8 lg:px-10 lg:py-24">
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[0.88fr_1.12fr]">
-          <div
-            className="group relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-sky-100 bg-gradient-to-b from-white via-slate-50 to-sky-50/60 p-3 shadow-[0_24px_60px_rgba(0,119,200,0.18),0_10px_25px_rgba(10,31,68,0.08)] ring-1 ring-slate-900/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_75px_rgba(0,119,200,0.28)]"
-            data-aos="fade-right"
-          >
-            <div className="relative overflow-hidden rounded-xl border border-slate-200/80 bg-white">
-              <Image
-                src="/welcome.png"
-                alt="Welcome to Vidimeth"
-                width={1158}
-                height={1364}
-                className="h-auto w-full object-contain transition-transform duration-700 group-hover:scale-[1.03]"
-              />
-            </div>
-            <div className="pointer-events-none absolute -bottom-10 -left-10 h-36 w-36 rounded-full bg-[#0077c8]/10 blur-2xl transition-all duration-500 group-hover:scale-150" />
-          </div>
+        <div className="mx-auto flex flex-col items-center text-center w-full max-w-7xl">
+          <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]" data-aos="fade-up">
+            Welcome To
+          </p>
+          <h1 className="max-w-4xl text-[30px] font-bold  text-black sm:text-[36px] lg:text-[32px]" data-aos="fade-up" data-aos-delay="100">
+            Vidi Meth Digital Services (OPC) Private Limited
+          </h1>
+          <p className="mt-5 max-w-3xl text-[16px] sm:text-[16px] font-normal  text-[#555555]" data-aos="fade-up" data-aos-delay="200">
+            To carry on in India or elsewhere the business of concept
+            marketing and online marketing, advertising, business management,
+            business administration, office function, direct marketing and to
+            provide high quality of services and products to clients.
+          </p>
 
-          <div className="mx-auto max-w-2xl lg:mx-0" data-aos="fade-left">
-            <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
-              Welcome To
-            </p>
-            <h1 className="max-w-xl text-[30px] font-bold leading-[1.22] text-black sm:text-[34px] lg:text-[30px]">
-              Vidi Meth Digital Services (OPC) Private Limited.
-            </h1>
-            <p className="mt-5 max-w-2xl text-[16px] font-normal leading-[1.68] tracking-normal text-[#555555]">
-              To carry on in India or elsewhere the business of concept
-              marketing and online marketing, advertising, business management,
-              business administration, office function, direct marketing and to
-              provide high quality of services and products to clients.
-            </p>
-
-            <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {welcomeHighlights.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex min-h-28 flex-col items-center justify-center rounded-lg border border-[#0077c8]/15 bg-[#f5fbff] px-3 py-4 text-center shadow-[0_10px_28px_rgba(0,119,200,0.08)]"
-                  data-aos="zoom-in"
-                  data-aos-delay="120"
-                >
-                  <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#0077c8] shadow-sm ring-1 ring-[#0077c8]/15 [&_svg]:h-7 [&_svg]:w-7 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[1.7] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round">
-                    {item.icon}
-                  </span>
-                  <span className="text-sm font-semibold leading-5 text-[#0a1f44]">
-                    {item.label}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className="mt-12 grid w-full grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5">
+            {welcomeHighlights.map((item, idx) => (
+              <div
+                key={item.label}
+                className="flex min-h-[120px] flex-col items-center justify-center rounded-xl border border-[#0077c8]/15 bg-[#f5fbff] px-4 py-5 text-center shadow-[0_8px_24px_rgba(0,119,200,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_32px_rgba(0,119,200,0.14)] hover:border-[#0077c8]/30"
+                data-aos="zoom-in"
+                data-aos-delay={80 + (idx % 5) * 40}
+              >
+                <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#0077c8] shadow-sm ring-1 ring-[#0077c8]/15 [&_svg]:h-6 [&_svg]:w-6 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[1.7] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round">
+                  {item.icon}
+                </span>
+                <span className="text-sm font-bold leading-5 text-black">
+                  {item.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -144,10 +144,10 @@ export default function BusinessDevelopmentSection() {
           <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
             Growth Strategy
           </p>
-          <h2 className="text-[30px] font-bold leading-[1.2] text-black sm:text-[36px] lg:text-[36px]">
+          <h2 className="text-[30px] font-bold leading-[1.2] text-black sm:text-[32px] lg:text-[32px]">
             Business Development
           </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-[16px] font-normal leading-[1.68] text-[#555555]">
+          <p className="mx-auto mt-5 max-w-3xl text-[15px] font-normal leading-[1.68] text-[#555555]">
             Goals can include revenue growth, expansion to new markets,
             strategic partnerships, and more. Great business development
             strategies that will help you fulfill your goals. Make use of these

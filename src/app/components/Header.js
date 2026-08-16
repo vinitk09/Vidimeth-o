@@ -142,7 +142,7 @@ export default function Header() {
   const dropdownRef = useRef(null);
 
   const isHomePage = pathname === "/";
-  const useDarkText = isScrolled || isHomePage;
+  const useDarkText = true;
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -170,13 +170,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
-        isHomePage
-          ? "border-b border-slate-200 bg-white text-[#0a1f44] shadow-[0_8px_26px_rgba(10,31,68,0.08)]"
-          : isScrolled
-          ? "border-b border-slate-200 bg-white/95 text-[#0a1f44] shadow-[0_8px_26px_rgba(10,31,68,0.08)] backdrop-blur-md"
-          : "border-b border-white/15 bg-transparent text-white"
-      }`}
+      className="fixed left-0 top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 text-[#0a1f44] shadow-[0_8px_26px_rgba(10,31,68,0.08)] backdrop-blur-md transition-all duration-300"
     >
       <nav className="relative mx-auto flex min-h-20 w-full max-w-7xl items-center gap-4 px-4 py-2 pr-16 font-sans sm:px-6 sm:pr-20 lg:px-8 lg:pr-24 xl:pr-8">
         <Link

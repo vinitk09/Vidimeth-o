@@ -172,19 +172,17 @@ export default function AboutPage() {
           </div>
 
           <div
-            className="space-y-5 text-[16px] font-normal leading-[1.75] text-black"
+            className="flex flex-col justify-center space-y-4 text-slate-800"
             data-aos="fade-left"
           >
-            <p className="text-justify">
-              We create and support digital properties that solve everyday
-              business and customer needs across multiple sectors. Our work
-              brings together online visibility, service delivery, practical
-              planning, and customer-first experiences.
+            <h2 className="text-2xl font-bold text-black sm:text-[32px]">
+              Empowering Digital Innovation Across India
+            </h2>
+            <p className="text-base sm:text-[16px]  text-slate-700 font-normal">
+              We create and support digital properties that solve everyday business and customer needs across multiple sectors. Our work brings together online visibility, service delivery, practical planning, and customer-first experiences.
             </p>
-            <p className="text-justify">
-              Through platforms such as VM Academy, VillageMyCity, GoJobin,
-              Loan Vidhi, and VMhomeMART, Vidi Meth connects people with
-              education, property, career, finance, and commerce opportunities.
+            <p className="text-base sm:text-[16px] text-slate-700 font-normal">
+              Through platforms such as <strong className="font-semibold text-[#0a1f44]">VM Academy</strong>, <strong className="font-semibold text-[#0a1f44]">VillageMyCity</strong>, <strong className="font-semibold text-[#0a1f44]">GoJobin</strong>, <strong className="font-semibold text-[#0a1f44]">LOAN vidhi</strong>, and <strong className="font-semibold text-[#0a1f44]">VMhomeMART</strong>, Vidi Meth connects people with education, property, career, finance, and commerce opportunities.
             </p>
           </div>
         </div>
@@ -202,11 +200,11 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="grid gap-x-10 gap-y-14 md:grid-cols-3">
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-3">
             {platforms.map((platform, index) => (
               <article
                 key={platform.name}
-                className="flex flex-col items-center text-center group"
+                className="flex flex-col items-center text-center group rounded-2xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-sm hover:shadow-md transition-all duration-300"
                 data-aos="fade-up"
                 data-aos-delay={index * 90}
               >
@@ -219,7 +217,7 @@ export default function AboutPage() {
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-[#1d6b9e]">
                   {platform.category}
                 </p>
-                <p className="mt-3 text-[14.5px] font-normal leading-[1.7] text-slate-600 text-justify">
+                <p className="mt-3 text-[14.5px] font-normal leading-[1.7] text-slate-600 text-justify flex-1">
                   {platform.text}
                 </p>
                 <a

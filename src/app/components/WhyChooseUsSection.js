@@ -114,7 +114,7 @@ export default function WhyChooseUsSection() {
           <span className="inline-block rounded-full bg-[#0077c8]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#0077c8]">
             Why Choose Us
           </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#0a1f44] sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold  text-black sm:text-[32px] ">
             Why Businesses Depend On Us
           </h2>
           <p className="mt-4 text-[16px] leading-relaxed text-slate-600">
@@ -134,7 +134,7 @@ export default function WhyChooseUsSection() {
               <div className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${feature.color.replace(/border-\S+/, '')} ring-1 ring-inset ring-slate-900/5 transition-transform duration-300 group-hover:scale-110`}>
                 <div className="h-6 w-6">{feature.icon}</div>
               </div>
-              <h3 className="text-lg font-bold text-[#0a1f44] group-hover:text-[#0077c8] transition-colors">
+              <h3 className="text-lg font-bold text-black group-hover:text-[#0077c8] transition-colors">
                 {feature.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">

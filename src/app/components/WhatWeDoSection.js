@@ -41,7 +41,7 @@ export default function WhatWeDoSection() {
           <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
             What We Do
           </p>
-          <h2 className="text-[32px] font-bold leading-[1.2] text-black sm:text-[38px]">
+          <h2 className="text-[32px] font-bold leading-[1.2] text-black sm:text-[32px]">
             Digital services built to help businesses move forward
           </h2>
           <p className="mt-6 text-[16px] font-normal leading-[1.68] text-[#555555]">

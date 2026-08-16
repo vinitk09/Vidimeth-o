@@ -65,9 +65,17 @@ function getPreviousIndex(currentIndex) {
 export default function FoundationNetworkSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [expandedSlides, setExpandedSlides] = useState({});
+
+  const toggleExpand = (index) => {
+    setExpandedSlides((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
 
   useEffect(() => {
-    if (isPaused) {
+    if (isPaused || Object.values(expandedSlides).some(Boolean)) {
       return undefined;
     }
 
@@ -76,14 +84,14 @@ export default function FoundationNetworkSection() {
     }, 4200);
 
     return () => window.clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, expandedSlides]);
 
   return (
     <section className="bg-[#f4f6f9] px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24">
       <div className="mx-auto w-full max-w-6xl">
         <div className="max-w-5xl" data-aos="fade-up">
           <div className="mb-5 flex flex-wrap items-center gap-5">
-            <h2 className="text-[20px] font-bold leading-[1.22] text-black sm:text-[30px]">
+            <h2 className="text-[20px] font-bold  text-black sm:text-[32px]">
               Facilitating Global Business Networks
             </h2>
             {/* <span className="h-0.5 w-28 bg-[#4d65ff]" /> */}
@@ -143,9 +151,9 @@ export default function FoundationNetworkSection() {
               {networkSlides.map((slide, index) => (
                 <article
                   key={slide.title}
-                  className="grid min-w-full items-stretch bg-white p-4 sm:p-5 lg:grid-cols-[0.52fr_0.48fr] lg:gap-4 lg:p-6 lg:min-h-[440px]"
+                  className="grid min-w-full items-start bg-white p-4 sm:p-5 lg:grid-cols-[0.52fr_0.48fr] lg:gap-4 lg:p-6 lg:min-h-[440px]"
                 >
-                  <div className="relative min-h-[260px] w-full overflow-hidden rounded-2xl bg-[#eef3f8] sm:min-h-[320px] lg:h-full lg:min-h-[380px]">
+                  <div className="relative h-[280px] sm:h-[360px] lg:h-[400px] w-full shrink-0 overflow-hidden rounded-2xl bg-[#eef3f8]">
                     <Image
                       src={slide.image}
                       alt={slide.title}
@@ -170,22 +178,24 @@ export default function FoundationNetworkSection() {
                       <h3 className="text-[24px] font-semibold leading-[1.15] text-[#20242d] sm:text-[28px]">
                         {slide.title}
                       </h3>
-                      <p className="mt-4 max-w-3xl text-[15px] font-normal leading-[1.65] text-[#5d6470] text-justify line-clamp-6 sm:line-clamp-8 lg:line-clamp-8">
+                      <p className={`mt-4 max-w-3xl text-[15px] font-normal leading-[1.65] text-[#5d6470] text-justify ${
+                        expandedSlides[index] ? "" : "line-clamp-6 sm:line-clamp-8 lg:line-clamp-8"
+                      }`}>
                         {slide.description}
                       </p>
 
-                      <a
-                        href={slide.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-6 inline-flex w-fit items-center gap-2 rounded-md bg-[#20242d] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(32,36,45,0.18)] transition hover:bg-[#0077c8] group/link"
-                      >
-                        Read More
-                        <svg className="h-4 w-4 transition-transform group-hover/link:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <line x1="5" y1="12" x2="19" y2="12" />
-                          <polyline points="12 5 19 12 12 19" />
-                        </svg>
-                      </a>
+                      <div className="mt-6 flex flex-wrap items-center gap-4">
+                        <button
+                          type="button"
+                          onClick={() => toggleExpand(index)}
+                          className="inline-flex w-fit items-center gap-2 rounded-md bg-[#20242d] px-6 py-2.5 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(32,36,45,0.18)] transition hover:bg-[#0077c8] group/link focus:outline-none"
+                        >
+                          {expandedSlides[index] ? "Read Less" : "Read More"}
+                          <svg className={`h-4 w-4 transition-transform duration-300 ${expandedSlides[index] ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
