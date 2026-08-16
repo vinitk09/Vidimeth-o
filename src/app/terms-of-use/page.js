@@ -11,7 +11,7 @@ export default function TermsOfUsePage() {
 
       {/* Header Banner */}
       <section
-        className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 pt-28 pb-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[360px] items-center overflow-hidden bg-black bg-cover bg-center px-5 pt-28 pb-20 text-left text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
             "linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=2000&q=80')",
@@ -20,15 +20,28 @@ export default function TermsOfUsePage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />
 
         <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
-          {/* <span className="mb-3 inline-block rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
-            Legal & Governance
-          </span> */}
+          <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 6l9-4 9 4v6c0 5.55-3.84 10.74-9 12A12.062 12.062 0 013 12V6z" />
+            </svg>
+            LEGAL CENTER
+          </span>
           <h1 className="text-[34px] font-bold tracking-tight sm:text-[42px] lg:text-[52px]">
             Terms of Use
           </h1>
-          {/* <p className="mx-auto mt-3 max-w-2xl text-sm font-normal text-slate-300 sm:text-base">
+          <p className="mt-3 max-w-2xl text-sm font-normal text-slate-300 sm:text-base">
             Rules, guidelines, policies, and conditions for accessing Vidi Meth Digital Services.
-          </p> */}
+          </p>
+          <div className="mt-4 flex items-center justify-start gap-2 text-xs sm:text-sm font-medium text-slate-300">
+            <Link href="/" className="flex items-center gap-1 hover:text-white transition-colors">
+              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l1.293 1.293a1 1 0 001.414-1.414l-7-7z" />
+              </svg>
+              Home
+            </Link>
+            <span>&gt;</span>
+            <span className="text-[#38bdf8] font-semibold">Terms of Use</span>
+          </div>
         </div>
       </section>
 
@@ -36,28 +49,69 @@ export default function TermsOfUsePage() {
       <section className="px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[280px_1fr] items-start">
 
-          {/* Quick Nav Sidebar */}
+          {/* Legal Navigation Sidebar */}
           <aside className="hidden lg:block sticky top-24 self-start z-20">
-            <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_12px_36px_rgba(10,31,68,0.06)]">
-              <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-[#0a1f44] border-b border-slate-100 pb-3 flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#0077c8]" />
-                Terms Sections
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-[0_12px_36px_rgba(10,31,68,0.06)]">
+              <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 pb-3 px-2">
+                Legal
               </h3>
-              <nav className="space-y-1 text-xs font-medium text-slate-600">
-                <a href="#welcome" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Welcome & CIN</a>
-                <a href="#eligibility" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Eligibility</a>
-                <a href="#registration" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Registration</a>
-                <a href="#security" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Account Security</a>
-                <a href="#communications" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Communications</a>
-                <a href="#platform" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">Transaction Platform</a>
-                <a href="#conduct" className="block rounded-lg px-3 py-2 transition-all hover:bg-slate-100 hover:text-[#0077c8]">User Conduct & Rules</a>
+              <nav className="space-y-1.5 text-xs font-medium">
+                <Link
+                  href="/about"
+                  className="flex items-center gap-3 rounded-xl px-3.5 py-3 text-slate-600 hover:bg-slate-100 hover:text-[#0077c8] transition-all"
+                >
+                  <svg className="w-4 h-4 shrink-0 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>About Us</span>
+                </Link>
+
+                <Link
+                  href="/privacy-policy"
+                  className="flex items-center gap-3 rounded-xl px-3.5 py-3 text-slate-600 hover:bg-slate-100 hover:text-[#0077c8] transition-all"
+                >
+                  <svg className="w-4 h-4 shrink-0 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  <span>Privacy Policy</span>
+                </Link>
+
+                <Link
+                  href="/terms-of-use"
+                  className="flex items-center gap-3 rounded-xl px-3.5 py-3 bg-[#0077c8]/10 text-[#0a1f44] border-l-4 border-[#0077c8] font-bold transition-all shadow-sm"
+                >
+                  <svg className="w-4 h-4 shrink-0 text-[#0077c8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Terms of Use</span>
+                </Link>
+
+                <Link
+                  href="/grievance"
+                  className="flex items-center gap-3 rounded-xl px-3.5 py-3 text-slate-600 hover:bg-slate-100 hover:text-[#0077c8] transition-all"
+                >
+                  <svg className="w-4 h-4 shrink-0 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  <span>Grievances</span>
+                </Link>
+
+                <Link
+                  href="/disclaimer"
+                  className="flex items-center gap-3 rounded-xl px-3.5 py-3 text-slate-600 hover:bg-slate-100 hover:text-[#0077c8] transition-all"
+                >
+                  <svg className="w-4 h-4 shrink-0 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Disclaimer</span>
+                </Link>
               </nav>
             </div>
           </aside>
 
           {/* Main Terms Document Paper Container */}
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-6 sm:p-10 lg:p-12 shadow-[0_16px_45px_rgba(10,31,68,0.06)]" data-aos="fade-up">
-            <div className="prose prose-slate max-w-none text-[15px] leading-[1.8] text-slate-700">
+          <div className="rounded-2xl border border-slate-200/80 bg-white p-6 sm:p-10 lg:p-12 shadow-[0_16px_45px_rgba(10,31,68,0.06)] border-t-4 border-t-[#0077c8]" data-aos="fade-up">
+            <div className="prose prose-slate max-w-none text-[15px] leading-[1.8] text-slate-700 text-justify">
 
               {/* Introduction */}
               <div id="welcome" className="scroll-mt-28 mb-8 rounded-2xl border border-slate-200 bg-slate-50/80 p-6 sm:p-8">
@@ -99,11 +153,11 @@ export default function TermsOfUsePage() {
               </p>
 
               {/* Important Notice Box */}
-              <div className="my-8 rounded-md bg-[#fff8f0] p-5 border-l-4 border-[#ff6b00] text-[14.5px]">
-                <p className="font-bold uppercase tracking-wide text-[#b34b00] mb-2">
+              <div className="my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 text-[14.5px]">
+                <p className="font-bold uppercase tracking-wide text-[#0a1f44] mb-2">
                   ATTENTION: PLEASE READ CAREFULLY BEFORE PROCEEDING
                 </p>
-                <p className="text-slate-800 leading-relaxed">
+                <p className="text-slate-700 leading-relaxed">
                   ACCESSING, BROWSING OR OTHERWISE USING THE SITE INDICATES YOUR AGREEMENT TO ALL THE TERMS AND CONDITIONS UNDER THESE TERMS OF USE, SO PLEASE READ THE TERMS OF USE CAREFULLY BEFORE PROCEEDING. If you do not agree with these Terms of Use, Please do not use the website. By impliedly or expressly accepting these Terms of Use, You also accept and agree to be bound by Vidi Meth Digital Services Policies, inter alia Privacy Policy (available at{" "}
                   <Link href="/privacy-policy" className="font-semibold text-[#005f91] underline hover:text-[#004a70]">
                     Privacy Policy
@@ -412,8 +466,8 @@ export default function TermsOfUsePage() {
                 </div>
 
                 {/* Indemnification Box */}
-                <div className="my-8 bg-[#0a1f44] text-white p-6 rounded-md shadow-sm">
-                  <p className="text-[14px] leading-relaxed">
+                <div className="my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-6 text-slate-700">
+                  <p className="text-[14px] leading-relaxed font-medium">
                     BY ACCEPTING THESE TERMS OF USE, YOU AGREE TO INDEMNIFY AND OTHERWISE HOLD HARMLESS VIDI METH DIGITAL SERVICES, ITS DIRECTORS, OFFICERS, EMPLOYERS, AGENTS, SUBSIDIARIES, AFFILIATES AND OTHER PARTNERS FROM ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES ARISING OUT OF, RELATING TO, OR RESULTING FROM YOUR USE OF THE SERVICES OBTAINED THROUGH VIDIMETH.COM INCLUDING BUT NOT LIMITED TO INFORMATION PROVIDED BY YOU OR ANY OTHER MATTER RELATING TO VIDIMETH.COM. ANY REFERENCE TO DUTIES AND TAXES ETC IN THESE TERMS OF USE SHALL INCLUDE GOODS AND SERVICES TAX (HEREIN REFERRED AS GST) FROM THE DATE GST LAW IS IMPLEMENTED IN INDIA. ANY ADDITIONAL TAX LIABILITY ARISING ON ACCOUNT OF INTRODUCTION OF GST (WHETHER ON ACCOUNT OF INCREASE IN RATE OR ANY CHANGE BROUGHT IN BY THE NEW TAX REGIME) WOULD BE RECOVERED OVER AND ABOVE THE AGREED CONTRACT PRICE / SERVICE FEE.
                   </p>
                 </div>
@@ -465,7 +519,7 @@ export default function TermsOfUsePage() {
                   Platform and the educational institutions etc. (as applicable) would act as independent controllers in their respective capacity. For more details please visit the data protection amendment:
                 </p>
                 <h3 className="text-[20px] font-semibold text-[#0a1f44] mt-8 mb-3">Payments Related Information</h3>
-                <div className="my-4 p-4 bg-slate-100 border-l-4 border-[#005f91] font-bold text-[#0a1f44]">
+                <div className="my-4 rounded-xl border border-slate-200 bg-slate-50/80 p-4 font-bold text-[#0a1f44]">
                   YOU ARE REQUESTED TO HONOUR YOUR PAYMENT OBLIGATIONS TO THE COMPANY.
                 </div>
                 <ol className="space-y-3.5 mb-8 text-slate-800">
@@ -678,7 +732,7 @@ export default function TermsOfUsePage() {
                 {/* Miscellaneous */}
                 <h3 className="text-[20px] font-semibold text-[#0a1f44] mt-8 mb-3">Miscellaneous</h3>
                 <h4 className="text-[17px] font-semibold text-[#0a1f44] mt-4 mb-2">Amendment to these Terms:</h4>
-                <div className="my-4 p-4 bg-slate-100 border-l-4 border-[#005f91] font-bold text-[#0a1f44] text-[14px]">
+                <div className="my-4 rounded-xl border border-slate-200 bg-slate-50/80 p-4 font-bold text-[#0a1f44] text-[14px]">
                   COMPANY RESERVES ITS RIGHT TO AMEND / ALTER OR CHANGE ALL OR ANY DISCLAIMERS OR TERM(S) OR CONDITION(S) OF AGREEMENTS AT ANY TIME WITHOUT ANY PRIOR NOTICE.
                 </div>
                 <p className="mb-4">
@@ -689,7 +743,7 @@ export default function TermsOfUsePage() {
                 </p>
 
                 {/* Data Protection Amendment */}
-                <div className="my-8 rounded-lg border border-slate-200 bg-slate-50/50 p-6">
+                <div className="my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-6">
                   <h4 className="text-[18px] font-bold text-[#0a1f44] mb-2">Data Protection Amendment</h4>
                   <p className="text-slate-600 mb-6 text-[14.5px]">
                     In line with General Data Protection Regulation, the below mentioned obligations are drafted which will be applicable on both the parties
@@ -729,7 +783,7 @@ export default function TermsOfUsePage() {
                         <span>“Personal Data” means personal data as defined by the Data Protection Legislation.</span>
                       </li>
                     </ol>
-                    <p className="mt-3 text-[13.5px] text-slate-600 bg-amber-50 border-l-4 border-amber-400 p-3 rounded-r-md">
+                    <p className="mt-3 text-[13.5px] text-slate-600 bg-slate-50/80 border border-slate-200 p-3 rounded-xl">
                       <strong>Note:</strong> The terms “data exporter” and “data importers” are strictly for use within the context of this amendment which should be interpreted only as defined above, and do not carry the same meaning as defined under any other regulations.
                     </p>
                   </div>
@@ -883,7 +937,15 @@ export default function TermsOfUsePage() {
                 {/* Contact Us */}
                 <h3 className="text-[20px] font-semibold text-[#0a1f44] mt-8 mb-3">Contact Us</h3>
                 <p className="mb-8 text-slate-800">
-                  Please contact us for any questions, concerns or suggestions regarding our Privacy Policy.
+                  Please{" "}
+                  <Link href="/contact" className="font-semibold text-[#005f91] underline hover:text-[#004a70]">
+                    contact us
+                  </Link>{" "}
+                  for any questions, concerns or suggestions regarding our{" "}
+                  <Link href="/privacy-policy" className="font-semibold text-[#005f91] underline hover:text-[#004a70]">
+                    Privacy Policy
+                  </Link>
+                  .
                 </p>
 
               </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const divisions = [
   {
@@ -127,24 +128,34 @@ export default function OurDivisionsContent() {
     <div className="bg-[#f8fafc] text-[#1d2736] font-sans">
       {/* Hero Banner Section */}
       <section
-        className="relative flex min-h-[380px] items-center justify-center overflow-hidden bg-[#071326] bg-cover bg-center px-5 pt-28 pb-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[360px] items-center overflow-hidden bg-black bg-cover bg-center px-5 pt-28 pb-20 text-left text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(5, 11, 34, 0.75), rgba(5, 11, 34, 0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80')",
+            "linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80')",
         }}
       >
-        <div className="relative mx-auto w-full max-w-4xl" data-aos="fade-up">
-          {/* <span className="inline-block rounded-md bg-[#0077c8]/20 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#38bdf8] border border-[#38bdf8]/30 mb-4">
-            Specialized Business Ecosystem
-          </span> */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />
 
-          <h1 className="text-[36px] font-bold tracking-tight leading-tight sm:text-[48px] lg:text-[56px]">
+        <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
+          <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m3 0v-4a1 1 0 011-1h2a1 1 0 011 1v4m-4 0h4" />
+            </svg>
+            BUSINESS DIVISIONS
+          </span>
+          <h1 className="text-[34px] font-bold tracking-tight sm:text-[42px] lg:text-[52px]">
             Our Divisions
           </h1>
-
-          {/* <p className="mt-4 mx-auto max-w-2xl text-[15px] text-white/85 font-normal leading-relaxed">
-            Vidi Meth Digital Services brings together specialized digital portals spanning online education, real estate marketplace, job recruitment, financial advisory, and retail e-commerce.
-          </p> */}
+          <div className="mt-4 flex items-center justify-start gap-2 text-xs sm:text-sm font-medium text-slate-300">
+            <Link href="/" className="flex items-center gap-1 hover:text-white transition-colors">
+              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l1.293 1.293a1 1 0 001.414-1.414l-7-7z" />
+              </svg>
+              Home
+            </Link>
+            <span>&gt;</span>
+            <span className="text-[#38bdf8] font-semibold">Our Divisions</span>
+          </div>
         </div>
       </section>
 

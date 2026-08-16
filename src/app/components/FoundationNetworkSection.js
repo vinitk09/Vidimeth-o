@@ -178,9 +178,8 @@ export default function FoundationNetworkSection() {
                       <h3 className="text-[24px] font-semibold leading-[1.15] text-[#20242d] sm:text-[28px]">
                         {slide.title}
                       </h3>
-                      <p className={`mt-4 max-w-3xl text-[15px] font-normal leading-[1.65] text-[#5d6470] text-justify ${
-                        expandedSlides[index] ? "" : "line-clamp-6 sm:line-clamp-8 lg:line-clamp-8"
-                      }`}>
+                      <p className={`mt-4 max-w-3xl text-[15px] font-normal leading-[1.65] text-[#5d6470] text-justify ${expandedSlides[index] ? "" : "line-clamp-6 sm:line-clamp-8 lg:line-clamp-8"
+                        }`}>
                         {slide.description}
                       </p>
 

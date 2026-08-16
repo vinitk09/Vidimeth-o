@@ -1,10 +1,56 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 const services = [
+  {
+    id: "vm-academy",
+    title: "VM Academy",
+    category: "Education Portal",
+    eyebrow: "Education Portal",
+    image: "/vmbanner.png",
+    badgeBg: "bg-sky-100 text-[#0284c7] ring-sky-300/60",
+    text: "An online education platform that helps students discover courses, colleges, admissions, eligibility, exams, fees, placements, scholarships, and career guidance across popular UG and PG streams in India.",
+    features: [
+      "Comprehensive College & Course Selection",
+      "Admission Eligibility & Exam Insights",
+      "Career Guidance across UG & PG Streams",
+    ],
+    link: "https://www.vmacademys.com/",
+  },
+  {
+    id: "village-my-city",
+    title: "VillageMyCity",
+    category: "Real Estate Portal",
+    eyebrow: "Real Estate Portal",
+    image: "/village.png",
+    badgeBg: "bg-emerald-100 text-[#16a34a] ring-emerald-300/60",
+    text: "A property and marketplace platform for buyers, sellers, owners, builders, promoters, agents, and dealers to connect online and transact offline with greater ease.",
+    features: [
+      "Verified Listings for Property Buyers & Sellers",
+      "Direct Network for Builders & Real Estate Agents",
+      "Connect Online, Transact Offline Ecosystem",
+    ],
+    link: "https://www.villagemycity.com/",
+  },
+  {
+    id: "go-jobin",
+    title: "GoJobin",
+    category: "Recruitment Platform",
+    eyebrow: "Recruitment Platform",
+    image: "/gojobinbanner.png",
+    badgeBg: "bg-purple-100 text-[#9333ea] ring-purple-300/60",
+    text: "An online recruitment solution for candidates and employers, supporting job discovery, staffing, recruiting, free job posting, and opportunities for freshers and experienced professionals.",
+    features: [
+      "Free Job Posting & Candidate Staffing",
+      "Opportunities for Freshers & Experienced",
+      "Smart Job Search & Recruitment Network",
+    ],
+    link: "https://www.gojobin.com/",
+  },
   {
     id: "insurance-policy",
     title: "Insurance Policy",
@@ -59,29 +105,29 @@ const services = [
     category: "Education & Learning",
     eyebrow: "Academic Access",
     image:
-      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80",
-    badgeBg: "bg-purple-100 text-purple-800 ring-purple-300/60",
-    text: "Empower yourself with Vidimeth.com's online education platform. Access courses, resources, and information to shape your educational path and support personal growth.",
+      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
+    badgeBg: "bg-indigo-100 text-indigo-800 ring-indigo-300/60",
+    text: "Empower your mind with our comprehensive educational solutions. From course selection to institutional insights, we foster knowledge and facilitate career growth.",
     features: [
-      "Course & College Selection Portal",
-      "Admission Eligibility Guidance",
-      "Career Growth & Skill Resources",
+      "Course & Institutional Guidance",
+      "Higher Education Advisory",
+      "Academic Placement Insights",
     ],
     link: "https://vidimeth.com/our-services/#",
   },
   {
-    id: "ecommerce-experiences",
-    title: "E-commerce Experiences",
+    id: "online-shopping-hub",
+    title: "Online Shopping Hub",
     category: "Retail & Marketplace",
-    eyebrow: "Digital Storefront",
+    eyebrow: "Seamless Commerce",
     image:
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80",
     badgeBg: "bg-rose-100 text-rose-800 ring-rose-300/60",
-    text: "Effortlessly navigate online commerce with Vidimeth.com. Our platform simplifies buying and selling, creating a user-friendly experience for consumers and businesses alike.",
+    text: "Discover a convenient e-commerce platform offering quality products across electronics, lifestyle, and home supplies with reliable fulfillment.",
     features: [
-      "Multi-Category Digital Storefront",
-      "Smooth & Secure Checkout",
-      "Buyer & Seller Marketplace Support",
+      "Curated Quality Marketplace",
+      "Secure Payment Infrastructure",
+      "Prompt Regional Delivery",
     ],
     link: "https://vidimeth.com/our-services/#",
   },
@@ -105,6 +151,9 @@ const services = [
 
 const categories = [
   "All Services",
+  "Education Portal",
+  "Real Estate Portal",
+  "Recruitment Platform",
   "Insurance & Risk",
   "Assistance & Helpdesk",
   "Loans & Capital",
@@ -127,18 +176,34 @@ export default function OurServicesPage() {
 
       {/* Hero Header */}
       <section
-        className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 pt-28 pb-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[360px] items-center overflow-hidden bg-black bg-cover bg-center px-5 pt-28 pb-20 text-left text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.80)), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=2000&q=80')",
+            "linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=2000&q=80')",
         }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.2),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />
 
         <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
+          <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            OUR SERVICES
+          </span>
           <h1 className="text-[34px] font-bold tracking-tight sm:text-[42px] lg:text-[52px]">
             Our Services
           </h1>
+          <div className="mt-4 flex items-center justify-start gap-2 text-xs sm:text-sm font-medium text-slate-300">
+            <Link href="/" className="flex items-center gap-1 hover:text-white transition-colors">
+              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l1.293 1.293a1 1 0 001.414-1.414l-7-7z" />
+              </svg>
+              Home
+            </Link>
+            <span>&gt;</span>
+            <span className="text-[#38bdf8] font-semibold">Our Services</span>
+          </div>
         </div>
       </section>
 

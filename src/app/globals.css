@@ -171,6 +171,7 @@ canvas {
 }
 
 @keyframes hero-fade {
+
   0%,
   28% {
     opacity: 1;
@@ -190,6 +191,7 @@ canvas {
 }
 
 @keyframes dot-fade {
+
   0%,
   28% {
     background: #ffffff;

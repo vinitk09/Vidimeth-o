@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -141,16 +142,34 @@ export default function AboutPage() {
 
       {/* Banner */}
       <section
-        className="relative flex min-h-[360px] items-center justify-center overflow-hidden bg-black bg-cover bg-center px-5 pt-28 pb-20 text-center text-white sm:px-8 lg:px-10"
+        className="relative flex min-h-[360px] items-center overflow-hidden bg-black bg-cover bg-center px-5 pt-28 pb-20 text-left text-white sm:px-8 lg:px-10"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=2000&q=80')",
+            "linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=2000&q=80')",
         }}
       >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />
+
         <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
-          <h1 className="text-[40px] font-bold leading-none sm:text-[34px] lg:text-[44px]">
+          <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            ABOUT US
+          </span>
+          <h1 className="text-[34px] font-bold tracking-tight sm:text-[42px] lg:text-[52px]">
             About Us
           </h1>
+          <div className="mt-4 flex items-center justify-start gap-2 text-xs sm:text-sm font-medium text-slate-300">
+            <Link href="/" className="flex items-center gap-1 hover:text-white transition-colors">
+              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l1.293 1.293a1 1 0 001.414-1.414l-7-7z" />
+              </svg>
+              Home
+            </Link>
+            <span>&gt;</span>
+            <span className="text-[#38bdf8] font-semibold">About Us</span>
+          </div>
         </div>
       </section>
 
@@ -189,7 +208,10 @@ export default function AboutPage() {
       </section>
 
       {/* Our Platforms (New Redesign layout with vibrant colored icons & justified text) */}
-      <section className="bg-white px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-20 border-t border-slate-100">
+      <section
+        className="px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-20 border-t border-slate-200/80"
+        style={{ background: "linear-gradient(135deg, #f4f6fb 0%, #e8eaf6 100%)" }}
+      >
         <div className="mx-auto w-full max-w-7xl">
           <div className="mb-14" data-aos="fade-up">
             <h2 className="text-[32px] font-bold tracking-tight text-[#111827]">
