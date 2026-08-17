@@ -185,12 +185,12 @@ export default function Header() {
           aria-label="Vidi Meth Digital Services home"
         >
           <Image
-            src="/vidimethlogo1.png"
+            src="/logo_vidi.png"
             alt="Vidi Meth Digital Services"
             width={112}
             height={112}
             priority
-            className="h-12 w-12 rounded-full object-cover shadow-md ring-1 ring-slate-200 sm:h-14 sm:w-14"
+            className="h-12 w-12 rounded-full object-contain shadow-md ring-1 ring-slate-200 sm:h-14 sm:w-14"
           />
           <div className="flex flex-col justify-center">
             <span

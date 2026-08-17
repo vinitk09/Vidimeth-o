@@ -17,10 +17,10 @@ export const metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/vidimethlogo1.png", type: "image/png" },
+      { url: "/logo_vidi.png", type: "image/png" },
     ],
     shortcut: ["/favicon.ico"],
-    apple: [{ url: "/vidimethlogo1.png" }],
+    apple: [{ url: "/logo_vidi.png" }],
   },
 };
 
@@ -29,9 +29,9 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${poppins.variable} font-sans antialiased`} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" href="/vidimethlogo1.png" />
+        <link rel="icon" type="image/png" href="/logo_vidi.png" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/vidimethlogo1.png" />
+        <link rel="apple-touch-icon" href="/logo_vidi.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />

@@ -442,7 +442,7 @@ export default function CareerContent() {
                   {/* Company Logo Badge */}
                   <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-sky-100 bg-gradient-to-br from-sky-50 to-white p-2.5 shadow-sm">
                     <Image
-                      src="/vidimethlogo1.png"
+                      src="/logo_vidi.png"
                       alt="Vidi Meth Logo"
                       width={48}
                       height={48}
@@ -739,7 +739,7 @@ export default function CareerContent() {
               <div className="flex items-center gap-3 mb-2">
                 <div className="h-12 w-12 shrink-0 rounded border border-slate-200 p-1">
                   <Image
-                    src="/vidimethlogo1.png"
+                    src="/logo_vidi.png"
                     alt="Logo"
                     width={40}
                     height={40}

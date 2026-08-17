@@ -122,7 +122,7 @@ export default function Home() {
       >
         <div className="relative w-full flex items-center justify-center">
           <Image
-            src="/banner (1).png"
+            src="/banner (2).png"
             alt="Vidi Meth Digital Services Banner"
             width={1920}
             height={720}
