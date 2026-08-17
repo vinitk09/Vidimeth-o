@@ -105,7 +105,7 @@ const services = [
     category: "Education & Learning",
     eyebrow: "Academic Access",
     image:
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80",
     badgeBg: "bg-indigo-100 text-indigo-800 ring-indigo-300/60",
     text: "Empower your mind with our comprehensive educational solutions. From course selection to institutional insights, we foster knowledge and facilitate career growth.",
     features: [
