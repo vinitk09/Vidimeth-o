@@ -63,7 +63,7 @@ const platforms = [
     ),
   },
   {
-    name: "VMhomeMart",
+    name: "VMhomeMART",
     url: "www.vmhomemart.com",
     href: "https://www.vmhomemart.com/",
     category: "E-commerce Store",
