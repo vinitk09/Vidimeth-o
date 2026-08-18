@@ -70,7 +70,7 @@ export default function ContactPage() {
         }}
       >
         <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
-          <h1 className="text-[40px] font-semibold leading-none sm:text-[40px] lg:text-[52px]">
+          <h1 className="text-[40px] font-semibold leading-none sm:text-[42px] lg:text-[52px]">
             Contact Us
           </h1>
         </div>

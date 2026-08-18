@@ -61,7 +61,7 @@ export default function StatsCounterSection() {
             <h2 className="mt-3 text-3xl font-bold  text-white sm:text-32px">
               Stay Informed With Vidi Meth
             </h2>
-            <p className="mt-2 text-[16px] text-slate-300 max-w-3xl">
+            <p className="mt-2 text-[15px] text-slate-300 max-w-3xl">
               Explore our latest platform announcements, media releases, and business network milestones.
             </p>
           </div>

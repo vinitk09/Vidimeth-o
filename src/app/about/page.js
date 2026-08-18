@@ -150,13 +150,13 @@ export default function AboutPage() {
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />
 
-        <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
-          <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
+        <div className="relative mx-auto w-full max-w-7xl flex items-center justify-center flex-col" data-aos="fade-up">
+          {/* <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             ABOUT US
-          </span>
+          </span> */}
           <h1 className="text-[34px] font-bold tracking-tight sm:text-[42px] lg:text-[52px]">
             About Us
           </h1>
@@ -194,13 +194,13 @@ export default function AboutPage() {
             className="flex flex-col justify-center space-y-4 text-slate-800"
             data-aos="fade-left"
           >
-            <h2 className="text-2xl font-bold text-black sm:text-[30px]">
+            <h2 className="text-2xl font-bold text-black sm:text-[31px]">
               Empowering Digital Innovation Across India
             </h2>
-            <p className="text-base sm:text-[16px]  text-slate-700 font-normal">
+            <p className="text-base sm:text-[15px]  text-slate-700 font-normal">
               We create and support digital properties that solve everyday business and customer needs across multiple sectors. Our work brings together online visibility, service delivery, practical planning, and customer-first experiences.
             </p>
-            <p className="text-base sm:text-[16px] text-slate-700 font-normal">
+            <p className="text-base sm:text-[15px] text-slate-700 font-normal">
               Through platforms such as <strong className="font-semibold text-[#0a1f44]">VM Academy</strong>, <strong className="font-semibold text-[#0a1f44]">VillageMyCity</strong>, <strong className="font-semibold text-[#0a1f44]">GoJobin</strong>, <strong className="font-semibold text-[#0a1f44]">LOAN vidhi</strong>, and <strong className="font-semibold text-[#0a1f44]">VMhomeMART</strong>, Vidi Meth connects people with education, property, career, finance, and commerce opportunities.
             </p>
           </div>
@@ -263,7 +263,7 @@ export default function AboutPage() {
             <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
               Why Choose Us
             </p>
-            <h2 className="text-[32px] font-bold leading-[1.2] text-black sm:text-[30px]">
+            <h2 className="text-[32px] font-bold leading-[1.2] text-black sm:text-[31px]">
               Quality service with practical business thinking.
             </h2>
           </div>
@@ -279,7 +279,7 @@ export default function AboutPage() {
                 <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#f6fbff] text-[#0077c8] ring-1 ring-[#0077c8]/15 [&_svg]:h-5 [&_svg]:w-5 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round">
                   <CheckIcon />
                 </span>
-                <h3 className="text-[17px] font-semibold leading-tight text-[#0a1f44]">
+                <h3 className="text-[16px] font-semibold leading-tight text-black">
                   {reason.title}
                 </h3>
                 <p className="mt-3 text-[14px] font-normal leading-[1.58] text-[#555555] text-justify">

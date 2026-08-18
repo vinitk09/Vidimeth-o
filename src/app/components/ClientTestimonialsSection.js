@@ -153,17 +153,17 @@ export default function ClientTestimonialsSection() {
   return (
     <section className="bg-white px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24 overflow-hidden">
       <div className="mx-auto w-full max-w-7xl">
-        
+
         {/* Header with Title & Write Review Button */}
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end" data-aos="fade-up">
           <div className="max-w-2xl">
             <p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-[#1b8b4b]">
               Client Feedback
             </p>
-            <h2 className="text-[30px] font-bold leading-[1.2] text-black sm:text-[36px]">
+            <h2 className="text-[30px] font-bold leading-[1.2] text-black sm:text-[32px]">
               What Our Clients Say
             </h2>
-            <p className="mt-3 text-[16px] font-normal leading-[1.68] text-[#555555]">
+            <p className="mt-3 text-[15px] font-normal leading-[1.68] text-[#555555]">
               Practical guidance, reliable support, and business development strategies shaped around real client growth.
             </p>
           </div>
@@ -223,11 +223,11 @@ export default function ClientTestimonialsSection() {
                   testimonial.initials ||
                   (testimonial.name
                     ? testimonial.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")
-                        .slice(0, 2)
-                        .toUpperCase()
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .slice(0, 2)
+                      .toUpperCase()
                     : "VM");
 
                 return (
@@ -288,9 +288,8 @@ export default function ClientTestimonialsSection() {
                 key={dotIdx}
                 type="button"
                 onClick={() => setActiveIndex(dotIdx)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  activeIndex === dotIdx ? "w-6 bg-[#0077c8]" : "w-2 bg-slate-300"
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 ${activeIndex === dotIdx ? "w-6 bg-[#0077c8]" : "w-2 bg-slate-300"
+                  }`}
                 aria-label={`Go to slide ${dotIdx + 1}`}
               />
             ))}
@@ -302,11 +301,10 @@ export default function ClientTestimonialsSection() {
                 key={idx}
                 type="button"
                 onClick={() => setActiveIndex(idx)}
-                className={`h-2.5 rounded-full transition-all duration-300 ${
-                  activeIndex === idx
+                className={`h-2.5 rounded-full transition-all duration-300 ${activeIndex === idx
                     ? "w-8 bg-[#0077c8]"
                     : "w-2.5 bg-slate-300 hover:bg-slate-400"
-                }`}
+                  }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
             ))}

@@ -194,19 +194,18 @@ export default function Header() {
           />
           <div className="flex flex-col justify-center">
             <span
-              className={`text-[15px] font-bold leading-tight transition-colors sm:text-[17px] ${
-                useDarkText ? "text-[#0a1f44]" : "text-white"
-              }`}
+              className={`text-[15px] font-bold leading-tight transition-colors sm:text-[17px] ${useDarkText ? "text-[#0a1f44]" : "text-white"
+                }`}
             >
               Vidi Meth Digital Services
             </span>
-            <span
+            {/* <span
               className={`text-[11px] font-medium transition-colors sm:text-[12px] ${
                 useDarkText ? "text-[#0077c8]" : "text-sky-300 font-semibold"
               }`}
             >
               OPC Private Limited
-            </span>
+            </span> */}
           </div>
         </Link>
 
@@ -215,11 +214,10 @@ export default function Header() {
             <NavItem
               key={link.href}
               link={link}
-              className={`nav-link rounded-md px-4 py-2 text-[15px] font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${
-                useDarkText
+              className={`nav-link rounded-md px-4 py-2 text-[15px] font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${useDarkText
                   ? "text-[#0a1f44] hover:text-[#0077c8]"
                   : "text-white hover:bg-white/10 hover:text-white"
-              }`}
+                }`}
             />
           ))}
 
@@ -236,22 +234,20 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setIsExploreOpen((prev) => !prev)}
-              className={`nav-link flex items-center gap-1.5 rounded-md px-4 py-2 text-[15px] font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${
-                useDarkText
+              className={`nav-link flex items-center gap-1.5 rounded-md px-4 py-2 text-[15px] font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${useDarkText
                   ? "text-[#0a1f44] hover:text-[#0077c8]"
                   : "text-white hover:bg-white/10 hover:text-white"
-              }`}
+                }`}
               aria-expanded={isExploreOpen}
             >
               Explore
               <svg
-                className={`h-4 w-4 transition-transform duration-200 ${
-                  isExploreOpen
+                className={`h-4 w-4 transition-transform duration-200 ${isExploreOpen
                     ? "rotate-180 text-[#0077c8]"
                     : useDarkText
-                    ? "text-slate-500"
-                    : "text-white/70"
-                }`}
+                      ? "text-slate-500"
+                      : "text-white/70"
+                  }`}
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -265,11 +261,10 @@ export default function Header() {
 
             {/* Dropdown Menu Panel */}
             <div
-              className={`absolute right-0 top-full pt-2 w-60 z-50 transition-all duration-200 origin-top-right ${
-                isExploreOpen
+              className={`absolute right-0 top-full pt-2 w-60 z-50 transition-all duration-200 origin-top-right ${isExploreOpen
                   ? "visible opacity-100 translate-y-0"
                   : "invisible opacity-0 -translate-y-2 pointer-events-none"
-              }`}
+                }`}
             >
               <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white p-1.5 shadow-[0_20px_50px_rgba(10,31,68,0.14)] ring-1 ring-slate-900/5 space-y-0.5">
                 <div className="px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#0077c8] bg-[#f5fbff] rounded-md mb-1">
@@ -296,9 +291,8 @@ export default function Header() {
                       <span>Legal</span>
                     </div>
                     <svg
-                      className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-200 ${
-                        isLegalOpen ? "rotate-90 text-[#0077c8]" : ""
-                      }`}
+                      className={`h-3.5 w-3.5 text-slate-400 transition-transform duration-200 ${isLegalOpen ? "rotate-90 text-[#0077c8]" : ""
+                        }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -309,11 +303,10 @@ export default function Header() {
 
                   {/* Submenu Expandable List */}
                   <div
-                    className={`overflow-hidden transition-all duration-200 ${
-                      isLegalOpen
+                    className={`overflow-hidden transition-all duration-200 ${isLegalOpen
                         ? "max-h-56 opacity-100 my-1 ml-3 border-l-2 border-[#0077c8]/25 pl-2 space-y-0.5"
                         : "max-h-0 opacity-0"
-                    }`}
+                      }`}
                   >
                     {legalLinks.map((item) => (
                       <Link
@@ -389,11 +382,10 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setIsMenuOpen((current) => !current)}
-          className={`absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] sm:right-6 lg:right-8 xl:hidden [&_svg]:h-6 [&_svg]:w-6 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round ${
-            useDarkText
+          className={`absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] sm:right-6 lg:right-8 xl:hidden [&_svg]:h-6 [&_svg]:w-6 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round ${useDarkText
               ? "border border-slate-200 bg-white/90 text-[#0a1f44] shadow-sm hover:border-[#0077c8]/35 hover:text-[#0077c8]"
               : "border border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20"
-          }`}
+            }`}
           aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMenuOpen}
           aria-controls="site-mobile-menu"
@@ -405,9 +397,8 @@ export default function Header() {
       {/* Mobile Drawer Menu */}
       <div
         id="site-mobile-menu"
-        className={`fixed left-0 right-0 top-20 overflow-y-auto border-t border-slate-200 bg-white shadow-[0_18px_38px_rgba(10,31,68,0.12)] transition-all duration-300 xl:hidden ${
-          isMenuOpen ? "max-h-[calc(100vh-80px)] opacity-100 py-3" : "max-h-0 opacity-0 py-0"
-        }`}
+        className={`fixed left-0 right-0 top-20 overflow-y-auto border-t border-slate-200 bg-white shadow-[0_18px_38px_rgba(10,31,68,0.12)] transition-all duration-300 xl:hidden ${isMenuOpen ? "max-h-[calc(100vh-80px)] opacity-100 py-3" : "max-h-0 opacity-0 py-0"
+          }`}
       >
         <div className="mx-auto grid w-full max-w-7xl gap-1 px-4 sm:px-6 lg:px-8">
           {navLinks.map((link) => (

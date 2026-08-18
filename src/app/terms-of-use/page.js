@@ -19,19 +19,19 @@ export default function TermsOfUsePage() {
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />
 
-        <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
-          <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
+        <div className="relative mx-auto w-full max-w-7xl flex flex-col items-center justify-center" data-aos="fade-up">
+          {/* <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 6l9-4 9 4v6c0 5.55-3.84 10.74-9 12A12.062 12.062 0 013 12V6z" />
             </svg>
             LEGAL CENTER
-          </span>
+          </span> */}
           <h1 className="text-[34px] font-bold tracking-tight sm:text-[42px] lg:text-[52px]">
             Terms of Use
           </h1>
-          <p className="mt-3 max-w-2xl text-sm font-normal text-slate-300 sm:text-base">
+          {/* <p className="mt-3 max-w-2xl text-sm font-normal text-slate-300 sm:text-base">
             Rules, guidelines, policies, and conditions for accessing Vidi Meth Digital Services.
-          </p>
+          </p> */}
           <div className="mt-4 flex items-center justify-start gap-2 text-xs sm:text-sm font-medium text-slate-300">
             <Link href="/" className="flex items-center gap-1 hover:text-white transition-colors">
               <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">

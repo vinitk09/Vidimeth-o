@@ -62,7 +62,7 @@ export default function FaqsPage() {
         }}
       >
         <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
-          <h1 className="text-[40px] font-semibold leading-none sm:text-[54px] lg:text-[64px]">
+          <h1 className="text-[40px] font-semibold leading-none sm:text-[42px] lg:text-[52px]">
             FAQs
           </h1>
         </div>

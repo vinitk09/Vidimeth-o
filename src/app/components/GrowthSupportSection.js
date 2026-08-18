@@ -35,7 +35,7 @@ const supportTiles = [
 
 export default function GrowthSupportSection() {
   return (
-    <section className="bg-white px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
+    <section className="bg-white px-5 py-16 sm:px-8 lg:px-10 lg:py-18">
       <div
         className="mx-auto w-full max-w-7xl overflow-hidden rounded-lg bg-[#02060d] text-white shadow-[0_28px_80px_rgba(2,6,13,0.24)]"
         data-aos="fade-up"

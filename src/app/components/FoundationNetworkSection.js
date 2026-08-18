@@ -99,7 +99,7 @@ export default function FoundationNetworkSection() {
               Facilitating Global Business Networks
             </h2>
           </div>
-          <p className="max-w-4xl text-[16px] font-normal leading-[1.72] text-[#1d2736] sm:text-[16px]">
+          <p className="max-w-4xl text-[15px] font-normal leading-[1.72] text-[#1d2736] sm:text-[16px]">
             We highly value collaborative relationships with our partners.
             Together, we create practical digital platforms for education,
             careers, property, finance, retail, and shared business growth.

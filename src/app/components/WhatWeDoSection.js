@@ -44,10 +44,10 @@ export default function WhatWeDoSection() {
           <h2 className="text-[32px] font-bold leading-[1.2] text-black sm:text-[32px]">
             Digital services built to help businesses move forward
           </h2>
-          <p className="mt-6 text-[16px] font-normal leading-[1.68] text-[#555555]">
+          <p className="mt-6 text-[15px] font-normal leading-[1.68] text-[#555555]">
             To carry on in India or elsewhere the business of concept marketing and online marketing, advertising, business management, business administration, office function, direct marketing and to provide high quality of services and products to clients.
           </p>
-          <p className="mt-5 text-[16px] font-normal leading-[1.68] text-[#555555]">
+          <p className="mt-5 text-[15px] font-normal leading-[1.68] text-[#555555]">
             <strong>Our Services:</strong> We provide master planning for you. Our aim is to provide one stop effective digital marketing solutions for all businesses. Our digital marketing expertise includes:
           </p>
 

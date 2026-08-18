@@ -509,7 +509,7 @@ export default function Home() {
           <h1 className="max-w-4xl text-[30px] font-bold  text-black sm:text-[36px] lg:text-[32px]" data-aos="fade-up" data-aos-delay="100">
             Vidi Meth Digital Services (OPC) Private Limited
           </h1>
-          <p className="mt-5 max-w-3xl text-[16px] sm:text-[16px] font-normal  text-[#555555]" data-aos="fade-up" data-aos-delay="200">
+          <p className="mt-5 max-w-3xl text-[15px] sm:text-[15px] font-normal  text-[#555555]" data-aos="fade-up" data-aos-delay="200">
             To carry on in India or elsewhere the business of concept
             marketing and online marketing, advertising, business management,
             business administration, office function, direct marketing and to

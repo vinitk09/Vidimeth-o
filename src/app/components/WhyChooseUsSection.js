@@ -117,7 +117,7 @@ export default function WhyChooseUsSection() {
           <h2 className="mt-4 text-3xl font-bold  text-black sm:text-[32px] ">
             Why Businesses Depend On Us
           </h2>
-          <p className="mt-4 text-[16px] leading-relaxed text-slate-600">
+          <p className="mt-4 text-[15px] leading-relaxed text-slate-600">
             Businesses have come to depend on us for our expertise, quality, and customer service across universities, real estate, government agencies, and business owners.
           </p>
         </div>

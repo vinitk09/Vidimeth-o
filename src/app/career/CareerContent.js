@@ -298,7 +298,7 @@ export default function CareerContent() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />
 
         <div className="relative mx-auto w-full max-w-4xl" data-aos="fade-up">
-          <h1 className="text-[36px] font-bold tracking-tight leading-tight sm:text-[48px] lg:text-[54px]">
+          <h1 className="text-[36px] font-bold tracking-tight leading-tight sm:text-[42px] lg:text-[52px]">
             Build Your Career at Vidi Meth
           </h1>
         </div>

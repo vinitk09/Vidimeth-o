@@ -11,7 +11,7 @@ const services = [
     title: "VM Academy",
     category: "Education Portal",
     eyebrow: "Education Portal",
-    image: "/vmbanner.png",
+    image: "/ourservicesvm.png",
     badgeBg: "bg-sky-100 text-[#0284c7] ring-sky-300/60",
     text: "An online education platform that helps students discover courses, colleges, admissions, eligibility, exams, fees, placements, scholarships, and career guidance across popular UG and PG streams in India.",
     features: [
@@ -26,7 +26,7 @@ const services = [
     title: "VillageMyCity",
     category: "Real Estate Portal",
     eyebrow: "Real Estate Portal",
-    image: "/village.png",
+    image: "/ourservicesvillage.png",
     badgeBg: "bg-emerald-100 text-[#16a34a] ring-emerald-300/60",
     text: "A property and marketplace platform for buyers, sellers, owners, builders, promoters, agents, and dealers to connect online and transact offline with greater ease.",
     features: [
@@ -41,7 +41,7 @@ const services = [
     title: "GoJobin",
     category: "Recruitment Platform",
     eyebrow: "Recruitment Platform",
-    image: "/gojobinbanner.png",
+    image: "/ourservicesjobs.png",
     badgeBg: "bg-purple-100 text-[#9333ea] ring-purple-300/60",
     text: "An online recruitment solution for candidates and employers, supporting job discovery, staffing, recruiting, free job posting, and opportunities for freshers and experienced professionals.",
     features: [
@@ -73,7 +73,7 @@ const services = [
     category: "Assistance & Helpdesk",
     eyebrow: "Reliable Support",
     image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+      "/ourservicesquality.png",
     badgeBg: "bg-emerald-100 text-emerald-800 ring-emerald-300/60",
     text: "Committed to excellence, our unwavering dedication ensures quality support. We prioritize satisfaction and consistently deliver beyond expectations with dependable service.",
     features: [
@@ -89,7 +89,7 @@ const services = [
     category: "Loans & Capital",
     eyebrow: "Financial Certainty",
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+      "/ourservicesfinance.png",
     badgeBg: "bg-amber-100 text-amber-800 ring-amber-300/60",
     text: "Navigate your financial journey confidently with Vidimeth.com. Prioritizing financial control, we provide services for effective planning, management, and better financial clarity.",
     features: [
@@ -121,7 +121,7 @@ const services = [
     category: "Retail & Marketplace",
     eyebrow: "Seamless Commerce",
     image:
-      "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80",
+      "/ourservicesshopping.png",
     badgeBg: "bg-rose-100 text-rose-800 ring-rose-300/60",
     text: "Discover a convenient e-commerce platform offering quality products across electronics, lifestyle, and home supplies with reliable fulfillment.",
     features: [
@@ -184,13 +184,13 @@ export default function OurServicesPage() {
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />
 
-        <div className="relative mx-auto w-full max-w-7xl" data-aos="fade-up">
-          <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
+        <div className="relative mx-auto w-full max-w-7xl flex flex-col items-center justify-center" data-aos="fade-up">
+          {/* <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
             OUR SERVICES
-          </span>
+          </span> */}
           <h1 className="text-[34px] font-bold tracking-tight sm:text-[42px] lg:text-[52px]">
             Our Services
           </h1>
@@ -215,7 +215,7 @@ export default function OurServicesPage() {
             <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#1b8b4b]">
               What We Offer
             </p>
-            <h2 className="text-[30px] font-bold text-black sm:text-[34px]">
+            <h2 className="text-[30px] font-bold text-black sm:text-[32px]">
               Innovative Solutions Built For Growth
             </h2>
             <div className="mt-3 h-1 w-16 rounded-full bg-[#0077c8]" />
@@ -259,9 +259,9 @@ export default function OurServicesPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
 
                   {/* Unique Category Pill */}
-                  <span className={`absolute left-3.5 top-3.5 rounded-full px-3 py-1 text-[10.5px] font-bold uppercase tracking-wider ring-1 backdrop-blur-md ${service.badgeBg}`}>
+                  {/* <span className={`absolute left-3.5 top-3.5 rounded-full px-3 py-1 text-[10.5px] font-bold uppercase tracking-wider ring-1 backdrop-blur-md ${service.badgeBg}`}>
                     {service.category}
-                  </span>
+                  </span> */}
 
                   {/* Number Badge */}
                   <span className="absolute right-3.5 bottom-2.5 text-xl font-black text-white/50 tracking-tighter">
