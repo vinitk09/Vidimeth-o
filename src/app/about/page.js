@@ -252,6 +252,36 @@ export default function AboutPage() {
                 </a>
               </article>
             ))}
+
+            {/* 6th Card: Redirect to Services */}
+            <article
+              className="flex flex-col items-center justify-between text-center group rounded-2xl bg-transparent p-6 sm:p-8 transition-all duration-300 min-h-[320px]"
+              data-aos="fade-up"
+              data-aos-delay={5 * 90}
+            >
+              <div className="flex flex-col items-center justify-center w-full my-auto py-2">
+                <p className="text-sm sm:text-[15px] font-medium text-slate-700 leading-relaxed mb-5 px-2">
+                  Discover all our comprehensive digital solutions, enterprise offerings, and specialized services.
+                </p>
+
+                {/* Arrow Icon */}
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#1d6b9e]/10 text-[#1d6b9e] ring-1 ring-[#1d6b9e]/20 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-[#1d6b9e] group-hover:text-white">
+                  <svg className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+
+                <Link
+                  href="/our-services"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1d6b9e] px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#005f91] transition-all duration-300 group-hover:shadow-md"
+                >
+                  <span>View All</span>
+                  <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </Link>
+              </div>
+            </article>
           </div>
         </div>
       </section>
