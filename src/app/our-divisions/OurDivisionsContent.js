@@ -12,7 +12,7 @@ const divisions = [
     domain: "www.vmacademys.com",
     href: "https://www.vmacademys.com/",
     logo: "/vmlogo.png",
-    previewImage: "/vmbanner.png",
+    previewImage: "/ourdivisionvm3.png",
     accentColor: "#0284c7",
     badgeStyle: "bg-sky-50 text-[#0284c7] ring-sky-200 border-sky-100",
     buttonStyle: "bg-[#0284c7] hover:bg-[#0369a1]",
@@ -43,7 +43,7 @@ const divisions = [
       "Direct platform for builders, promoters & real estate agents",
       "Meet online, transact offline property ecosystem",
     ],
-    tags: ["Real Estate", "Properties", "Listings", "Builders", "Local"],
+    tags: ["Buy", "Sell", "Rent", "Real Estate", "Properties", "Listings", "Builders", "Local"],
   },
   {
     id: "recruitment",
@@ -222,12 +222,13 @@ export default function OurDivisionsContent() {
                 </div>
 
                 {/* Banner / Showcase Image */}
-                <div className="mt-5 relative h-48 w-full overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
+                <div className="mt-5 relative aspect-[3/2] w-full overflow-hidden rounded-xl bg-slate-100">
                   <Image
                     src={division.previewImage}
                     alt={`${division.name} platform preview`}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                 </div>
 
