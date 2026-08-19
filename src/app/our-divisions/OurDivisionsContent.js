@@ -32,7 +32,7 @@ const divisions = [
     domain: "www.villagemycity.com",
     href: "https://www.villagemycity.com/",
     logo: "/villagemycitylogo.png",
-    previewImage: "/village.png",
+    previewImage: "/ourdivisionvillagemycity.jpeg",
     accentColor: "#16a34a",
     badgeStyle: "bg-emerald-50 text-[#16a34a] ring-emerald-200 border-emerald-100",
     buttonStyle: "bg-[#16a34a] hover:bg-[#15803d]",
