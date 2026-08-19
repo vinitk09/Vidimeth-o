@@ -167,7 +167,7 @@ export default function OurDivisionsContent() {
           <p className="text-xs font-bold uppercase tracking-widest text-[#005f91]">
             Business Network
           </p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-[32px]">
             Specialized Platforms Built for Scale
           </h2>
           <p className="mt-3 text-sm text-slate-600 max-w-2xl mx-auto">

@@ -105,7 +105,7 @@ const services = [
     category: "Education & Learning",
     eyebrow: "Academic Access",
     image:
-      "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80",
+      "/ourserviceseducation.png",
     badgeBg: "bg-indigo-100 text-indigo-800 ring-indigo-300/60",
     text: "Empower your mind with our comprehensive educational solutions. From course selection to institutional insights, we foster knowledge and facilitate career growth.",
     features: [
@@ -137,7 +137,7 @@ const services = [
     category: "Growth & Strategy",
     eyebrow: "Business Innovation",
     image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
+      "/ourservicesbusiness.png",
     badgeBg: "bg-blue-100 text-blue-800 ring-blue-300/60",
     text: "Unlock synergy with our blended business ideas services. We catalyze innovation and foster collaboration for stronger outcomes. Your vision and our expertise create a transformative blend.",
     features: [

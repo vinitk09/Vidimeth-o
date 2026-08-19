@@ -99,7 +99,8 @@ export default function Footer() {
           <div className="lg:col-span-3 space-y-4">
             <div className="flex items-center gap-3.5">
               <Image
-                src="/logo_vidi.png"
+                // src="/logo_vidi.png"
+                src="/vidilogo.png"
                 alt="Vidi Meth Digital Services"
                 width={56}
                 height={56}

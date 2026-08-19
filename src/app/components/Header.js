@@ -185,7 +185,8 @@ export default function Header() {
           aria-label="Vidi Meth Digital Services home"
         >
           <Image
-            src="/logo_vidi.png"
+            // src="/logo_vidi.png"
+            src="/vidilogo.png"
             alt="Vidi Meth Digital Services"
             width={112}
             height={112}
@@ -215,8 +216,8 @@ export default function Header() {
               key={link.href}
               link={link}
               className={`nav-link rounded-md px-4 py-2 text-[15px] font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${useDarkText
-                  ? "text-[#0a1f44] hover:text-[#0077c8]"
-                  : "text-white hover:bg-white/10 hover:text-white"
+                ? "text-[#0a1f44] hover:text-[#0077c8]"
+                : "text-white hover:bg-white/10 hover:text-white"
                 }`}
             />
           ))}
@@ -235,18 +236,18 @@ export default function Header() {
               type="button"
               onClick={() => setIsExploreOpen((prev) => !prev)}
               className={`nav-link flex items-center gap-1.5 rounded-md px-4 py-2 text-[15px] font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${useDarkText
-                  ? "text-[#0a1f44] hover:text-[#0077c8]"
-                  : "text-white hover:bg-white/10 hover:text-white"
+                ? "text-[#0a1f44] hover:text-[#0077c8]"
+                : "text-white hover:bg-white/10 hover:text-white"
                 }`}
               aria-expanded={isExploreOpen}
             >
               Explore
               <svg
                 className={`h-4 w-4 transition-transform duration-200 ${isExploreOpen
-                    ? "rotate-180 text-[#0077c8]"
-                    : useDarkText
-                      ? "text-slate-500"
-                      : "text-white/70"
+                  ? "rotate-180 text-[#0077c8]"
+                  : useDarkText
+                    ? "text-slate-500"
+                    : "text-white/70"
                   }`}
                 viewBox="0 0 24 24"
                 fill="none"
@@ -262,8 +263,8 @@ export default function Header() {
             {/* Dropdown Menu Panel */}
             <div
               className={`absolute right-0 top-full pt-2 w-60 z-50 transition-all duration-200 origin-top-right ${isExploreOpen
-                  ? "visible opacity-100 translate-y-0"
-                  : "invisible opacity-0 -translate-y-2 pointer-events-none"
+                ? "visible opacity-100 translate-y-0"
+                : "invisible opacity-0 -translate-y-2 pointer-events-none"
                 }`}
             >
               <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white p-1.5 shadow-[0_20px_50px_rgba(10,31,68,0.14)] ring-1 ring-slate-900/5 space-y-0.5">
@@ -304,8 +305,8 @@ export default function Header() {
                   {/* Submenu Expandable List */}
                   <div
                     className={`overflow-hidden transition-all duration-200 ${isLegalOpen
-                        ? "max-h-56 opacity-100 my-1 ml-3 border-l-2 border-[#0077c8]/25 pl-2 space-y-0.5"
-                        : "max-h-0 opacity-0"
+                      ? "max-h-56 opacity-100 my-1 ml-3 border-l-2 border-[#0077c8]/25 pl-2 space-y-0.5"
+                      : "max-h-0 opacity-0"
                       }`}
                   >
                     {legalLinks.map((item) => (
@@ -383,8 +384,8 @@ export default function Header() {
           type="button"
           onClick={() => setIsMenuOpen((current) => !current)}
           className={`absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] sm:right-6 lg:right-8 xl:hidden [&_svg]:h-6 [&_svg]:w-6 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round ${useDarkText
-              ? "border border-slate-200 bg-white/90 text-[#0a1f44] shadow-sm hover:border-[#0077c8]/35 hover:text-[#0077c8]"
-              : "border border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20"
+            ? "border border-slate-200 bg-white/90 text-[#0a1f44] shadow-sm hover:border-[#0077c8]/35 hover:text-[#0077c8]"
+            : "border border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20"
             }`}
           aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMenuOpen}
