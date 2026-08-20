@@ -192,7 +192,7 @@ export default function AboutPage() {
               {/* <span className="mb-2 inline-block text-xs font-bold uppercase tracking-wider text-[#1d6b9e]">
                 Why Choose Us
               </span> */}
-              <h2 className="text-2xl font-bold text-black sm:text-[31px] leading-tight">
+              <h2 className="text-2xl font-bold text-black sm:text-[30px] leading-tight">
                 Empowering Digital Innovation Across India
               </h2>
               <p className="mt-3 text-base sm:text-[15px] text-slate-700 font-normal leading-relaxed">
