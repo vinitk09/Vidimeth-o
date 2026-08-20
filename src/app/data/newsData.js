@@ -223,7 +223,7 @@ export const newsArticles = [
     imageCaption: "VMhomeMART Online E-Commerce & Retail Marketplace",
     description:
       "Fast-growing marketplace features electronics, lifestyle, and home goods connecting verified sellers directly with buyers.",
-    link: "https://www.vmhomemart.com/",
+    link: "/vmhomemart",
     content: {
       intro:
         "VMhomeMART (www.vmhomemart.com), Vidi Meth Digital Services' flagship digital retail marketplace, has launched new vendor onboarding tools and improved logistics tracking to enhance the online shopping experience across India.",

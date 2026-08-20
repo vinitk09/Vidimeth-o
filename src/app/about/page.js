@@ -65,7 +65,7 @@ const platforms = [
   {
     name: "VMhomeMART",
     url: "www.vmhomemart.com",
-    href: "https://www.vmhomemart.com/",
+    href: "/vmhomemart",
     category: "E-commerce Store",
     text: "A marketplace and online shopping concept for electronics, fashion, kitchen items, home needs, and other product categories in the fast-growing Indian market.",
     color: "bg-[#ffe4e6] text-[#e11d48] ring-[#e11d48]/20",
@@ -262,14 +262,23 @@ export default function AboutPage() {
                 <p className="mt-3 text-[14.5px] font-normal leading-[1.7] text-slate-600 text-justify flex-1">
                   {platform.text}
                 </p>
-                <a
-                  href={platform.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 text-sm font-semibold text-[#1d6b9e] hover:underline"
-                >
-                  {platform.url} &rarr;
-                </a>
+                {platform.href.startsWith("/") ? (
+                  <Link
+                    href={platform.href}
+                    className="mt-4 text-sm font-semibold text-[#1d6b9e] hover:underline"
+                  >
+                    {platform.url} &rarr;
+                  </Link>
+                ) : (
+                  <a
+                    href={platform.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 text-sm font-semibold text-[#1d6b9e] hover:underline"
+                  >
+                    {platform.url} &rarr;
+                  </a>
+                )}
               </article>
             ))}
 

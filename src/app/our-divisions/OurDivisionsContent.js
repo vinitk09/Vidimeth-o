@@ -90,7 +90,7 @@ const divisions = [
     name: "VMhomeMART",
     category: "E-Commerce Store",
     domain: "www.vmhomemart.com",
-    href: "https://www.vmhomemart.com/",
+    href: "/vmhomemart",
     logo: "/vmhomemartlogo.png",
     previewImage: "/vmhomemart-image copy.jpeg",
     accentColor: "#e11d48",
@@ -267,17 +267,29 @@ export default function OurDivisionsContent() {
 
               {/* Action Button */}
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <a
-                  href={division.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-xs font-semibold text-white transition ${division.buttonStyle}`}
-                >
-                  <span>{division.domain}</span>
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
+                {division.href.startsWith("/") ? (
+                  <Link
+                    href={division.href}
+                    className={`inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-xs font-semibold text-white transition ${division.buttonStyle}`}
+                  >
+                    <span>{division.domain}</span>
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </Link>
+                ) : (
+                  <a
+                    href={division.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-xs font-semibold text-white transition ${division.buttonStyle}`}
+                  >
+                    <span>{division.domain}</span>
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                )}
               </div>
             </article>
           ))}

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const stats = [
   {
     value: "01",
@@ -52,15 +54,33 @@ export default function WhatWeDoSection() {
           </p>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            {serviceLinks.map((link) => (
-              <div
-                key={link}
-                className="flex items-center gap-3 rounded-lg border border-[#0077c8]/10 bg-[#f6fbff] px-4 py-3 text-[15px] font-normal text-[#0a1f44]"
-              >
-                <span className="h-2.5 w-2.5 rounded-full bg-[#0aa64f]" />
-                {link}
-              </div>
-            ))}
+            {serviceLinks.map((link) => {
+              const isVmHomeMart = link === "www.vmhomemart.com";
+              if (isVmHomeMart) {
+                return (
+                  <Link
+                    key={link}
+                    href="/vmhomemart"
+                    className="flex items-center gap-3 rounded-lg border border-[#0077c8]/10 bg-[#f6fbff] px-4 py-3 text-[15px] font-normal text-[#0a1f44] transition-colors hover:border-[#0077c8]/30 hover:bg-[#eaf4fd]"
+                  >
+                    <span className="h-2.5 w-2.5 rounded-full bg-[#0aa64f]" />
+                    {link}
+                  </Link>
+                );
+              }
+              return (
+                <a
+                  key={link}
+                  href={`https://${link}/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-lg border border-[#0077c8]/10 bg-[#f6fbff] px-4 py-3 text-[15px] font-normal text-[#0a1f44] transition-colors hover:border-[#0077c8]/30 hover:bg-[#eaf4fd]"
+                >
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#0aa64f]" />
+                  {link}
+                </a>
+              );
+            })}
           </div>
 
 

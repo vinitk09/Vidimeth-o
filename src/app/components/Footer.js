@@ -79,7 +79,7 @@ const divisionLinks = [
   { label: "www.villagemycity.com", href: "https://www.villagemycity.com/", icon: "external" },
   { label: "www.gojobin.com", href: "https://www.gojobin.com/", icon: "external" },
   { label: "www.loanvidhi.com", href: "https://www.loanvidhi.com/", icon: "external" },
-  { label: "www.vmhomemart.com", href: "https://www.vmhomemart.com/", icon: "external" },
+  { label: "www.vmhomemart.com", href: "/vmhomemart", icon: "external" },
 ];
 
 const legalLinks = [
@@ -189,15 +189,25 @@ export default function Footer() {
             <ul className="space-y-2.5 text-[13.5px]">
               {divisionLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 text-white/75 transition hover:text-white"
-                  >
-                    <CustomIcon type={link.icon} />
-                    {link.label}
-                  </a>
+                  {link.href.startsWith("/") ? (
+                    <Link
+                      href={link.href}
+                      className="flex items-center gap-2.5 text-white/75 transition hover:text-white"
+                    >
+                      <CustomIcon type={link.icon} />
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2.5 text-white/75 transition hover:text-white"
+                    >
+                      <CustomIcon type={link.icon} />
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

@@ -11,6 +11,18 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/www.vmhomemart.com",
+        destination: "/vmhomemart",
+      },
+      {
+        source: "/vmhomemart.com",
+        destination: "/vmhomemart",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

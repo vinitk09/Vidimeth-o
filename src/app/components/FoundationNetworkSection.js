@@ -40,7 +40,7 @@ const networkSlides = [
     category: "Retail Network",
     title: "VMhomeMART",
     image: "/vmhomemart-image.jpeg",
-    href: "https://www.vmhomemart.com/",
+    href: "/vmhomemart",
     description:
       "VMhomeMart (www.vmhomemart.com) represents the best of e-commerce in the fast-growing Indian retail market. The platform focuses on high-quality goods across electronics, fashion, kitchen appliances, home essentials, and daily lifestyle products. VMhomeMART is an expansive marketplace that allows users to explore, buy, and sell a wide variety of items with dynamic pricing options and transparent vendor connections. Experience seamless digital shopping with fast delivery, secure payment processing, hassle-free order tracking, and dedicated customer support.",
   },
