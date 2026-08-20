@@ -117,7 +117,7 @@ export default function Home() {
       {/* ================= HERO BANNER ================= */}
 
       <section
-        className="relative w-full overflow-hidden bg-[#04194d]"
+        className="relative w-full overflow-hidden bg-[#04194d] pt-24 sm:pt-0"
         data-aos="fade-left"
         data-aos-duration="1000"
         data-aos-once="true"
