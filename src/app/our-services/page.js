@@ -26,7 +26,7 @@ const services = [
     title: "VillageMyCity",
     category: "Real Estate Portal",
     eyebrow: "Real Estate Portal",
-    image: "/ourservicesvillage.png",
+    image: "/villagemycityourservices.png",
     badgeBg: "bg-emerald-100 text-[#16a34a] ring-emerald-300/60",
     text: "A property and marketplace platform for buyers, sellers, owners, builders, promoters, agents, and dealers to connect online and transact offline with greater ease.",
     features: [

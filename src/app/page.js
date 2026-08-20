@@ -117,15 +117,13 @@ export default function Home() {
       {/* ================= HERO BANNER ================= */}
 
       <section
-        className="relative w-full min-h-screen overflow-hidden bg-[#04194d]"
+        className="relative w-full overflow-hidden bg-[#04194d]"
         data-aos="fade-left"
         data-aos-duration="1000"
         data-aos-once="true"
       >
-        <div className="relative w-full h-full min-h-screen flex items-center justify-center">
-
+        <div className="relative flex w-full items-center justify-center">
           {/* ================= BANNER ================= */}
-
           <Image
             src="/headbanner.png"
             alt="Vidi Meth Digital Services Banner"
@@ -137,13 +135,13 @@ export default function Home() {
             className="
               block
               w-full
-              h-full
-              min-h-screen
-              object-cover
+              h-auto
+              max-w-[1920px]
+              mx-auto
+              object-contain
               object-center
             "
           />
-
         </div>
       </section>
 
