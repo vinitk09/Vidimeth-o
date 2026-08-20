@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 const businessCards = [
   {
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    image: "/network.png",
     title: "Use Networking Opportunities",
     text: "To search for new opportunities and use most of your resources.",
   },
@@ -15,22 +15,22 @@ const businessCards = [
     text: "To preserve trust, credibility, and transparency.",
   },
   {
-    image: "https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?auto=format&fit=crop&w=800&q=80",
+    image: "/community2.png",
     title: "Support communities and charities",
     text: "To have partnerships with other successful businesses, consider getting involved in charity.",
   },
   {
-    image: "/b4.png",
+    image: "/social.png",
     title: "Make use of social media",
     text: "You can use Facebook, LinkedIn, and Instagram to promote your product, get in touch with customers, and sell.",
   },
   {
-    image: "/b5.png",
+    image: "/referral.png",
     title: "Implement referral programs",
     text: "we support your company has an excellent reputation and loyal customers; you can consider referral programs.",
   },
   {
-    image: "/b6.png",
+    image: "/professional.png",
     title: "Gather a team of professionals",
     text: "Our team plays an important role in your business success and development of your company.",
   },
