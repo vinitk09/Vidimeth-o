@@ -77,46 +77,45 @@ const platforms = [
   },
 ];
 
-const reasons = [
+const whyChoosePoints = [
   {
-    title: "Our Speciality",
-    text: "We take pleasure in making your life easier.",
+    number: "01",
+    title: "We Make It Personal",
+    description:
+      "When you work with us, you can count on personalized, one-on-one service every step of the way.",
   },
   {
-    title: "Customer Service",
-    text: "Your requirement is important to us and we work to understand your needs clearly.",
+    number: "02",
+    title: "We Innovate for You",
+    description: "We're a team of dreamers, thinkers and creators.",
   },
   {
-    title: "Professionalism",
-    text: "We develop long-term relationships that are mutually beneficial.",
+    number: "03",
+    title: "Leaders Trust Us",
+    description: "We're proud of the company we keep.",
   },
   {
-    title: "Expandability",
-    text: "We are ready to make fast and effective changes that support future growth.",
+    number: "04",
+    title: "Our Reputation",
+    description: "Within the Industry is impeccable.",
   },
   {
-    title: "Money Back Guarantee",
-    text: "We support customers with refund assurance when service cancellation terms are met.",
+    number: "05",
+    title: "Communication & Responsiveness",
+    description:
+      "We are known for our proven ability to maintain open communication around the clock and a high level of responsiveness to our clients.",
   },
   {
-    title: "Creative Solutions",
-    text: "We help clients make a difference with fresh insights and practical solutions.",
+    number: "06",
+    title: "Social Media",
+    description:
+      "Facebook, Twitter, LinkedIn ... Technology has changed the way we live, play, work, communicate, shop and advertise. We embrace the ever-changing world of technology and are always seeking the best applications to serve our clients personally and efficiently.",
   },
   {
-    title: "Happy Customers",
-    text: "We go the extra mile with commitment that clients value again and again.",
-  },
-  {
-    title: "World-Wide Expertise",
-    text: "Our experience and network help us understand wider markets and trends.",
-  },
-  {
-    title: "Commitment to Quality",
-    text: "We deliver solutions in a professional, concrete, and practical way.",
-  },
-  {
-    title: "Sustainable Success",
-    text: "We use collaborative methods that create ownership and long-term progress.",
+    number: "07",
+    title: "Commitment",
+    description:
+      "Commitment is a term that we honour. We are trusted to fulfil promises and take care of our clients' concerns. We're the trusted partner that takes a proactive approach to your technology. We're the fellow small business owner that understand your day-to-day needs. We're the built-in technology support staff that's always there when you need us. We Stand by Our Values. Our Clients Are Happy.",
   },
 ];
 
@@ -151,12 +150,6 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,119,200,0.25),transparent_50%)]" />
 
         <div className="relative mx-auto w-full max-w-7xl flex items-center justify-center flex-col" data-aos="fade-up">
-          {/* <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#38bdf8] backdrop-blur-md">
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            ABOUT US
-          </span> */}
           <h1 className="text-[34px] font-bold tracking-tight sm:text-[42px] lg:text-[52px]">
             About Us
           </h1>
@@ -173,36 +166,63 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Company Profile */}
+      {/* Why Choose Us & Company Profile */}
       <section className="bg-white px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-20">
-        <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.42fr_0.58fr]">
-          <div
-            className="relative min-h-[240px] w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-[0_12px_36px_rgba(10,31,68,0.08)] lg:h-full lg:min-h-0"
-            data-aos="fade-right"
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
-              alt="Vidi Meth Digital Services Company Profile"
-              fill
-              unoptimized
-              sizes="(min-width: 1024px) 42vw, 100vw"
-              className="object-cover"
-            />
+        <div className="mx-auto grid w-full max-w-7xl items-start gap-12 lg:grid-cols-[0.45fr_0.55fr]">
+          <div className="lg:sticky lg:top-24 w-full">
+            <div
+              className="relative w-full max-w-md mx-auto lg:max-w-none aspect-[4/5] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_12px_36px_rgba(10,31,68,0.08)]"
+              data-aos="fade-right"
+            >
+              <Image
+                src="/whychooseus.png"
+                alt="Why Choose Vidi Meth Digital Services"
+                fill
+                unoptimized
+                className="object-contain p-2"
+              />
+            </div>
           </div>
 
           <div
-            className="flex flex-col justify-center space-y-4 text-slate-800"
+            className="flex flex-col space-y-6 text-slate-800"
             data-aos="fade-left"
           >
-            <h2 className="text-2xl font-bold text-black sm:text-[31px]">
-              Empowering Digital Innovation Across India
-            </h2>
-            <p className="text-base sm:text-[15px]  text-slate-700 font-normal">
-              We create and support digital properties that solve everyday business and customer needs across multiple sectors. Our work brings together online visibility, service delivery, practical planning, and customer-first experiences.
-            </p>
-            <p className="text-base sm:text-[15px] text-slate-700 font-normal">
-              Through platforms such as <strong className="font-semibold text-[#0a1f44]">VM Academy</strong>, <strong className="font-semibold text-[#0a1f44]">VillageMyCity</strong>, <strong className="font-semibold text-[#0a1f44]">GoJobin</strong>, <strong className="font-semibold text-[#0a1f44]">LOAN vidhi</strong>, and <strong className="font-semibold text-[#0a1f44]">VMhomeMART</strong>, Vidi Meth connects people with education, property, career, finance, and commerce opportunities.
-            </p>
+            <div>
+              {/* <span className="mb-2 inline-block text-xs font-bold uppercase tracking-wider text-[#1d6b9e]">
+                Why Choose Us
+              </span> */}
+              <h2 className="text-2xl font-bold text-black sm:text-[31px] leading-tight">
+                Empowering Digital Innovation Across India
+              </h2>
+              <p className="mt-3 text-base sm:text-[15px] text-slate-700 font-normal leading-relaxed">
+                Businesses have come to depend on us for our expertise, quality, and customer service. We create and support digital properties that solve everyday business and customer needs across multiple sectors.
+              </p>
+            </div>
+
+            {/* Point-wise List */}
+            <div className="space-y-4 pt-2">
+              {whyChoosePoints.map((pt) => (
+                <div
+                  key={pt.number}
+                  className="group rounded-xl border border-slate-200/80 bg-[#f8fafc] p-4 sm:p-5 transition-all duration-200 hover:border-[#1d6b9e]/40 hover:bg-white hover:shadow-md"
+                >
+                  <div className="flex items-start gap-3.5">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#1d6b9e]/10 text-sm font-bold text-[#1d6b9e] ring-1 ring-[#1d6b9e]/20 group-hover:bg-[#1d6b9e] group-hover:text-white transition-colors">
+                      {pt.number}
+                    </span>
+                    <div>
+                      <h3 className="text-base font-bold text-slate-900 group-hover:text-[#1d6b9e] transition-colors">
+                        {pt.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-slate-600 leading-relaxed font-normal">
+                        {pt.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -282,41 +302,6 @@ export default function AboutPage() {
                 </Link>
               </div>
             </article>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section (Restored as it was previously) */}
-      <section className="bg-[#f4f7fb] px-5 py-16 text-[#1d2736] sm:px-8 lg:px-10 lg:py-24 border-t border-slate-100">
-        <div className="mx-auto w-full max-w-7xl">
-          <div className="mx-auto max-w-4xl text-center" data-aos="fade-up">
-            <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]">
-              Why Choose Us
-            </p>
-            <h2 className="text-[32px] font-bold leading-[1.2] text-black sm:text-[31px]">
-              Quality service with practical business thinking.
-            </h2>
-          </div>
-
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {reasons.map((reason, index) => (
-              <article
-                key={reason.title}
-                className="rounded-lg border border-[#0077c8]/10 bg-white p-5 shadow-[0_12px_34px_rgba(10,31,68,0.06)]"
-                data-aos="zoom-in"
-                data-aos-delay={index * 55}
-              >
-                <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#f6fbff] text-[#0077c8] ring-1 ring-[#0077c8]/15 [&_svg]:h-5 [&_svg]:w-5 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round">
-                  <CheckIcon />
-                </span>
-                <h3 className="text-[16px] font-semibold leading-tight text-black">
-                  {reason.title}
-                </h3>
-                <p className="mt-3 text-[14px] font-normal leading-[1.58] text-[#555555] text-justify">
-                  {reason.text}
-                </p>
-              </article>
-            ))}
           </div>
         </div>
       </section>

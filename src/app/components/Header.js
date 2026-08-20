@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 
 const navLinks = [
@@ -138,7 +137,6 @@ function NavItem({ link, className, onClick }) {
 }
 
 export default function Header() {
-  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExploreOpen, setIsExploreOpen] = useState(false);
   const [isLegalOpen, setIsLegalOpen] = useState(false);
@@ -146,8 +144,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const dropdownRef = useRef(null);
 
-  const isHomePage = pathname === "/";
-  const useDarkText = true;
+  const useDarkText = isScrolled;
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -176,7 +173,11 @@ export default function Header() {
 
   return (
     <header
-      className="fixed left-0 top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 text-[#0a1f44] shadow-[0_8px_26px_rgba(10,31,68,0.08)] backdrop-blur-md transition-all duration-300"
+      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled
+          ? "border-b border-slate-200/80 bg-white text-[#0a1f44] shadow-[0_8px_26px_rgba(10,31,68,0.08)] backdrop-blur-md"
+          : "border-b border-white/10 bg-transparent text-white"
+      }`}
     >
       <nav className="relative mx-auto flex min-h-20 w-full max-w-7xl items-center gap-4 px-4 py-2 pr-16 font-sans sm:px-6 sm:pr-20 lg:px-8 lg:pr-24 xl:pr-8">
         <Link
@@ -195,18 +196,12 @@ export default function Header() {
           />
           <div className="flex flex-col justify-center">
             <span
-              className={`text-[15px] font-bold leading-tight transition-colors sm:text-[17px] ${useDarkText ? "text-[#0a1f44]" : "text-white"
-                }`}
+              className={`text-[15px] font-bold leading-tight transition-colors sm:text-[17px] ${
+                useDarkText ? "text-[#0a1f44]" : "text-white"
+              }`}
             >
               Vidi Meth Digital Services
             </span>
-            {/* <span
-              className={`text-[11px] font-medium transition-colors sm:text-[12px] ${
-                useDarkText ? "text-[#0077c8]" : "text-sky-300 font-semibold"
-              }`}
-            >
-              OPC Private Limited
-            </span> */}
           </div>
         </Link>
 
@@ -215,10 +210,11 @@ export default function Header() {
             <NavItem
               key={link.href}
               link={link}
-              className={`nav-link rounded-md px-4 py-2 text-[15px] font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${useDarkText
-                ? "text-[#0a1f44] hover:text-[#0077c8]"
-                : "text-white hover:bg-white/10 hover:text-white"
-                }`}
+              className={`nav-link rounded-md px-4 py-2 text-[15px] font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${
+                useDarkText
+                  ? "text-[#0a1f44] hover:text-[#0077c8]"
+                  : "text-white hover:bg-white/10 hover:text-white"
+              }`}
             />
           ))}
 
@@ -235,20 +231,22 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setIsExploreOpen((prev) => !prev)}
-              className={`nav-link flex items-center gap-1.5 rounded-md px-4 py-2 text-[15px] font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${useDarkText
-                ? "text-[#0a1f44] hover:text-[#0077c8]"
-                : "text-white hover:bg-white/10 hover:text-white"
-                }`}
+              className={`nav-link flex items-center gap-1.5 rounded-md px-4 py-2 text-[15px] font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${
+                useDarkText
+                  ? "text-[#0a1f44] hover:text-[#0077c8]"
+                  : "text-white hover:bg-white/10 hover:text-white"
+              }`}
               aria-expanded={isExploreOpen}
             >
               Explore
               <svg
-                className={`h-4 w-4 transition-transform duration-200 ${isExploreOpen
-                  ? "rotate-180 text-[#0077c8]"
-                  : useDarkText
-                    ? "text-slate-500"
-                    : "text-white/70"
-                  }`}
+                className={`h-4 w-4 transition-transform duration-200 ${
+                  isExploreOpen
+                    ? "rotate-180 text-[#0077c8]"
+                    : useDarkText
+                      ? "text-slate-500"
+                      : "text-white/80"
+                }`}
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -383,10 +381,11 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setIsMenuOpen((current) => !current)}
-          className={`absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] sm:right-6 lg:right-8 xl:hidden [&_svg]:h-6 [&_svg]:w-6 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round ${useDarkText
-            ? "border border-slate-200 bg-white/90 text-[#0a1f44] shadow-sm hover:border-[#0077c8]/35 hover:text-[#0077c8]"
-            : "border border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20"
-            }`}
+          className={`absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] sm:right-6 lg:right-8 xl:hidden [&_svg]:h-6 [&_svg]:w-6 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[2] [&_svg]:stroke-linecap-round [&_svg]:stroke-linejoin-round ${
+            useDarkText
+              ? "border border-slate-200 bg-white/90 text-[#0a1f44] shadow-xs hover:border-[#0077c8]/35 hover:text-[#0077c8]"
+              : "border border-white/30 bg-white/10 text-white backdrop-blur-md hover:bg-white/20"
+          }`}
           aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMenuOpen}
           aria-controls="site-mobile-menu"
@@ -407,7 +406,7 @@ export default function Header() {
               key={link.href}
               link={link}
               onClick={() => setIsMenuOpen(false)}
-              className="rounded-md px-3 py-2.5 text-[15px] font-bold text-[#0a1f44] transition hover:bg-[#f4f9ff] hover:text-[#0077c8]"
+              className="rounded-md px-3 py-2.5 text-[15px] font-normal text-[#0a1f44] transition hover:bg-[#f4f9ff] hover:text-[#0077c8]"
             />
           ))}
 
