@@ -1,4 +1,5 @@
 import Image from "next/image";
+import HeroBannerSlider from "./components/HeroBannerSlider";
 import BusinessDevelopmentSection from "./components/BusinessDevelopmentSection";
 import ClientTestimonialsSection from "./components/ClientTestimonialsSection";
 import FoundationNetworkSection from "./components/FoundationNetworkSection";
@@ -114,36 +115,8 @@ export default function Home() {
     <main className="overflow-x-hidden no-scrollbar bg-white pt-0">
       <Header />
 
-      {/* ================= HERO BANNER ================= */}
-
-      <section
-        className="relative w-full overflow-hidden bg-[#04194d] pt-24 sm:pt-0"
-        data-aos="fade-left"
-        data-aos-duration="1000"
-        data-aos-once="true"
-      >
-        <div className="relative flex w-full items-center justify-center">
-          {/* ================= BANNER ================= */}
-          <Image
-            src="/headbanner.png"
-            alt="Vidi Meth Digital Services Banner"
-            width={1920}
-            height={1080}
-            priority
-            unoptimized
-            sizes="100vw"
-            className="
-              block
-              w-full
-              h-auto
-              max-w-[1920px]
-              mx-auto
-              object-contain
-              object-center
-            "
-          />
-        </div>
-      </section>
+      {/* ================= HERO BANNER SLIDER ================= */}
+      <HeroBannerSlider />
 
       <section className="bg-white px-5 py-16 text-[#0a1f44] sm:px-8 lg:px-10 lg:py-24">
         <div className="mx-auto flex flex-col items-center text-center w-full max-w-7xl">
