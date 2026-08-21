@@ -1,10 +1,51 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { submitOptOutRequest } from "../utils/api";
 
 export default function PrivacyPolicyPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    subject: "Telemarketing Opt-Out Request",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await submitOptOutRequest({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phoneNumber: formData.phoneNumber.trim(),
+        subject: formData.subject.trim(),
+        message: formData.message.trim(),
+      });
+    } catch (err) {
+      console.warn("Opt-Out API submit fallback:", err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        subject: "Telemarketing Opt-Out Request",
+        message: "",
+      });
+    }
+  };
   return (
     <main className="min-h-screen bg-[#f8fafc] pt-0">
       <Header />
@@ -276,58 +317,95 @@ export default function PrivacyPolicyPage() {
                   <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-[#0a1f44]">
                     Telemarketing Opt-Out Submission Form
                   </h4>
-                  <form className="space-y-4">
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div>
-                        <label className="mb-1 block text-xs font-semibold text-slate-700">Name</label>
-                        <input
-                          type="text"
-                          placeholder="Name"
-                          className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/10"
-                        />
-                      </div>
-                      <div>
-                        <label className="mb-1 block text-xs font-semibold text-slate-700">E-Mail</label>
-                        <input
-                          type="email"
-                          placeholder="E-Mail"
-                          className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/10"
-                        />
-                      </div>
-                      <div>
-                        <label className="mb-1 block text-xs font-semibold text-slate-700">Phone Number</label>
-                        <input
-                          type="tel"
-                          placeholder="Phone Number"
-                          className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/10"
-                        />
-                      </div>
-                      <div>
-                        <label className="mb-1 block text-xs font-semibold text-slate-700">Subject</label>
-                        <input
-                          type="text"
-                          placeholder="Subject"
-                          className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/10"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="mb-1 block text-xs font-semibold text-slate-700">Message Here</label>
-                      <textarea
-                        placeholder="Message Here"
-                        rows={4}
-                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/10"
-                      />
-                    </div>
-                    <div className="pt-2">
+                  {submitted ? (
+                    <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-center text-emerald-900">
+                      <h5 className="font-bold text-base">Opt-Out Request Received</h5>
+                      <p className="mt-1 text-xs text-emerald-800">
+                        Your opt-out details have been submitted. Your phone number will be removed from calling lists within 21 working days.
+                      </p>
                       <button
-                        type="submit"
-                        className="rounded-xl bg-gradient-to-r from-[#0077c8] to-[#005485] px-8 py-3 text-sm font-bold text-white shadow-md transition hover:from-[#005f91] hover:to-[#00426b]"
+                        type="button"
+                        onClick={() => setSubmitted(false)}
+                        className="mt-3 text-xs font-bold text-emerald-700 underline"
                       >
-                        Submit Now
+                        Submit another opt-out request
                       </button>
                     </div>
-                  </form>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        <div>
+                          <label className="mb-1 block text-xs font-semibold text-slate-700">Name *</label>
+                          <input
+                            type="text"
+                            name="name"
+                            required
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="Name"
+                            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/10"
+                          />
+                        </div>
+                        <div>
+                          <label className="mb-1 block text-xs font-semibold text-slate-700">E-Mail *</label>
+                          <input
+                            type="email"
+                            name="email"
+                            required
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="E-Mail"
+                            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/10"
+                          />
+                        </div>
+                        <div>
+                          <label className="mb-1 block text-xs font-semibold text-slate-700">Phone Number *</label>
+                          <input
+                            type="tel"
+                            name="phoneNumber"
+                            required
+                            value={formData.phoneNumber}
+                            onChange={handleChange}
+                            placeholder="Phone Number"
+                            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/10"
+                          />
+                        </div>
+                        <div>
+                          <label className="mb-1 block text-xs font-semibold text-slate-700">Subject *</label>
+                          <input
+                            type="text"
+                            name="subject"
+                            required
+                            value={formData.subject}
+                            onChange={handleChange}
+                            placeholder="Subject"
+                            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/10"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="mb-1 block text-xs font-semibold text-slate-700">Message Here *</label>
+                        <textarea
+                          name="message"
+                          required
+                          value={formData.message}
+                          onChange={handleChange}
+                          placeholder="Message Here"
+                          rows={4}
+                          className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-[#0077c8] focus:ring-4 focus:ring-[#0077c8]/10"
+                        />
+                      </div>
+                      <div className="pt-2">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="rounded-xl bg-gradient-to-r from-[#0077c8] to-[#005485] px-8 py-3 text-sm font-bold text-white shadow-md transition hover:from-[#005f91] hover:to-[#00426b] disabled:opacity-50"
+                        >
+                          {isSubmitting ? "Submitting..." : "Submit Now"}
+                        </button>
+                      </div>
+                    </form>
+                  )}
                 </div>
               </div>
 

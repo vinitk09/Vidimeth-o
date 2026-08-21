@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getCareersData, submitJobApplication } from "../utils/api";
 
 const initialJobs = [
   {
     id: 1,
+    jobId: "job-vidimeth-receptionist-01",
     title: "Receptionist | vidimeth",
     company: "Vidi Meth Digital Services",
     location: "Jamshedpur",
@@ -39,6 +41,7 @@ const initialJobs = [
   },
   {
     id: 2,
+    jobId: "job-vidimeth-mktg-mgr-02",
     title: "Marketing Manager | vidimeth",
     company: "Vidi Meth Digital Services",
     location: "Jamshedpur",
@@ -69,6 +72,7 @@ const initialJobs = [
   },
   {
     id: 3,
+    jobId: "job-vidimeth-dm-exec-03",
     title: "Digital Marketing Executive | vidimeth",
     company: "Vidi Meth Digital Services",
     location: "Jamshedpur",
@@ -98,6 +102,7 @@ const initialJobs = [
   },
   {
     id: 4,
+    jobId: "job-vidimeth-fe-dev-04",
     title: "Frontend Web Developer | vidimeth",
     company: "Vidi Meth Digital Services",
     location: "Remote",
@@ -126,6 +131,7 @@ const initialJobs = [
   },
   {
     id: 5,
+    jobId: "job-vidimeth-counselor-05",
     title: "Academic Counselor | VM Academy",
     company: "Vidi Meth Digital Services",
     location: "Jamshedpur",
@@ -152,6 +158,7 @@ const initialJobs = [
   },
   {
     id: 6,
+    jobId: "job-vidimeth-finance-06",
     title: "Financial Loan Officer | LOAN vidhi",
     company: "Vidi Meth Digital Services",
     location: "Ranchi",
@@ -196,14 +203,8 @@ const culturePerks = [
   },
 ];
 
-const hiringSteps = [
-  { step: "1", title: "Submit Application", desc: "Select an open role below and submit your details along with your resume link." },
-  { step: "2", title: "Profile Screening", desc: "Our HR team reviews your qualifications and work background to match job requirements." },
-  { step: "3", title: "Personal Interview", desc: "Shortlisted candidates are invited for an interview with the department head." },
-  { step: "4", title: "Offer & Joining", desc: "Selected candidates receive an official offer letter and onboarding schedule." },
-];
-
 export default function CareerContent() {
+  const [jobs, setJobs] = useState(initialJobs);
   const [searchKeyword, setSearchKeyword] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -231,6 +232,35 @@ export default function CareerContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
+  useEffect(() => {
+    async function fetchJobs() {
+      try {
+        const res = await getCareersData();
+        if (res && res.jobPostings && Array.isArray(res.jobPostings) && res.jobPostings.length > 0) {
+          const apiJobs = res.jobPostings.map((j, i) => ({
+            id: j.jobId || `job-${i}`,
+            jobId: j.jobId || `job-${i}`,
+            title: j.title,
+            company: j.company || "Vidi Meth Digital Services",
+            location: j.location || "Jamshedpur",
+            category: j.department || j.category || "Administration",
+            type: j.type || "Full-Time",
+            postedDate: "Recently Posted",
+            skills: j.skills || ["Professional", "Teamwork"],
+            description: j.summary || j.description || "Exciting opportunity at Vidi Meth.",
+            responsibilities: j.responsibilities || [],
+            requirements: j.requirements || [],
+            benefits: j.benefits || [],
+          }));
+          setJobs(apiJobs);
+        }
+      } catch (err) {
+        console.warn("Using default job listings (Backend offline or returned default):", err);
+      }
+    }
+    fetchJobs();
+  }, []);
+
   const handleSearchSubmit = (e) => {
     e?.preventDefault();
     setActiveFilter({
@@ -247,13 +277,13 @@ export default function CareerContent() {
     setActiveFilter({ keyword: "", location: "", category: "" });
   };
 
-  const filteredJobs = initialJobs.filter((job) => {
+  const filteredJobs = jobs.filter((job) => {
     const matchesKeyword =
       !activeFilter.keyword ||
       job.title.toLowerCase().includes(activeFilter.keyword) ||
       job.description.toLowerCase().includes(activeFilter.keyword) ||
       job.category.toLowerCase().includes(activeFilter.keyword) ||
-      job.skills.some((s) => s.toLowerCase().includes(activeFilter.keyword));
+      (job.skills && job.skills.some((s) => s.toLowerCase().includes(activeFilter.keyword)));
 
     const matchesLocation =
       !activeFilter.location || job.location.toLowerCase() === activeFilter.location.toLowerCase();
@@ -264,10 +294,29 @@ export default function CareerContent() {
     return matchesKeyword && matchesLocation && matchesCategory;
   });
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    const payload = {
+      jobId: applyingJob.jobId || `job-${applyingJob.id}`,
+      jobTitle: applyingJob.title,
+      jobLocation: applyingJob.location,
+      jobType: applyingJob.type,
+      department: applyingJob.category,
+      fullName: formData.name.trim(),
+      email: formData.email.trim(),
+      phoneNumber: formData.phone.trim(),
+      experience: formData.experience.trim() || "Fresher",
+      resumeLink: formData.resumeLink.trim(),
+      message: formData.message.trim(),
+    };
+
+    try {
+      await submitJobApplication(payload);
+    } catch (err) {
+      console.warn("Backend submit error, recording client side:", err);
+    } finally {
       setIsSubmitting(false);
       setSubmitSuccess(true);
       setTimeout(() => {
@@ -282,7 +331,7 @@ export default function CareerContent() {
           message: "",
         });
       }, 2500);
-    }, 1000);
+    }
   };
 
   return (

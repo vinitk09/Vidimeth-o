@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { getReviews, submitReview } from "../utils/api";
 
 const initialSampleReviews = [
   {
@@ -15,7 +16,7 @@ const initialSampleReviews = [
     rating: 5,
     title: "Exceptional Partner Experience",
     quote: "Exceptional business development insights. Your team's dedication to fostering opportunities has been a game-changer for our company.",
-    status: "approved",
+    status: "Verified",
     date: "2026-08-01",
   },
   {
@@ -27,7 +28,7 @@ const initialSampleReviews = [
     rating: 5,
     title: "Seamless Financial Planning",
     quote: "Remarkable impact! Your innovative financial planning and business development strategies transformed our path, leading to sustained growth.",
-    status: "approved",
+    status: "Verified",
     date: "2026-08-05",
   },
   {
@@ -39,7 +40,7 @@ const initialSampleReviews = [
     rating: 5,
     title: "Outstanding Educational Guidance",
     quote: "Business development strategies exceeded expectations, driving growth and ensuring sustained success. Truly an impactful partnership.",
-    status: "approved",
+    status: "Verified",
     date: "2026-08-10",
   },
 ];
@@ -76,23 +77,6 @@ function StarRatingInput({ rating, setRating }) {
   );
 }
 
-function StarIcons({ rating }) {
-  return (
-    <div className="flex gap-1 text-[#f4b400]">
-      {Array.from({ length: 5 }).map((_, idx) => (
-        <svg
-          key={idx}
-          className={`h-4 w-4 ${idx < rating ? "fill-[#f4b400] text-[#f4b400]" : "fill-slate-200 text-slate-200"
-            }`}
-          viewBox="0 0 24 24"
-        >
-          <path d="M12 3.75 14.55 8.9l5.7.82-4.12 4 .97 5.66L12 16.7l-5.1 2.68.97-5.66-4.12-4 5.7-.82L12 3.75Z" />
-        </svg>
-      ))}
-    </div>
-  );
-}
-
 export default function ReviewPage() {
   const [reviews, setReviews] = useState([]);
   const [formData, setFormData] = useState({
@@ -106,58 +90,69 @@ export default function ReviewPage() {
   const [rating, setRating] = useState(5);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
+  const loadReviewsFromApi = async () => {
     try {
-      const stored = localStorage.getItem("vidimeth_reviews");
-      if (stored) {
-        setReviews(JSON.parse(stored));
+      const res = await getReviews();
+      if (res && res.data && Array.isArray(res.data) && res.data.length > 0) {
+        const mapped = res.data.map((r) => ({
+          id: r._id || r.reviewId || `rev-${Math.random()}`,
+          name: r.fullName || r.name,
+          email: r.email,
+          role: r.role || "Client",
+          division: r.division || "General Digital Services",
+          rating: r.rating || 5,
+          title: r.headline || r.title || "Client Review",
+          quote: r.feedback || r.quote || "",
+          status: r.status || "Verified",
+          date: r.createdAt ? new Date(r.createdAt).toISOString().split("T")[0] : "2026-08-21",
+        }));
+        setReviews(mapped);
       } else {
-        localStorage.setItem("vidimeth_reviews", JSON.stringify(initialSampleReviews));
         setReviews(initialSampleReviews);
       }
-    } catch (e) {
-      console.error(e);
-      setReviews(initialSampleReviews);
-    }
-  }, []);
-
-  const saveReviews = (updated) => {
-    setReviews(updated);
-    try {
-      localStorage.setItem("vidimeth_reviews", JSON.stringify(updated));
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.warn("Could not fetch reviews from backend, using fallback/local storage.", err);
+      try {
+        const stored = localStorage.getItem("vidimeth_reviews");
+        if (stored) {
+          setReviews(JSON.parse(stored));
+        } else {
+          setReviews(initialSampleReviews);
+        }
+      } catch (e) {
+        setReviews(initialSampleReviews);
+      }
     }
   };
+
+  useEffect(() => {
+    loadReviewsFromApi();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage("");
 
-    setTimeout(() => {
-      const newReview = {
-        id: `rev-${Date.now()}`,
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        role: formData.role.trim() || "Valued Client",
-        division: formData.division,
-        rating,
-        title: formData.title.trim() || "Client Feedback",
-        quote: formData.quote.trim(),
-        status: "pending",
-        date: new Date().toISOString().split("T")[0],
-      };
+    const payload = {
+      fullName: formData.name.trim(),
+      email: formData.email.trim(),
+      role: formData.role.trim() || "Valued Client",
+      division: formData.division,
+      rating: Number(rating),
+      headline: formData.title.trim() || "Client Feedback",
+      feedback: formData.quote.trim(),
+    };
 
-      const updated = [newReview, ...reviews];
-      saveReviews(updated);
-      setIsSubmitting(false);
+    try {
+      await submitReview(payload);
       setSubmitted(true);
-
       setFormData({
         name: "",
         email: "",
@@ -167,10 +162,42 @@ export default function ReviewPage() {
         quote: "",
       });
       setRating(5);
-    }, 400);
+      // Refresh list
+      loadReviewsFromApi();
+    } catch (err) {
+      console.warn("Backend API submit error, saving locally as fallback:", err);
+      // Fallback: save locally
+      const newReview = {
+        id: `rev-${Date.now()}`,
+        name: payload.fullName,
+        email: payload.email,
+        role: payload.role,
+        division: payload.division,
+        rating: payload.rating,
+        title: payload.headline,
+        quote: payload.feedback,
+        status: "Pending",
+        date: new Date().toISOString().split("T")[0],
+      };
+      const updated = [newReview, ...reviews];
+      setReviews(updated);
+      try {
+        localStorage.setItem("vidimeth_reviews", JSON.stringify(updated));
+      } catch (e) {}
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        role: "",
+        division: "General Digital Services",
+        title: "",
+        quote: "",
+      });
+      setRating(5);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
-
-  const approvedReviews = reviews.filter((r) => r.status === "approved");
 
   return (
     <div className="bg-[#f8fafc] text-[#1d2736] font-sans min-h-screen flex flex-col justify-between">
@@ -186,15 +213,9 @@ export default function ReviewPage() {
           }}
         >
           <div className="relative mx-auto mt-6 sm:mt-8 w-full max-w-4xl" data-aos="fade-up">
-            {/* <span className="inline-block rounded-md bg-[#0077c8]/20 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#38bdf8] border border-[#38bdf8]/30 mb-4">
-              Client Feedback & Reviews
-            </span> */}
             <h1 className="text-[34px] font-bold tracking-tight leading-tight sm:text-[46px] lg:text-[52px]">
               Share Your Experience
             </h1>
-            {/* <p className="mt-4 mx-auto max-w-2xl text-[15px] text-white/85 font-normal leading-relaxed">
-              We value your partnership! Your honest feedback helps us enhance our digital services across education, property, recruitment, finance, and e-commerce.
-            </p> */}
           </div>
         </section>
 
@@ -213,6 +234,12 @@ export default function ReviewPage() {
                     Please complete the form below to submit your rating and feedback.
                   </p>
                 </div>
+
+                {errorMessage && (
+                  <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-xs text-red-700">
+                    {errorMessage}
+                  </div>
+                )}
 
                 {submitted && (
                   <div className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50/90 p-5 text-emerald-900 shadow-sm">
@@ -363,10 +390,8 @@ export default function ReviewPage() {
               </div>
             </div>
 
-            {/* Right Column: User-Facing Guidelines & Verified Reviews Showcase */}
+            {/* Right Column: User-Facing Guidelines & Information */}
             <div className="lg:col-span-5 sticky top-24 self-start z-20 space-y-6">
-
-              {/* Review Standards & Guidelines Card */}
               <div className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
                 <h3 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
                   <svg className="h-5 w-5 text-[#0077c8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -388,7 +413,7 @@ export default function ReviewPage() {
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 font-bold">2</span>
                     <div>
                       <h4 className="font-bold text-slate-900">Featured across Ecosystem</h4>
-                      <p className="mt-0.5">Approved reviews are highlighted on our home platform and portal showcases like VM Academy, VillageMyCity, and GoJobin.</p>
+                      <p className="mt-0.5">Verified reviews are highlighted on our home platform and portal showcases like VM Academy, VillageMyCity, and GoJobin.</p>
                     </div>
                   </div>
 
@@ -401,7 +426,6 @@ export default function ReviewPage() {
                   </div>
                 </div>
               </div>
-
             </div>
 
           </div>

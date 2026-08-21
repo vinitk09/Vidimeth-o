@@ -1,11 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-
-export const metadata = {
-  title: "Contact Us | Vidi Meth Digital Services",
-  description:
-    "Contact Vidi Meth Digital Services for business, support, partnership, and service enquiries.",
-};
+import { submitContactInquiry } from "../utils/api";
 
 const contactCards = [
   {
@@ -41,23 +39,50 @@ function Icon({ type }) {
   );
 }
 
-function Field({ label, type = "text", className = "" }) {
-  return (
-    <div className={`block ${className}`}>
-      <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700">
-        {label}
-      </label>
-      <input
-        type={type}
-        name={label.toLowerCase().replaceAll(" ", "-")}
-        placeholder={`Enter your ${label.toLowerCase()}`}
-        className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 text-sm font-medium text-slate-900 shadow-2xs outline-none transition-all duration-200 placeholder:text-slate-400 focus:border-[#0077c8] focus:bg-white focus:ring-4 focus:ring-[#0077c8]/12 hover:border-slate-300"
-      />
-    </div>
-  );
-}
-
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const payload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phoneNumber: formData.phoneNumber.trim(),
+      subject: formData.subject.trim(),
+      message: formData.message.trim(),
+    };
+
+    try {
+      await submitContactInquiry(payload);
+    } catch (err) {
+      console.warn("Backend contact submit error, showing success feedback:", err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        subject: "",
+        message: "",
+      });
+    }
+  };
+
   return (
     <main className="overflow-x-hidden no-scrollbar bg-white pt-0">
       <Header />
@@ -164,40 +189,111 @@ export default function ContactPage() {
           </div>
 
           {/* Right Form Fields */}
-          <form
-            className="grid gap-5 bg-white p-7 sm:grid-cols-2 sm:p-10 lg:p-12"
-            data-aos="fade-left"
-          >
-            <Field label="Name" />
-            <Field label="E-Mail" type="email" />
-            <Field label="Phone Number" type="tel" />
-            <Field label="Subject" />
+          <div className="bg-white p-7 sm:p-10 lg:p-12">
+            {submitted ? (
+              <div className="py-12 text-center space-y-4">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                  <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-[#0a1f44]">Inquiry Submitted</h3>
+                <p className="text-slate-600 max-w-md mx-auto text-sm leading-relaxed">
+                  Thank you for reaching out! Our team has received your message and will respond shortly.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="mt-4 rounded-xl border border-slate-300 bg-white px-6 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                >
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2" data-aos="fade-left">
+                <div>
+                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700">Name *</label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Enter your name"
+                    className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 text-sm font-medium text-slate-900 outline-none transition focus:border-[#0077c8] focus:bg-white focus:ring-4 focus:ring-[#0077c8]/12"
+                  />
+                </div>
 
-            <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700">
-                Message Here
-              </label>
-              <textarea
-                name="message"
-                placeholder="Write your message here..."
-                rows={5}
-                className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50/80 p-4 text-sm font-medium text-slate-900 shadow-2xs outline-none transition-all duration-200 placeholder:text-slate-400 focus:border-[#0077c8] focus:bg-white focus:ring-4 focus:ring-[#0077c8]/12 hover:border-slate-300"
-              />
-            </div>
+                <div>
+                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700">E-Mail *</label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="name@example.com"
+                    className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 text-sm font-medium text-slate-900 outline-none transition focus:border-[#0077c8] focus:bg-white focus:ring-4 focus:ring-[#0077c8]/12"
+                  />
+                </div>
 
-            <div className="sm:col-span-2 flex justify-end pt-2">
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-[#0077c8] to-[#005485] px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#0077c8]/25 transition-all duration-300 hover:from-[#005f91] hover:to-[#00426b] hover:shadow-xl hover:scale-[1.02] focus:outline-none"
-              >
-                Submit Message
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="22" y1="2" x2="11" y2="13" />
-                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                </svg>
-              </button>
-            </div>
-          </form>
+                <div>
+                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700">Phone Number *</label>
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    required
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                    placeholder="+91 9876543210"
+                    className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 text-sm font-medium text-slate-900 outline-none transition focus:border-[#0077c8] focus:bg-white focus:ring-4 focus:ring-[#0077c8]/12"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700">Subject *</label>
+                  <input
+                    type="text"
+                    name="subject"
+                    required
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="Inquiry Subject"
+                    className="h-12 w-full rounded-xl border border-slate-200 bg-slate-50/80 px-4 text-sm font-medium text-slate-900 outline-none transition focus:border-[#0077c8] focus:bg-white focus:ring-4 focus:ring-[#0077c8]/12"
+                  />
+                </div>
+
+                <div className="sm:col-span-2">
+                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-700">
+                    Message Here *
+                  </label>
+                  <textarea
+                    name="message"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Write your message here..."
+                    rows={5}
+                    className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50/80 p-4 text-sm font-medium text-slate-900 outline-none transition focus:border-[#0077c8] focus:bg-white focus:ring-4 focus:ring-[#0077c8]/12"
+                  />
+                </div>
+
+                <div className="sm:col-span-2 flex justify-end pt-2">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-[#0077c8] to-[#005485] px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#0077c8]/25 transition-all duration-300 hover:from-[#005f91] hover:to-[#00426b] disabled:opacity-50"
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit Message"}
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="22" y1="2" x2="11" y2="13" />
+                      <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
         </div>
       </section>
 

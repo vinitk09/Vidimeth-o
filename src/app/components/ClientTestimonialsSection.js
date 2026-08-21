@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { getReviews } from "../utils/api";
 
 const defaultTestimonials = [
   {
@@ -13,7 +14,7 @@ const defaultTestimonials = [
     rating: 5,
     quote:
       "Exceptional business development insights. Your team's dedication to fostering opportunities has been a game-changer for our company.",
-    status: "approved",
+    status: "Verified",
   },
   {
     id: "default-2",
@@ -24,7 +25,7 @@ const defaultTestimonials = [
     rating: 5,
     quote:
       "Remarkable impact! Your innovative financial planning and business development strategies transformed our path, leading to sustained growth.",
-    status: "approved",
+    status: "Verified",
   },
   {
     id: "default-3",
@@ -35,7 +36,7 @@ const defaultTestimonials = [
     rating: 5,
     quote:
       "Business development strategies exceeded expectations, driving growth and ensuring sustained success. Truly an impactful partnership.",
-    status: "approved",
+    status: "Verified",
   },
   {
     id: "default-4",
@@ -46,7 +47,7 @@ const defaultTestimonials = [
     rating: 5,
     quote:
       "VillageMyCity made property discovery so simple and transparent. We connected directly with verified sellers online and closed our deal hassle-free.",
-    status: "approved",
+    status: "Verified",
   },
   {
     id: "default-5",
@@ -57,7 +58,7 @@ const defaultTestimonials = [
     rating: 5,
     quote:
       "GoJobin enabled us to post job openings for free and quickly connect with highly qualified candidates across multiple engineering & management streams.",
-    status: "approved",
+    status: "Verified",
   },
   {
     id: "default-6",
@@ -68,7 +69,7 @@ const defaultTestimonials = [
     rating: 5,
     quote:
       "VMhomeMART opened up direct online retail access for our electronics store. Customer reach and order management have been outstanding.",
-    status: "approved",
+    status: "Verified",
   },
 ];
 
@@ -98,20 +99,53 @@ export default function ClientTestimonialsSection() {
   const [isPaused, setIsPaused] = useState(false);
   const [visibleCards, setVisibleCards] = useState(3);
 
-  // Load dynamically approved reviews from localStorage
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem("vidimeth_reviews");
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        const approvedOnly = parsed.filter((item) => item.status === "approved");
-        if (approvedOnly.length > 0) {
-          setTestimonials([...approvedOnly, ...defaultTestimonials]);
+    async function fetchLiveReviews() {
+      try {
+        const res = await getReviews();
+        if (res && res.data && Array.isArray(res.data) && res.data.length > 0) {
+          const verifiedOnly = res.data
+            .filter((item) => item.status === "Verified" || item.status === "approved")
+            .map((item) => ({
+              id: item._id || item.reviewId,
+              name: item.fullName || item.name,
+              role: item.role || "Client",
+              division: item.division || "General Digital Services",
+              initials: (item.fullName || item.name || "VM")
+                .split(" ")
+                .map((n) => n[0])
+                .join("")
+                .slice(0, 2)
+                .toUpperCase(),
+              rating: item.rating || 5,
+              quote: item.feedback || item.quote || item.headline,
+              status: item.status,
+            }));
+          if (verifiedOnly.length > 0) {
+            setTestimonials([...verifiedOnly, ...defaultTestimonials]);
+            return;
+          }
         }
+      } catch (err) {
+        console.warn("Could not fetch reviews for testimonials section:", err);
       }
-    } catch (err) {
-      console.error("Failed to load reviews:", err);
+
+      // Local storage fallback
+      try {
+        const stored = localStorage.getItem("vidimeth_reviews");
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          const approvedOnly = parsed.filter(
+            (item) => item.status === "approved" || item.status === "Verified"
+          );
+          if (approvedOnly.length > 0) {
+            setTestimonials([...approvedOnly, ...defaultTestimonials]);
+          }
+        }
+      } catch (e) {}
     }
+
+    fetchLiveReviews();
   }, []);
 
   // Handle responsive visible card count
@@ -186,7 +220,7 @@ export default function ClientTestimonialsSection() {
           onMouseLeave={() => setIsPaused(false)}
           data-aos="fade-up"
         >
-          {/* Left Outward Arrow Button */}
+          {/* Left Arrow Button */}
           <button
             type="button"
             onClick={handlePrev}
@@ -198,7 +232,7 @@ export default function ClientTestimonialsSection() {
             </svg>
           </button>
 
-          {/* Right Outward Arrow Button */}
+          {/* Right Arrow Button */}
           <button
             type="button"
             onClick={handleNext}
@@ -281,19 +315,6 @@ export default function ClientTestimonialsSection() {
             </div>
           </div>
 
-          {/* Mobile Dot Indicators */}
-          <div className="mt-4 flex items-center justify-center gap-1.5 sm:hidden">
-            {testimonials.map((_, dotIdx) => (
-              <button
-                key={dotIdx}
-                type="button"
-                onClick={() => setActiveIndex(dotIdx)}
-                className={`h-2 rounded-full transition-all duration-300 ${activeIndex === dotIdx ? "w-6 bg-[#0077c8]" : "w-2 bg-slate-300"
-                  }`}
-                aria-label={`Go to slide ${dotIdx + 1}`}
-              />
-            ))}
-          </div>
           {/* Desktop Pagination Dots */}
           <div className="mt-8 hidden sm:flex justify-center items-center gap-2">
             {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
