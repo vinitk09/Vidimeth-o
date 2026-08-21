@@ -82,7 +82,7 @@ export default function HeroBannerSlider() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#04194d] pt-24 sm:pt-0 group"
+      className="relative w-full overflow-hidden bg-[#04194d] pt-0 group"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}

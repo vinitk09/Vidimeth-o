@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://187.77.184.141:5050";
 
 /**
  * Generic fetch wrapper with standard error handling
