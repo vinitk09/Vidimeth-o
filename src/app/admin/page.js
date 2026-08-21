@@ -62,7 +62,7 @@ export default function AdminDashboardPage() {
                 <h1 className="text-3xl font-bold text-white">Vidi Meth Unified Admin Portal</h1>
               </div>
               <p className="mt-1.5 text-xs text-slate-400">
-                Centralized Control Panel &amp; Endpoint Manager (`http://localhost:5000`)
+                Centralized Control Panel &amp; Endpoint Manager (`http://187.77.184.141:5050`)
               </p>
             </div>
             <Link
@@ -113,7 +113,7 @@ export default function AdminDashboardPage() {
           <div className="mt-12 rounded-2xl border border-slate-800 bg-slate-800/40 p-6 text-xs text-slate-400">
             <h4 className="font-bold text-slate-200 uppercase tracking-wider mb-2">Backend Connection Details</h4>
             <p className="leading-relaxed">
-              Base URL: <code className="bg-slate-900 px-2 py-0.5 rounded text-sky-400">http://localhost:5000</code>.
+              Base URL: <code className="bg-slate-900 px-2 py-0.5 rounded text-sky-400">http://187.77.184.141:5050</code>.
               All admin actions directly call backend API endpoints for live status updates, content moderation, candidate tracking, and grievance redressal handling.
             </p>
           </div>
