@@ -1,10 +1,21 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://187.77.184.141:5050";
+const getBaseUrl = () => {
+  if (typeof window !== "undefined") {
+    const envUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+    if (envUrl && envUrl.startsWith("https://")) {
+      return envUrl;
+    }
+    if (window.location.protocol === "https:") {
+      return "";
+    }
+  }
+  return process.env.NEXT_PUBLIC_API_BASE_URL || "http://187.77.184.141:5050";
+};
 
 /**
  * Generic fetch wrapper with standard error handling
  */
 async function apiFetch(endpoint, options = {}) {
-  const url = `${BASE_URL}${endpoint}`;
+  const url = `${getBaseUrl()}${endpoint}`;
   try {
     const response = await fetch(url, options);
     const contentType = response.headers.get("content-type");
