@@ -11,7 +11,7 @@ const bannerSlides = [
   },
   {
     id: 2,
-    src: "/SUB 1.webp",
+    src: "/bannerbuysell.png",
     alt: "Vidi Meth Digital Services Sub Banner 1",
   },
   {
@@ -185,10 +185,9 @@ export default function HeroBannerSlider() {
             onClick={() => handleSelectSlide(index)}
             className={`
               h-2.5 rounded-full transition-all duration-300
-              ${
-                activeIndex === index
-                  ? "w-8 bg-[#0077c8]"
-                  : "w-2.5 bg-white/50 hover:bg-white/80"
+              ${activeIndex === index
+                ? "w-8 bg-[#0077c8]"
+                : "w-2.5 bg-white/50 hover:bg-white/80"
               }
             `}
             aria-label={`Go to slide ${index + 1}`}
