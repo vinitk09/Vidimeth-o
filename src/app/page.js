@@ -121,16 +121,20 @@ export default function Home() {
       <section className="bg-white px-5 py-16 text-[#0a1f44] sm:px-8 lg:px-10 lg:py-24">
         <div className="mx-auto flex flex-col items-center text-center w-full max-w-7xl">
           <p className="mb-3 text-sm font-normal uppercase tracking-[0.18em] text-[#1b8b4b]" data-aos="fade-up">
-            Welcome To
+            Building Digital Platforms That Empower Lives
           </p>
-          <h1 className="max-w-4xl text-[30px] font-bold  text-black sm:text-[36px] lg:text-[32px]" data-aos="fade-up" data-aos-delay="100">
+          {/* <h1 className="max-w-4xl text-[30px] font-bold  text-black sm:text-[36px] lg:text-[32px]" data-aos="fade-up" data-aos-delay="100">
             Vidi Meth Digital Services (OPC) Private Limited
-          </h1>
-          <p className="mt-5 max-w-3xl text-[15px] sm:text-[15px] font-normal  text-[#555555]" data-aos="fade-up" data-aos-delay="200">
-            To carry on in India or elsewhere the business of concept
-            marketing and online marketing, advertising, business management,
-            business administration, office function, direct marketing and to
-            provide high quality of services and products to clients.
+          </h1> */}
+          <p className="mt-5 max-w-3xl text-[15px] sm:text-[15px] font-normal  text-[#555555] text-justify" data-aos="fade-up" data-aos-delay="200">
+            <b>Vidi Meth Digital Services</b> is a modern digital services company focused on helping businesses,
+            entrepreneurs, and individuals grow through online marketing, digital solutions, creative services,
+            branding, and technology-driven support. Our goal is to provide high-quality, affordable, and reliable
+            digital services that improve online presence, attract customers, and support long-term business
+            growth. we are developing a multi-platform digital ecosystem, with dedicated websites and digital
+            portals for different sectors such as Education, Real Estate, Jobs & Careers, Insurance, Loan &
+            Financial Support, E-Commerce and other emerging services.
+
           </p>
 
           <div className="mt-12 grid w-full grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5">

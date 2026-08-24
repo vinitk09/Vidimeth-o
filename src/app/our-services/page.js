@@ -218,7 +218,10 @@ export default function OurServicesPage() {
             <h2 className="text-[30px] font-bold text-black sm:text-[32px]">
               Innovative Solutions Built For Growth
             </h2>
-            <div className="mt-3 h-1 w-16 rounded-full bg-[#0077c8]" />
+            <p className="mt-4 max-w-3xl text-sm sm:text-[15px] font-normal leading-relaxed text-slate-600">
+              We believe that the digital world should create real opportunities. Through our online platforms and services, we strive to provide reliable information, convenient digital solutions, and meaningful connections between users and service providers.
+            </p>
+            <div className="mt-4 h-1 w-16 rounded-full bg-[#0077c8]" />
           </div>
 
           {/* Category Filter Pills */}

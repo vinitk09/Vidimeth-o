@@ -96,14 +96,37 @@ export default function FoundationNetworkSection() {
         <div className="max-w-5xl" data-aos="fade-up">
           <div className="mb-5 flex flex-wrap items-center gap-5">
             <h2 className="text-[20px] font-bold  text-black sm:text-[32px]">
-              Facilitating Global Business Networks
+              Why Separate Websites
             </h2>
           </div>
           <p className="max-w-4xl text-[15px] font-normal leading-[1.72] text-[#1d2736] sm:text-[16px]">
-            We highly value collaborative relationships with our partners.
-            Together, we create practical digital platforms for education,
-            careers, property, finance, retail, and shared business growth.
+            Rather than putting everything into one complicated portal, our approach is to develop dedicated
+            websites for individual sectors. Each platform can be designed around the specific requirements,
+            expectations, and user journey of that particular industry.
           </p>
+
+          <div className="mt-5">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#0077c8] mb-3">
+              This approach helps us create:
+            </p>
+            <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-semibold text-slate-800">
+              <span className="inline-flex items-center rounded-lg bg-white px-3.5 py-2 border border-slate-200 shadow-xs text-[#0a1f44]">
+                Focused Experience
+              </span>
+              <span className="text-[#0077c8] font-bold">→</span>
+              <span className="inline-flex items-center rounded-lg bg-white px-3.5 py-2 border border-slate-200 shadow-xs text-[#0a1f44]">
+                Relevant Information
+              </span>
+              <span className="text-[#0077c8] font-bold">→</span>
+              <span className="inline-flex items-center rounded-lg bg-white px-3.5 py-2 border border-slate-200 shadow-xs text-[#0a1f44]">
+                Easier Navigation
+              </span>
+              <span className="text-[#0077c8] font-bold">→</span>
+              <span className="inline-flex items-center rounded-lg bg-[#0077c8] text-white px-3.5 py-2 shadow-sm font-bold">
+                Better Digital Access
+              </span>
+            </div>
+          </div>
         </div>
 
         <div

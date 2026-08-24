@@ -114,6 +114,7 @@ const categoryFilters = [
   { id: "recruitment", label: "Recruitment" },
   { id: "finance", label: "Finance" },
   { id: "ecommerce", label: "E-Commerce" },
+  { id: "whychooseus", label: "Why Choose Us" },
 ];
 
 export default function OurDivisionsContent() {
@@ -170,8 +171,10 @@ export default function OurDivisionsContent() {
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-[32px]">
             Specialized Platforms Built for Scale
           </h2>
-          <p className="mt-3 text-sm text-slate-600 max-w-2xl mx-auto">
-            Each division is independently operated to serve targeted consumer and enterprise needs with maximum efficiency.
+          <p className="mt-3 text-sm sm:text-[15px] leading-relaxed text-slate-600 max-w-3xl mx-auto">
+            At Vidi Meth Digital Services, we are developing a multi-platform digital ecosystem, with dedicated
+            websites and digital portals for different sectors such as Education, Real Estate, Jobs & Careers,
+            Insurance, Loan & Financial Support, E-Commerce and other emerging services.
           </p>
 
           {/* Interactive Category Filter Pills */}
@@ -293,6 +296,79 @@ export default function OurDivisionsContent() {
               </div>
             </article>
           ))}
+
+          {/* Why Choose Us Feature Card (Beside VMhomeMART, No Images) */}
+          {(activeCategory === "all" || activeCategory === "whychooseus") && (
+            <article
+              className="group relative flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:border-[#005f91]/40 hover:shadow-lg"
+              data-aos="fade-up"
+            >
+              <div>
+                {/* Header Row: Title & Badge */}
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#005f91]/10 text-[#005f91]">
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </span>
+                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#005f91] transition-colors">
+                      Why Choose Us
+                    </h3>
+                  </div>
+
+                  <span className="rounded-md bg-[#005f91]/10 text-[#005f91] px-2.5 py-1 text-xs font-semibold border border-[#005f91]/20">
+                    Core Principles
+                  </span>
+                </div>
+
+                {/* Subtitle / Headline */}
+                <p className="mt-4 text-xs font-bold text-[#005f91] leading-relaxed">
+                  One Company. Multiple Digital Platforms. One Vision — Making Digital Access Simpler.
+                </p>
+
+                <p className="mt-4 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                  We Focus On:
+                </p>
+
+                {/* 11 Focus Points List */}
+                <div className="mt-2.5 space-y-2 text-xs">
+                  {[
+                    { name: "Innovation", text: "Exploring modern technologies, ideas, digital business models and better ways of working." },
+                    { name: "Quality", text: "Maintaining high standards in the services we provide." },
+                    { name: "Customer Focus", text: "Understanding our clients' requirements and delivering practical solutions." },
+                    { name: "Reliability", text: "Building long-term relationships through transparency and professionalism." },
+                    { name: "Growth", text: "Helping our customers move forward in an increasingly digital world." },
+                    { name: "Trust", text: "We aim to build long-term relationships through professionalism and responsible business practices, maintaining transparency in our platform operations, partnerships and user interactions." },
+                    { name: "Accessibility", text: "Making digital information and services easier for users to discover." },
+                    { name: "Simplicity", text: "Reducing unnecessary complexity in online experiences." },
+                    { name: "Connectivity", text: "Connecting users, businesses, professionals and service providers." },
+                    { name: "Scalability", text: "Building platforms that can expand across categories, cities, states & markets." },
+                    { name: "Practical Solutions", text: "We focus on solutions that can create meaningful business value." },
+                  ].map((item) => (
+                    <div
+                      key={item.name}
+                      className="rounded-lg border border-slate-100 bg-[#f8fafc] p-2.5 transition-colors hover:bg-white hover:border-[#005f91]/30"
+                    >
+                      <span className="font-bold text-slate-900 text-xs text-[#005f91]">
+                        {item.name}:{" "}
+                      </span>
+                      <span className="text-slate-600 text-xs leading-relaxed">
+                        {item.text}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tagline / Footer Quote */}
+              <div className="mt-6 pt-4 border-t border-slate-100 text-center">
+                <p className="text-xs font-bold text-slate-800 italic">
+                  “Connecting People. Empowering Opportunities. Building Digital Futures.”
+                </p>
+              </div>
+            </article>
+          )}
         </div>
       </section>
 

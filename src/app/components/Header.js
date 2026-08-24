@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -143,8 +144,16 @@ export default function Header() {
   const [isMobileLegalOpen, setIsMobileLegalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const dropdownRef = useRef(null);
+  const pathname = usePathname();
 
-  const useDarkText = isScrolled;
+  // Determine if the current page has a light top background (no dark hero banner)
+  const isLightPage =
+    pathname === "/vmhomemart" ||
+    pathname?.startsWith("/news") ||
+    pathname?.startsWith("/admin");
+
+  const isHeaderWhite = isScrolled || isMenuOpen || isLightPage;
+  const useDarkText = isHeaderWhite;
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -167,15 +176,15 @@ export default function Header() {
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   return (
     <header
       className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled
-          ? "border-b border-slate-200/80 bg-white text-[#0a1f44] shadow-[0_8px_26px_rgba(10,31,68,0.08)] backdrop-blur-md"
+        isHeaderWhite
+          ? "border-b border-slate-200 bg-white text-slate-900 shadow-[0_8px_26px_rgba(10,31,68,0.08)] backdrop-blur-md"
           : "border-b border-white/10 bg-transparent text-white"
       }`}
     >
@@ -197,7 +206,7 @@ export default function Header() {
           <div className="flex flex-col justify-center">
             <span
               className={`text-[15px] font-bold leading-tight transition-colors sm:text-[17px] ${
-                useDarkText ? "text-[#0a1f44]" : "text-white"
+                useDarkText ? "text-slate-900" : "text-white"
               }`}
             >
               Vidi Meth Digital Services
@@ -206,17 +215,24 @@ export default function Header() {
         </Link>
 
         <div className="ml-auto hidden items-center gap-2 xl:flex">
-          {navLinks.map((link) => (
-            <NavItem
-              key={link.href}
-              link={link}
-              className={`nav-link rounded-md px-4 py-2 text-[15px] font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${
-                useDarkText
-                  ? "text-[#0a1f44] hover:text-[#0077c8]"
-                  : "text-white hover:bg-white/10 hover:text-white"
-              }`}
-            />
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <NavItem
+                key={link.href}
+                link={link}
+                className={`nav-link rounded-md px-4 py-2 text-[15px] transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${
+                  isActive
+                    ? useDarkText
+                      ? "text-[#0077c8] font-bold"
+                      : "text-white font-bold"
+                    : useDarkText
+                      ? "text-slate-900 font-semibold hover:text-[#0077c8]"
+                      : "text-white font-medium hover:bg-white/10 hover:text-white"
+                }`}
+              />
+            );
+          })}
 
           {/* Explore Dropdown (Desktop) */}
           <div
@@ -231,10 +247,10 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setIsExploreOpen((prev) => !prev)}
-              className={`nav-link flex items-center gap-1.5 rounded-md px-4 py-2 text-[15px] font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${
+              className={`nav-link flex items-center gap-1.5 rounded-md px-4 py-2 text-[15px] transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0077c8] ${
                 useDarkText
-                  ? "text-[#0a1f44] hover:text-[#0077c8]"
-                  : "text-white hover:bg-white/10 hover:text-white"
+                  ? "text-slate-900 font-semibold hover:text-[#0077c8]"
+                  : "text-white font-medium hover:bg-white/10 hover:text-white"
               }`}
               aria-expanded={isExploreOpen}
             >
@@ -244,7 +260,7 @@ export default function Header() {
                   isExploreOpen
                     ? "rotate-180 text-[#0077c8]"
                     : useDarkText
-                      ? "text-slate-500"
+                      ? "text-slate-700"
                       : "text-white/80"
                 }`}
                 viewBox="0 0 24 24"

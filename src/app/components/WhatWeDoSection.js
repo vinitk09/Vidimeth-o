@@ -50,7 +50,8 @@ export default function WhatWeDoSection() {
             To carry on in India or elsewhere the business of concept marketing and online marketing, advertising, business management, business administration, office function, direct marketing and to provide high quality of services and products to clients.
           </p>
           <p className="mt-5 text-[15px] font-normal leading-[1.68] text-[#555555]">
-            <strong>Our Services:</strong> We provide master planning for you. Our aim is to provide one stop effective digital marketing solutions for all businesses. Our digital marketing expertise includes:
+            <strong>Our Services:</strong> Dedicated websites such as Education, Real Estate, Jobs & Careers, Insurance, Loan & Financial
+            Support, E-Commerce and other emerging services.
           </p>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2">

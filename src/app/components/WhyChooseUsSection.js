@@ -110,16 +110,43 @@ export default function WhyChooseUsSection() {
     <section className="bg-slate-200 py-20 px-5 sm:px-8 lg:px-10 overflow-hidden">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center" data-aos="fade-up">
+        <div className="mx-auto max-w-4xl text-center" data-aos="fade-up">
           <span className="inline-block rounded-full bg-[#0077c8]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#0077c8]">
             Why Choose Us
           </span>
-          <h2 className="mt-4 text-3xl font-bold  text-black sm:text-[32px] ">
-            Why Businesses Depend On Us
+          <h2 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl leading-tight">
+            One Company. Multiple Digital Platforms. <br className="hidden sm:inline" />
+            <span className="text-[#0077c8]">One Vision</span> — Making Digital Access Simpler.
           </h2>
-          <p className="mt-4 text-[15px] leading-relaxed text-slate-600">
-            Businesses have come to depend on us for our expertise, quality, and customer service across universities, real estate, government agencies, and business owners.
-          </p>
+
+          {/* Focus Points Badges */}
+          <div className="mt-6 flex flex-col items-center">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
+              We Focus On
+            </span>
+            <div className="flex flex-wrap items-center justify-center gap-2 max-w-3xl">
+              {[
+                "Innovation",
+                "Quality",
+                "Reliability",
+                "Growth",
+                "Trust",
+                "Accessibility",
+                "Simplicity",
+                "Connectivity",
+                "Scalability",
+                "Practical Solutions",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-300/80 bg-white px-3.5 py-1 text-xs font-medium text-slate-700 shadow-xs transition-all duration-200 hover:border-[#0077c8]/50 hover:bg-[#f0f7ff] hover:text-[#0077c8]"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#0077c8]" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* 9 Grid Cards (3x3 on Desktop) */}

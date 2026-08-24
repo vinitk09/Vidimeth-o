@@ -80,42 +80,39 @@ const platforms = [
 const whyChoosePoints = [
   {
     number: "01",
-    title: "We Make It Personal",
+    title: "Our Commitment",
     description:
-      "When you work with us, you can count on personalized, one-on-one service every step of the way.",
+      "We are committed to building our platforms with a strong focus on simplicity, accessibility, innovation, reliability, developing digital platforms with a long-term perspective and responsible digital practices. As our ecosystem grows, we aim to continuously improve our technology, services, partnerships, and user experience.",
   },
   {
     number: "02",
-    title: "We Innovate for You",
-    description: "We're a team of dreamers, thinkers and creators.",
+    title: "Our Vision",
+    description:
+      "Our vision is to build a reliable and customer-focused digital ecosystem where people can conveniently access education, jobs, real estate, insurance, loan support, e-commerce, and other digital services from one platform.",
   },
   {
     number: "03",
-    title: "Leaders Trust Us",
-    description: "We're proud of the company we keep.",
+    title: "Our Mission",
+    description:
+      "Our mission is to use technology to simplify access, connect people with opportunities, provide useful information, and deliver convenient digital services while maintaining transparency, professionalism, and customer satisfaction.",
   },
   {
     number: "04",
-    title: "Our Reputation",
-    description: "Within the Industry is impeccable.",
+    title: "Our Approach",
+    description:
+      "Discover. Connect. Compare. Choose. Grow.\nWe are building our platforms around five fundamental principles:\n\n• Discover : Help users find relevant information, products, services and opportunities.\n• Connect : Connect users with institutions, businesses, employers, professionals and service providers.\n• Compare : Where appropriate, provide useful information that helps users evaluate available choices.\n• Choose : Enable users to make better-informed decisions based on their own requirements.\n• Grow : Create digital opportunities for individuals, businesses, professionals and entrepreneurs.",
   },
   {
     number: "05",
-    title: "Communication & Responsiveness",
+    title: "Our Core Aspirations",
     description:
-      "We are known for our proven ability to maintain open communication around the clock and a high level of responsiveness to our clients.",
+      "We aspire to create digital platforms that are:\n\nTrusted • Accessible • User-Friendly • Innovative • Transparent • Scalable • Technology-Driven • Customer-Centric • Building a Digital Ecosystem for the Future",
   },
   {
     number: "06",
-    title: "Social Media",
+    title: "Our Tagline",
     description:
-      "Facebook, Twitter, LinkedIn ... Technology has changed the way we live, play, work, communicate, shop and advertise. We embrace the ever-changing world of technology and are always seeking the best applications to serve our clients personally and efficiently.",
-  },
-  {
-    number: "07",
-    title: "Commitment",
-    description:
-      "Commitment is a term that we honour. We are trusted to fulfil promises and take care of our clients' concerns. We're the trusted partner that takes a proactive approach to your technology. We're the fellow small business owner that understand your day-to-day needs. We're the built-in technology support staff that's always there when you need us. We Stand by Our Values. Our Clients Are Happy.",
+      "Vidi Meth Digital Services — Connecting Ideas, Technology & Growth.",
   },
 ];
 
@@ -193,11 +190,60 @@ export default function AboutPage() {
                 Why Choose Us
               </span> */}
               <h2 className="text-2xl font-bold text-black sm:text-[30px] leading-tight">
-                Empowering Digital Innovation Across India
+                Connecting People, Opportunities & Services Through One Digital Ecosystem
               </h2>
-              <p className="mt-3 text-base sm:text-[15px] text-slate-700 font-normal leading-relaxed">
-                Businesses have come to depend on us for our expertise, quality, and customer service. We create and support digital properties that solve everyday business and customer needs across multiple sectors.
-              </p>
+              <div className="mt-4 space-y-4 text-slate-700 text-sm sm:text-[15px] font-normal leading-relaxed">
+                <p>
+                  Welcome to <strong className="font-semibold text-slate-900">Vidi Meth Digital Services</strong>, a technology-driven digital services company focused on building a trusted, convenient, and accessible ecosystem for individuals, families, students, job seekers, professionals, businesses, property seekers, and consumers.
+                </p>
+
+                <div className="space-y-3 pt-1">
+                  <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-[#1d6b9e]" />
+                    Our Digital Ecosystem
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600">
+                    At Vidi Meth Digital Services, we are developing a multi-platform digital ecosystem, with dedicated websites and digital portals for different sectors:
+                  </p>
+
+                  <div className="space-y-2.5 pt-1 text-xs sm:text-sm">
+                    {[
+                      { name: "Education", text: "Educational information, courses, admissions, learning resources, and related services." },
+                      { name: "Real Estate", text: "Property listings, buying, selling, renting, and real-estate information." },
+                      { name: "Jobs & Careers", text: "Job opportunities, recruitment information, career resources, and employment support." },
+                      { name: "Insurance", text: "Insurance-related information, comparisons, guidance, and support services." },
+                      { name: "Loan Support", text: "Loan information, eligibility guidance, financial resources, and application support." },
+                      { name: "E-Commerce", text: "Online shopping, products, services, and digital marketplace solutions." },
+                      { name: "Many More Services", text: "We aim to continuously expand into new digital categories based on customer needs and emerging opportunities." },
+                    ].map((item) => (
+                      <div key={item.name} className="flex items-start gap-2.5">
+                        <span className="mt-0.5 text-[#1d6b9e] font-bold text-sm leading-none shrink-0">
+                          ✓
+                        </span>
+                        <p className="text-slate-700 leading-relaxed">
+                          <strong className="font-semibold text-slate-900">{item.name}:</strong> {item.text}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#1d6b9e] mb-2.5">
+                    Each platform can have:
+                  </p>
+                  <div className="flex flex-wrap items-center gap-1.5 text-xs font-semibold text-slate-800">
+                    {["Its own identity", "Its own website", "Its own audience", "Its own services", "Its own digital experience"].map((step, idx, arr) => (
+                      <span key={step} className="flex items-center gap-1.5">
+                        <span className="rounded-md bg-white px-2.5 py-1.5 border border-slate-200 text-[#0a1f44] shadow-2xs">
+                          {step}
+                        </span>
+                        {idx < arr.length - 1 && <span className="text-[#1d6b9e] font-bold">→</span>}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Point-wise List */}
@@ -215,7 +261,7 @@ export default function AboutPage() {
                       <h3 className="text-base font-bold text-slate-900 group-hover:text-[#1d6b9e] transition-colors">
                         {pt.title}
                       </h3>
-                      <p className="mt-1 text-sm text-slate-600 leading-relaxed font-normal">
+                      <p className="mt-1 text-sm text-slate-600 leading-relaxed font-normal whitespace-pre-line">
                         {pt.description}
                       </p>
                     </div>
@@ -237,8 +283,39 @@ export default function AboutPage() {
             <h2 className="text-[32px] font-bold tracking-tight text-[#111827]">
               Our Platforms
             </h2>
-            <div className="mt-3 flex items-center gap-3 border-l-2 border-[#1d6b9e] pl-3 text-[15px] font-normal text-slate-600">
-              Through innovation and collaboration, we build specialized digital platforms to empower education, career, real estate, finance, and commerce.
+            <div className="mt-3 flex flex-col gap-3 border-l-2 border-[#1d6b9e] pl-3">
+              <p className="text-[15px] font-semibold text-slate-900">
+                Whether someone is:
+              </p>
+              <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-medium text-slate-700">
+                <span className="inline-flex items-center rounded-lg bg-white px-3 py-1.5 border border-slate-200 shadow-2xs text-slate-800">
+                  Looking for a course
+                </span>
+                <span className="text-[#1d6b9e] font-bold">→</span>
+                <span className="inline-flex items-center rounded-lg bg-white px-3 py-1.5 border border-slate-200 shadow-2xs text-slate-800">
+                  Searching for a job
+                </span>
+                <span className="text-[#1d6b9e] font-bold">→</span>
+                <span className="inline-flex items-center rounded-lg bg-white px-3 py-1.5 border border-slate-200 shadow-2xs text-slate-800">
+                  Exploring a property
+                </span>
+                <span className="text-[#1d6b9e] font-bold">→</span>
+                <span className="inline-flex items-center rounded-lg bg-white px-3 py-1.5 border border-slate-200 shadow-2xs text-slate-800">
+                  Understanding insurance
+                </span>
+                <span className="text-[#1d6b9e] font-bold">→</span>
+                <span className="inline-flex items-center rounded-lg bg-white px-3 py-1.5 border border-slate-200 shadow-2xs text-slate-800">
+                  Seeking loan information
+                </span>
+                <span className="text-[#1d6b9e] font-bold">→</span>
+                <span className="inline-flex items-center rounded-lg bg-white px-3 py-1.5 border border-slate-200 shadow-2xs text-slate-800">
+                  Shopping online
+                </span>
+                <span className="text-[#1d6b9e] font-bold">→</span>
+                <span className="inline-flex items-center rounded-lg bg-[#1d6b9e] text-white px-3 py-1.5 font-semibold shadow-2xs">
+                  Looking for a local service
+                </span>
+              </div>
             </div>
           </div>
 
