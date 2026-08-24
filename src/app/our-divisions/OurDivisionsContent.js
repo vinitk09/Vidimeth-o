@@ -380,7 +380,7 @@ export default function OurDivisionsContent() {
               Why Our Multi-Division Ecosystem Delivers Excellence
             </h2>
             <p className="mt-3 text-sm text-slate-600">
-              Vidi Meth Digital Services integrates technology, customer support, and strategic partnerships across all five divisions.
+              Vidi Meth Digital Services integrates technology, customer support, and strategic partnerships across multi divisions.
             </p>
           </div>
 
