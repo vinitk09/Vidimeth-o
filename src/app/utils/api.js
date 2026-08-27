@@ -1,14 +1,17 @@
 const getBaseUrl = () => {
   if (typeof window !== "undefined") {
     const envUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-    if (envUrl && envUrl.startsWith("https://")) {
+    if (envUrl) {
       return envUrl;
+    }
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      return "http://localhost:5000";
     }
     if (window.location.protocol === "https:") {
       return "";
     }
   }
-  return process.env.NEXT_PUBLIC_API_BASE_URL || "http://187.77.184.141:5050";
+  return process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
 };
 
 /**
@@ -153,14 +156,33 @@ export async function submitContactInquiry(contactData) {
 // ----------------------------------------------------
 // 5. Privacy Policy & Telemarketing Opt-Out API
 // ----------------------------------------------------
-export async function getOptOutRequests() {
-  return await apiFetch("/api/privacy-policy");
+export async function getOptOutRequests(status) {
+  const query = status ? `?status=${encodeURIComponent(status)}` : "";
+  return await apiFetch(`/api/telemarketing-opt-out${query}`);
 }
 
 export async function submitOptOutRequest(optOutData) {
-  return await apiFetch("/api/privacy-policy", {
+  return await apiFetch("/api/telemarketing-opt-out", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(optOutData),
+  });
+}
+
+export async function getOptOutRequestById(id) {
+  return await apiFetch(`/api/telemarketing-opt-out/${encodeURIComponent(id)}`);
+}
+
+export async function updateOptOutRequest(id, updateData) {
+  return await apiFetch(`/api/telemarketing-opt-out/${encodeURIComponent(id)}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updateData),
+  });
+}
+
+export async function deleteOptOutRequest(id) {
+  return await apiFetch(`/api/telemarketing-opt-out/${encodeURIComponent(id)}`, {
+    method: "DELETE",
   });
 }

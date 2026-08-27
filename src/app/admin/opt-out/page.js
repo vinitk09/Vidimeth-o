@@ -49,7 +49,7 @@ export default function AdminOptOutPage() {
               <h1 className="text-2xl font-bold text-white">Telemarketing Opt-Out Console</h1>
             </div>
             <p className="mt-1 text-xs text-slate-400">
-              Do-Not-Call (DNC) Registry &amp; Opt-Out Requests (`GET /api/privacy-policy`)
+              Do-Not-Call (DNC) Registry &amp; Opt-Out Requests (`GET /api/telemarketing-opt-out`)
             </p>
           </div>
 
@@ -91,6 +91,9 @@ export default function AdminOptOutPage() {
                     <span className="text-slate-400">({item.email})</span>
                     <span className="font-bold text-rose-400 bg-rose-950 px-2.5 py-0.5 rounded border border-rose-800">
                       {item.phoneNumber}
+                    </span>
+                    <span className={`px-2 py-0.5 rounded text-[11px] font-semibold ${item.status === "Processed" ? "bg-emerald-950 text-emerald-400 border border-emerald-800" : "bg-amber-950 text-amber-400 border border-amber-800"}`}>
+                      {item.status || "Pending"}
                     </span>
                   </div>
                   {item.createdAt && (

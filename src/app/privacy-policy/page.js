@@ -16,26 +16,32 @@ export default function PrivacyPolicyPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (errorMessage) setErrorMessage("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage("");
+
     try {
-      await submitOptOutRequest({
+      const response = await submitOptOutRequest({
         name: formData.name.trim(),
         email: formData.email.trim(),
         phoneNumber: formData.phoneNumber.trim(),
         subject: formData.subject.trim(),
         message: formData.message.trim(),
       });
-    } catch (err) {
-      console.warn("Opt-Out API submit fallback:", err);
-    } finally {
-      setIsSubmitting(false);
+
+      setSuccessMessage(
+        response?.message ||
+          "Your opt-out details have been submitted. Your phone number will be removed from calling lists within 21 working days."
+      );
       setSubmitted(true);
       setFormData({
         name: "",
@@ -44,6 +50,13 @@ export default function PrivacyPolicyPage() {
         subject: "Telemarketing Opt-Out Request",
         message: "",
       });
+    } catch (err) {
+      console.error("Opt-Out API submit error:", err);
+      setErrorMessage(
+        err.message || "Failed to submit opt-out request. Please verify your details and try again."
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   };
   return (
@@ -318,21 +331,40 @@ export default function PrivacyPolicyPage() {
                     Telemarketing Opt-Out Submission Form
                   </h4>
                   {submitted ? (
-                    <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-center text-emerald-900">
-                      <h5 className="font-bold text-base">Opt-Out Request Received</h5>
-                      <p className="mt-1 text-xs text-emerald-800">
-                        Your opt-out details have been submitted. Your phone number will be removed from calling lists within 21 working days.
+                    <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-6 text-center text-emerald-900 shadow-sm">
+                      <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <h5 className="font-bold text-base text-emerald-900">Opt-Out Request Received</h5>
+                      <p className="mt-1 text-sm text-emerald-800">
+                        {successMessage || "Your opt-out details have been submitted. Your phone number will be removed from calling lists within 21 working days."}
                       </p>
                       <button
                         type="button"
-                        onClick={() => setSubmitted(false)}
-                        className="mt-3 text-xs font-bold text-emerald-700 underline"
+                        onClick={() => {
+                          setSubmitted(false);
+                          setErrorMessage("");
+                        }}
+                        className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow transition hover:bg-emerald-800"
                       >
                         Submit another opt-out request
                       </button>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
+                      {errorMessage && (
+                        <div className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs font-medium text-rose-800 flex items-start gap-2.5">
+                          <svg className="h-4 w-4 shrink-0 text-rose-600 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                          </svg>
+                          <span>{errorMessage}</span>
+                        </div>
+                      )}
+
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div>
                           <label className="mb-1 block text-xs font-semibold text-slate-700">Name *</label>
@@ -399,9 +431,19 @@ export default function PrivacyPolicyPage() {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="rounded-xl bg-gradient-to-r from-[#0077c8] to-[#005485] px-8 py-3 text-sm font-bold text-white shadow-md transition hover:from-[#005f91] hover:to-[#00426b] disabled:opacity-50"
+                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#0077c8] to-[#005485] px-8 py-3 text-sm font-bold text-white shadow-md transition hover:from-[#005f91] hover:to-[#00426b] disabled:opacity-60"
                         >
-                          {isSubmitting ? "Submitting..." : "Submit Now"}
+                          {isSubmitting ? (
+                            <>
+                              <svg className="h-4 w-4 animate-spin text-white" viewBox="0 0 24 24" fill="none">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                              </svg>
+                              Submitting...
+                            </>
+                          ) : (
+                            "Submit Now"
+                          )}
                         </button>
                       </div>
                     </form>
