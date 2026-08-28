@@ -45,6 +45,14 @@ const adminModules = [
     badge: "API Active",
     color: "from-rose-500 to-pink-700",
   },
+  {
+    title: "News & Media Releases",
+    description: "Publish news announcements, manage media updates, and view live published press articles.",
+    endpoint: "GET /api/news",
+    href: "/#news",
+    badge: "API Active",
+    color: "from-cyan-500 to-blue-700",
+  },
 ];
 
 export default function AdminDashboardPage() {

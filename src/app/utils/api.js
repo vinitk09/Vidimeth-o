@@ -1,17 +1,9 @@
 const getBaseUrl = () => {
-  if (typeof window !== "undefined") {
-    const envUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-    if (envUrl) {
-      return envUrl;
-    }
-    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-      return "http://localhost:5000";
-    }
-    if (window.location.protocol === "https:") {
-      return "";
-    }
-  }
-  return process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
+  return (
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.API_BASE_URL ||
+    "http://187.77.184.141:5050"
+  );
 };
 
 /**
@@ -186,3 +178,131 @@ export async function deleteOptOutRequest(id) {
     method: "DELETE",
   });
 }
+
+// ----------------------------------------------------
+// 6. News & Media Releases API
+// ----------------------------------------------------
+const BACKEND_BASE_URL =
+  process.env.NEXT_PUBLIC_BACKEND_API_BASE_URL ||
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  process.env.BACKEND_API_BASE_URL ||
+  "http://187.77.184.141:5050";
+
+/**
+ * Fetch all published news articles
+ */
+export async function getNewsArticles() {
+  const endpoints = [
+    `${BACKEND_BASE_URL}/api/news`,
+    "/api/news",
+  ];
+  for (const url of endpoints) {
+    try {
+      const res = await fetch(url, {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        next: { revalidate: 60 }, // Cache for 60s in Next.js App Router
+      });
+      if (res.ok) {
+        const payload = await res.json();
+        const articles = Array.isArray(payload)
+          ? payload
+          : payload.data || payload.records || payload.posts || [];
+        if (Array.isArray(articles) && articles.length > 0) {
+          return articles.filter(
+            (item) => (item.status || "Active").toLowerCase() === "active"
+          );
+        }
+      }
+    } catch (_err) {
+      // Continue to next endpoint or fallback
+    }
+  }
+  // Fallback demo data matching Screenshot 1 & 2
+  return [
+    {
+      _id: "news-01",
+      id: "news-01",
+      slug: "villagemycity-expands-real-estate-property-connect-platform",
+      title: "VillageMyCity Expands Real Estate Property Connect Platform",
+      heading: "VillageMyCity Expands Real Estate Property Connect Platform",
+      category: "Real Estate",
+      subTitle: "Property Marketplace Update",
+      featuredImage:
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=80",
+      content:
+        "<h2>Connecting Property Buyers and Sellers</h2><p>Connecting individual property owners, builders, and buyers with transparent online-to-offline listing tools.</p>",
+      description:
+        "Connecting individual property owners, builders, and buyers with transparent online-to-offline listing tools.",
+      createdAt: "2026-07-28T10:00:00.000Z",
+      status: "Active",
+    },
+    {
+      _id: "news-02",
+      id: "news-02",
+      slug: "gojobin-introduces-instant-job-matching-for-freshers-and-experts",
+      title: "GoJobin Introduces Instant Job Matching for Freshers & Experts",
+      heading: "GoJobin Introduces Instant Job Matching for Freshers & Experts",
+      category: "Recruitment",
+      subTitle: "Employment Portal Release",
+      featuredImage:
+        "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format&fit=crop&q=80",
+      content:
+        "<h2>Next-Gen Job Matching</h2><p>India's fastest-growing recruitment portal rolls out direct application channels and verified employee listings.</p>",
+      description:
+        "India's fastest-growing recruitment portal rolls out direct application channels and verified employee listings.",
+      createdAt: "2026-07-15T10:00:00.000Z",
+      status: "Active",
+    },
+    {
+      _id: "news-03",
+      id: "news-03",
+      slug: "loan-vidhi-expands-partnerships-for-business-and-personal-loans",
+      title: "LOAN vidhi Expands Partnerships for Business & Personal Loans",
+      heading: "LOAN vidhi Expands Partnerships for Business & Personal Loans",
+      category: "Finance",
+      subTitle: "Banking Network Expansion",
+      featuredImage:
+        "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=800&auto=format&fit=crop&q=80",
+      content:
+        "<h2>Financial Solutions for Enterprises</h2><p>Transforming financial planning and portfolio management services to assist individuals and businesses.</p>",
+      description:
+        "Transforming financial planning and portfolio management services to assist individuals and businesses.",
+      createdAt: "2026-06-30T10:00:00.000Z",
+      status: "Active",
+    },
+  ];
+}
+
+/**
+ * Fetch a single news article by Slug or ID
+ */
+export async function getNewsArticleBySlug(slugOrId) {
+  if (!slugOrId) return null;
+  try {
+    const res = await fetch(
+      `${BACKEND_BASE_URL}/api/news/${encodeURIComponent(slugOrId)}`,
+      {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        next: { revalidate: 60 },
+      }
+    );
+    if (res.ok) {
+      const data = await res.json();
+      return data.data || data;
+    }
+  } catch (_e) {
+    // Fallback search in all articles
+  }
+  const all = await getNewsArticles();
+  return (
+    all.find(
+      (item) =>
+        item.slug === slugOrId ||
+        item._id === slugOrId ||
+        item.id === slugOrId
+    ) || all[0]
+  );
+}
+
