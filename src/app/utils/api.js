@@ -1,18 +1,38 @@
-const getBaseUrl = () => {
-  return (
-    process.env.NEXT_PUBLIC_API_BASE_URL ||
-    process.env.API_BASE_URL ||
-    "http://187.77.184.141:5050"
-  );
+export const DEPLOYED_API_BASE_URL = "http://187.77.184.141:5050";
+
+/**
+ * Resolves the API base URL.
+ * Checks environment variables (NEXT_PUBLIC_API_BASE_URL, API_BASE_URL)
+ * and falls back to the live deployed URL if missing, empty, or undefined.
+ */
+export const getBaseUrl = () => {
+  const envUrl =
+    (typeof process !== "undefined" && process.env?.NEXT_PUBLIC_API_BASE_URL) ||
+    (typeof process !== "undefined" && process.env?.API_BASE_URL);
+
+  if (
+    envUrl &&
+    typeof envUrl === "string" &&
+    envUrl.trim() !== "" &&
+    envUrl !== "undefined" &&
+    envUrl !== "null"
+  ) {
+    return envUrl.trim().replace(/\/+$/, "");
+  }
+
+  return DEPLOYED_API_BASE_URL;
 };
 
 /**
- * Generic fetch wrapper with standard error handling
+ * Generic fetch wrapper with standard error handling and deployed URL fallback
  */
 async function apiFetch(endpoint, options = {}) {
-  const url = `${getBaseUrl()}${endpoint}`;
+  const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+  const primaryBase = getBaseUrl();
+  const primaryUrl = `${primaryBase}${cleanEndpoint}`;
+
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(primaryUrl, options);
     const contentType = response.headers.get("content-type");
 
     let data;
@@ -29,7 +49,34 @@ async function apiFetch(endpoint, options = {}) {
 
     return data;
   } catch (error) {
-    console.warn(`[API] Fetch failed for ${url}:`, error.message);
+    // If primary base is different from deployed URL and primary request failed, retry with deployed fallback
+    if (primaryBase !== DEPLOYED_API_BASE_URL) {
+      const fallbackUrl = `${DEPLOYED_API_BASE_URL}${cleanEndpoint}`;
+      try {
+        console.warn(`[API] Primary fetch failed for ${primaryUrl}, retrying with deployed fallback: ${fallbackUrl}`);
+        const fallbackResponse = await fetch(fallbackUrl, options);
+        const fallbackContentType = fallbackResponse.headers.get("content-type");
+
+        let fallbackData;
+        if (fallbackContentType && fallbackContentType.includes("application/json")) {
+          fallbackData = await fallbackResponse.json();
+        } else {
+          const text = await fallbackResponse.text();
+          fallbackData = { message: text };
+        }
+
+        if (!fallbackResponse.ok) {
+          throw new Error(fallbackData.message || fallbackData.error || `HTTP error! status: ${fallbackResponse.status}`);
+        }
+
+        return fallbackData;
+      } catch (fallbackError) {
+        console.warn(`[API] Deployed fallback fetch also failed for ${fallbackUrl}:`, fallbackError.message);
+        throw fallbackError;
+      }
+    }
+
+    console.warn(`[API] Fetch failed for ${primaryUrl}:`, error.message);
     throw error;
   }
 }
@@ -206,10 +253,13 @@ export async function getNewsArticles(filters = {}) {
   if (filters.status) queryParams.set("status", filters.status);
   const queryString = queryParams.toString() ? `?${queryParams.toString()}` : "";
 
-  const endpoints = [
-    `${getBaseUrl()}/api/news${queryString}`,
-    `/api/news${queryString}`,
-  ];
+  const endpoints = Array.from(
+    new Set([
+      `${getBaseUrl()}/api/news${queryString}`,
+      `${DEPLOYED_API_BASE_URL}/api/news${queryString}`,
+      `/api/news${queryString}`,
+    ])
+  );
 
   for (const url of endpoints) {
     try {
@@ -267,43 +317,50 @@ export async function getNewsArticleById(idOrSlug) {
   if (!idOrSlug) return null;
   const decoded = decodeURIComponent(idOrSlug);
 
-  try {
-    const res = await fetch(
+  const candidateUrls = Array.from(
+    new Set([
       `${getBaseUrl()}/api/news/${encodeURIComponent(decoded)}`,
-      {
+      `${DEPLOYED_API_BASE_URL}/api/news/${encodeURIComponent(decoded)}`,
+      `/api/news/${encodeURIComponent(decoded)}`,
+    ])
+  );
+
+  for (const url of candidateUrls) {
+    try {
+      const res = await fetch(url, {
         method: "GET",
         headers: { Accept: "application/json" },
         next: { revalidate: 30 },
+      });
+      if (res.ok) {
+        const payload = await res.json();
+        const item = payload.data || payload;
+        if (item && (item._id || item.id || item.heading || item.title)) {
+          return {
+            ...item,
+            id: item._id || item.id,
+            _id: item._id || item.id,
+            title: item.heading || item.title,
+            heading: item.heading || item.title,
+            category: item.category || "Updates",
+            slug: item.slug || item._id || item.id,
+            description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
+            image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+            imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+            featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+            date: item.createdAt
+              ? new Date(item.createdAt).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })
+              : item.date || "August 2026",
+          };
+        }
       }
-    );
-    if (res.ok) {
-      const payload = await res.json();
-      const item = payload.data || payload;
-      if (item && (item._id || item.id || item.heading || item.title)) {
-        return {
-          ...item,
-          id: item._id || item.id,
-          _id: item._id || item.id,
-          title: item.heading || item.title,
-          heading: item.heading || item.title,
-          category: item.category || "Updates",
-          slug: item.slug || item._id || item.id,
-          description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
-          image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-          imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-          featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-          date: item.createdAt
-            ? new Date(item.createdAt).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })
-            : item.date || "August 2026",
-        };
-      }
+    } catch (_e) {
+      // Continue to fallback
     }
-  } catch (_e) {
-    // Continue to fallback
   }
 
   // Search in all fetched articles or local dataset
@@ -335,10 +392,13 @@ export async function getBlogPosts(filters = {}) {
   if (filters.status) queryParams.set("status", filters.status);
   const queryString = queryParams.toString() ? `?${queryParams.toString()}` : "";
 
-  const endpoints = [
-    `${getBaseUrl()}/api/blogs${queryString}`,
-    `/api/blogs${queryString}`,
-  ];
+  const endpoints = Array.from(
+    new Set([
+      `${getBaseUrl()}/api/blogs${queryString}`,
+      `${DEPLOYED_API_BASE_URL}/api/blogs${queryString}`,
+      `/api/blogs${queryString}`,
+    ])
+  );
 
   for (const url of endpoints) {
     try {
@@ -397,45 +457,52 @@ export async function getBlogPostById(idOrSlug) {
   if (!idOrSlug) return null;
   const decoded = decodeURIComponent(idOrSlug);
 
-  try {
-    const res = await fetch(
+  const candidateUrls = Array.from(
+    new Set([
       `${getBaseUrl()}/api/blogs/${encodeURIComponent(decoded)}`,
-      {
+      `${DEPLOYED_API_BASE_URL}/api/blogs/${encodeURIComponent(decoded)}`,
+      `/api/blogs/${encodeURIComponent(decoded)}`,
+    ])
+  );
+
+  for (const url of candidateUrls) {
+    try {
+      const res = await fetch(url, {
         method: "GET",
         headers: { Accept: "application/json" },
         next: { revalidate: 30 },
+      });
+      if (res.ok) {
+        const payload = await res.json();
+        const item = payload.data || payload;
+        if (item && (item._id || item.id || item.heading || item.title)) {
+          return {
+            ...item,
+            id: item._id || item.id,
+            _id: item._id || item.id,
+            title: item.heading || item.title,
+            heading: item.heading || item.title,
+            category: item.category || "General",
+            slug: item.slug || item._id || item.id,
+            description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
+            content: item.content || item.description,
+            image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+            imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+            featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+            author: item.author || "Vidi Meth Editorial Team",
+            date: item.createdAt
+              ? new Date(item.createdAt).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })
+              : item.date || "August 2026",
+          };
+        }
       }
-    );
-    if (res.ok) {
-      const payload = await res.json();
-      const item = payload.data || payload;
-      if (item && (item._id || item.id || item.heading || item.title)) {
-        return {
-          ...item,
-          id: item._id || item.id,
-          _id: item._id || item.id,
-          title: item.heading || item.title,
-          heading: item.heading || item.title,
-          category: item.category || "General",
-          slug: item.slug || item._id || item.id,
-          description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
-          content: item.content || item.description,
-          image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-          imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-          featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-          author: item.author || "Vidi Meth Editorial Team",
-          date: item.createdAt
-            ? new Date(item.createdAt).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })
-            : item.date || "August 2026",
-        };
-      }
+    } catch (_e) {
+      // Continue to fallback
     }
-  } catch (_e) {
-    // Continue to fallback
   }
 
   // Search in local dataset or list
