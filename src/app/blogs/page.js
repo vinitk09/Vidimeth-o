@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { blogPosts } from "../data/blogsData";
+import { blogPosts as fallbackBlogs } from "../data/blogsData";
+import { getBlogPosts } from "../utils/api";
 
 const categories = [
   "All",
@@ -17,18 +18,47 @@ const categories = [
 ];
 
 export default function BlogsPage() {
+  const [blogs, setBlogs] = useState(fallbackBlogs);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const filteredBlogs = blogPosts.filter((blog) => {
+  useEffect(() => {
+    let isMounted = true;
+    async function load() {
+      try {
+        const data = await getBlogPosts();
+        if (isMounted && Array.isArray(data) && data.length > 0) {
+          setBlogs(data);
+        }
+      } catch (_err) {
+        // Fallback in place
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    }
+    load();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const filteredBlogs = blogs.filter((blog) => {
+    const headingText = blog.heading || blog.title || "";
+    const descText = (blog.description || "").replace(/<[^>]*>?/gm, "");
+    const catText = blog.category || "";
+
     const matchesCat =
       selectedCategory === "All" ||
-      blog.category?.toLowerCase() === selectedCategory.toLowerCase();
+      catText.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+      selectedCategory.toLowerCase().includes(catText.toLowerCase());
+
     const matchesSearch =
       searchQuery.trim() === "" ||
-      blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      blog.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      blog.category.toLowerCase().includes(searchQuery.toLowerCase());
+      headingText.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      descText.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      catText.toLowerCase().includes(searchQuery.toLowerCase());
+
     return matchesCat && matchesSearch;
   });
 
@@ -96,62 +126,66 @@ export default function BlogsPage() {
                 setSelectedCategory("All");
                 setSearchQuery("");
               }}
-              className="mt-4 text-xs font-bold text-[#0077c8] hover:underline"
+              className="mt-4 text-xs font-bold text-[#0077c8] hover:underline cursor-pointer"
             >
               Clear filters
             </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredBlogs.map((blog) => (
-              <article
-                key={blog.id}
-                className="flex flex-col justify-between rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#0077c8]/50 transition-all duration-300 group"
-              >
-                {/* Image */}
-                <div className="relative h-52 w-full bg-slate-100 overflow-hidden">
-                  <img
-                    src={blog.featuredImage || blog.imageUrl}
-                    alt={blog.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <span className="absolute top-3 left-3 bg-[#0077c8] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow">
-                    {blog.category}
-                  </span>
-                </div>
+            {filteredBlogs.map((blog) => {
+              const blogId = blog._id || blog.id || blog.slug;
+              const authorName = blog.author || "Vidi Meth Editorial Team";
+              return (
+                <article
+                  key={blogId}
+                  className="flex flex-col justify-between rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#0077c8]/50 transition-all duration-300 group"
+                >
+                  {/* Image */}
+                  <div className="relative h-52 w-full bg-slate-100 overflow-hidden">
+                    <img
+                      src={blog.imageUrl || blog.featuredImage || blog.image || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop&q=80"}
+                      alt={blog.heading || blog.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <span className="absolute top-3 left-3 bg-[#0077c8] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow">
+                      {blog.category || "General"}
+                    </span>
+                  </div>
 
-                {/* Content */}
-                <div className="p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
-                      <span>{blog.date}</span>
-                      <span className="text-[11px] font-medium text-slate-500">
-                        {blog.author}
-                      </span>
+                  {/* Content */}
+                  <div className="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
+                        <span>{blog.date || "Latest"}</span>
+                        <span className="text-[11px] font-medium text-slate-500 truncate max-w-[150px]">
+                          {authorName}
+                        </span>
+                      </div>
+
+                      <h2 className="text-base font-bold text-slate-900 leading-snug line-clamp-2 group-hover:text-[#0077c8] transition-colors">
+                        {blog.heading || blog.title}
+                      </h2>
+
+                      <p className="text-xs text-slate-600 leading-relaxed mt-2.5 line-clamp-3">
+                        {(blog.description || "").replace(/<[^>]*>?/gm, "")}
+                      </p>
                     </div>
 
-                    <h2 className="text-base font-bold text-slate-900 leading-snug line-clamp-2 group-hover:text-[#0077c8] transition-colors">
-                      {blog.title}
-                    </h2>
-
-                    <p className="text-xs text-slate-600 leading-relaxed mt-2.5 line-clamp-3">
-                      {blog.description}
-                    </p>
+                    {/* CTA */}
+                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <Link
+                        href={`/blogs/${blogId}`}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0077c8] hover:text-[#005f91] transition group/btn"
+                      >
+                        <span>View Full Blog</span>
+                        <span className="transition-transform group-hover/btn:translate-x-1">&rarr;</span>
+                      </Link>
+                    </div>
                   </div>
-
-                  {/* CTA */}
-                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <Link
-                      href={`/blogs/${blog.id}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0077c8] hover:text-[#005f91] transition group/btn"
-                    >
-                      <span>View Full Blog</span>
-                      <span className="transition-transform group-hover/btn:translate-x-1">&rarr;</span>
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         )}
       </section>

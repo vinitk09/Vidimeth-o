@@ -180,175 +180,278 @@ export async function deleteOptOutRequest(id) {
 }
 
 // ----------------------------------------------------
-// 6. News & Media Releases API
+// Helper: Normalize Image URLs from Deployed Backend
 // ----------------------------------------------------
-const BACKEND_BASE_URL =
-  process.env.NEXT_PUBLIC_BACKEND_API_BASE_URL ||
-  process.env.NEXT_PUBLIC_API_BASE_URL ||
-  process.env.BACKEND_API_BASE_URL ||
-  "http://187.77.184.141:5050";
-
-/**
- * Fetch all published news articles
- */
-export async function getNewsArticles() {
-  const endpoints = [
-    `${BACKEND_BASE_URL}/api/news`,
-    "/api/news",
-  ];
-  for (const url of endpoints) {
-    try {
-      const res = await fetch(url, {
-        method: "GET",
-        headers: { Accept: "application/json" },
-        next: { revalidate: 60 }, // Cache for 60s in Next.js App Router
-      });
-      if (res.ok) {
-        const payload = await res.json();
-        const articles = Array.isArray(payload)
-          ? payload
-          : payload.data || payload.records || payload.posts || [];
-        if (Array.isArray(articles) && articles.length > 0) {
-          return articles.filter(
-            (item) => (item.status || "Active").toLowerCase() === "active"
-          );
-        }
-      }
-    } catch (_err) {
-      // Continue to next endpoint or fallback
-    }
+export function normalizeImageUrl(url) {
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:")) {
+    return url;
   }
-  // Fallback demo data matching Screenshot 1 & 2
-  return [
-    {
-      _id: "news-01",
-      id: "news-01",
-      slug: "villagemycity-expands-real-estate-property-connect-platform",
-      title: "VillageMyCity Expands Real Estate Property Connect Platform",
-      heading: "VillageMyCity Expands Real Estate Property Connect Platform",
-      category: "Real Estate",
-      subTitle: "Property Marketplace Update",
-      featuredImage:
-        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=80",
-      content:
-        "<h2>Connecting Property Buyers and Sellers</h2><p>Connecting individual property owners, builders, and buyers with transparent online-to-offline listing tools.</p>",
-      description:
-        "Connecting individual property owners, builders, and buyers with transparent online-to-offline listing tools.",
-      createdAt: "2026-07-28T10:00:00.000Z",
-      status: "Active",
-    },
-    {
-      _id: "news-02",
-      id: "news-02",
-      slug: "gojobin-introduces-instant-job-matching-for-freshers-and-experts",
-      title: "GoJobin Introduces Instant Job Matching for Freshers & Experts",
-      heading: "GoJobin Introduces Instant Job Matching for Freshers & Experts",
-      category: "Recruitment",
-      subTitle: "Employment Portal Release",
-      featuredImage:
-        "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format&fit=crop&q=80",
-      content:
-        "<h2>Next-Gen Job Matching</h2><p>India's fastest-growing recruitment portal rolls out direct application channels and verified employee listings.</p>",
-      description:
-        "India's fastest-growing recruitment portal rolls out direct application channels and verified employee listings.",
-      createdAt: "2026-07-15T10:00:00.000Z",
-      status: "Active",
-    },
-    {
-      _id: "news-03",
-      id: "news-03",
-      slug: "loan-vidhi-expands-partnerships-for-business-and-personal-loans",
-      title: "LOAN vidhi Expands Partnerships for Business & Personal Loans",
-      heading: "LOAN vidhi Expands Partnerships for Business & Personal Loans",
-      category: "Finance",
-      subTitle: "Banking Network Expansion",
-      featuredImage:
-        "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=800&auto=format&fit=crop&q=80",
-      content:
-        "<h2>Financial Solutions for Enterprises</h2><p>Transforming financial planning and portfolio management services to assist individuals and businesses.</p>",
-      description:
-        "Transforming financial planning and portfolio management services to assist individuals and businesses.",
-      createdAt: "2026-06-30T10:00:00.000Z",
-      status: "Active",
-    },
-  ];
+  const base = getBaseUrl().replace(/\/+$/, "");
+  const cleanPath = url.startsWith("/") ? url : `/${url}`;
+  return `${base}${cleanPath}`;
 }
 
 // ----------------------------------------------------
-// 7. Blogs & Articles API
+// 6. News & Media Releases API (GET Live Integration)
 // ----------------------------------------------------
-import { blogPosts, getBlogBySlug as findBlogBySlug } from "../data/blogsData";
+import { newsArticles, getArticleById as findLocalNewsById } from "../data/newsData";
 
 /**
- * Fetch all published blog posts
+ * Fetch all published news articles from deployed backend: http://187.77.184.141:5050/api/news
  */
-export async function getBlogPosts() {
+export async function getNewsArticles(filters = {}) {
+  const queryParams = new URLSearchParams();
+  if (filters.category) queryParams.set("category", filters.category);
+  if (filters.status) queryParams.set("status", filters.status);
+  const queryString = queryParams.toString() ? `?${queryParams.toString()}` : "";
+
   const endpoints = [
-    `${BACKEND_BASE_URL}/api/blogs`,
-    `${BACKEND_BASE_URL}/api/blog`,
-    "/api/blogs",
-    "/api/blog",
+    `${getBaseUrl()}/api/news${queryString}`,
+    `/api/news${queryString}`,
   ];
+
   for (const url of endpoints) {
     try {
       const res = await fetch(url, {
         method: "GET",
         headers: { Accept: "application/json" },
-        next: { revalidate: 60 },
+        next: { revalidate: 30 }, // Next.js ISR revalidation
       });
       if (res.ok) {
         const payload = await res.json();
-        const posts = Array.isArray(payload)
+        const rawList = Array.isArray(payload)
           ? payload
-          : payload.data || payload.records || payload.blogs || payload.posts || [];
-        if (Array.isArray(posts) && posts.length > 0) {
-          return posts.filter(
+          : payload.data || payload.records || payload.posts || [];
+        if (Array.isArray(rawList) && rawList.length > 0) {
+          const activeArticles = rawList.filter(
             (item) => (item.status || "Active").toLowerCase() === "active"
           );
+          if (activeArticles.length > 0) {
+            return activeArticles.map((item) => ({
+              ...item,
+              id: item._id || item.id,
+              _id: item._id || item.id,
+              title: item.heading || item.title,
+              heading: item.heading || item.title,
+              category: item.category || "Updates",
+              slug: item.slug || item._id || item.id,
+              description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
+              image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+              imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+              featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+              date: item.createdAt
+                ? new Date(item.createdAt).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })
+                : item.date || "August 2026",
+            }));
+          }
         }
       }
     } catch (_err) {
-      // Continue to next endpoint or fallback
+      // Continue to fallback
     }
   }
+
+  // Fallback to local dataset if backend is unreachable
+  return newsArticles;
+}
+
+/**
+ * Fetch a single news article by ID or Slug from deployed backend: http://187.77.184.141:5050/api/news/:id
+ */
+export async function getNewsArticleById(idOrSlug) {
+  if (!idOrSlug) return null;
+  const decoded = decodeURIComponent(idOrSlug);
+
+  try {
+    const res = await fetch(
+      `${getBaseUrl()}/api/news/${encodeURIComponent(decoded)}`,
+      {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        next: { revalidate: 30 },
+      }
+    );
+    if (res.ok) {
+      const payload = await res.json();
+      const item = payload.data || payload;
+      if (item && (item._id || item.id || item.heading || item.title)) {
+        return {
+          ...item,
+          id: item._id || item.id,
+          _id: item._id || item.id,
+          title: item.heading || item.title,
+          heading: item.heading || item.title,
+          category: item.category || "Updates",
+          slug: item.slug || item._id || item.id,
+          description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
+          image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+          imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+          featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+          date: item.createdAt
+            ? new Date(item.createdAt).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })
+            : item.date || "August 2026",
+        };
+      }
+    }
+  } catch (_e) {
+    // Continue to fallback
+  }
+
+  // Search in all fetched articles or local dataset
+  const localMatch = findLocalNewsById(decoded);
+  if (localMatch) return localMatch;
+
+  const allArticles = await getNewsArticles();
+  return (
+    allArticles.find(
+      (item) =>
+        String(item.id) === decoded ||
+        String(item._id) === decoded ||
+        item.slug === decoded
+    ) || allArticles[0]
+  );
+}
+
+// ----------------------------------------------------
+// 7. Blogs & Articles API (GET Live Integration)
+// ----------------------------------------------------
+import { blogPosts, getBlogById as findLocalBlogById } from "../data/blogsData";
+
+/**
+ * Fetch all published blog posts from deployed backend: http://187.77.184.141:5050/api/blogs
+ */
+export async function getBlogPosts(filters = {}) {
+  const queryParams = new URLSearchParams();
+  if (filters.category) queryParams.set("category", filters.category);
+  if (filters.status) queryParams.set("status", filters.status);
+  const queryString = queryParams.toString() ? `?${queryParams.toString()}` : "";
+
+  const endpoints = [
+    `${getBaseUrl()}/api/blogs${queryString}`,
+    `/api/blogs${queryString}`,
+  ];
+
+  for (const url of endpoints) {
+    try {
+      const res = await fetch(url, {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        next: { revalidate: 30 }, // Next.js ISR revalidation
+      });
+      if (res.ok) {
+        const payload = await res.json();
+        const rawList = Array.isArray(payload)
+          ? payload
+          : payload.data || payload.records || payload.blogs || payload.posts || [];
+        if (Array.isArray(rawList) && rawList.length > 0) {
+          const activePosts = rawList.filter(
+            (item) => (item.status || "Active").toLowerCase() === "active"
+          );
+          if (activePosts.length > 0) {
+            return activePosts.map((item) => ({
+              ...item,
+              id: item._id || item.id,
+              _id: item._id || item.id,
+              title: item.heading || item.title,
+              heading: item.heading || item.title,
+              category: item.category || "General",
+              slug: item.slug || item._id || item.id,
+              description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
+              image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+              imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+              featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+              author: item.author || "Vidi Meth Editorial Team",
+              date: item.createdAt
+                ? new Date(item.createdAt).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })
+                : item.date || "August 2026",
+            }));
+          }
+        }
+      }
+    } catch (_err) {
+      // Continue to fallback
+    }
+  }
+
+  // Fallback to local dataset if backend is unreachable
   return blogPosts;
 }
 
 /**
- * Fetch a single blog post by Slug or ID
+ * Fetch a single blog post by ID or Slug from deployed backend: http://187.77.184.141:5050/api/blogs/:id
  */
-export async function getBlogPostBySlug(slugOrId) {
-  if (!slugOrId) return null;
-  const decoded = decodeURIComponent(slugOrId);
+export async function getBlogPostById(idOrSlug) {
+  if (!idOrSlug) return null;
+  const decoded = decodeURIComponent(idOrSlug);
+
   try {
     const res = await fetch(
-      `${BACKEND_BASE_URL}/api/blogs/${encodeURIComponent(decoded)}`,
+      `${getBaseUrl()}/api/blogs/${encodeURIComponent(decoded)}`,
       {
         method: "GET",
         headers: { Accept: "application/json" },
-        next: { revalidate: 60 },
+        next: { revalidate: 30 },
       }
     );
     if (res.ok) {
-      const data = await res.json();
-      return data.data || data;
+      const payload = await res.json();
+      const item = payload.data || payload;
+      if (item && (item._id || item.id || item.heading || item.title)) {
+        return {
+          ...item,
+          id: item._id || item.id,
+          _id: item._id || item.id,
+          title: item.heading || item.title,
+          heading: item.heading || item.title,
+          category: item.category || "General",
+          slug: item.slug || item._id || item.id,
+          description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
+          content: item.content || item.description,
+          image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+          imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+          featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
+          author: item.author || "Vidi Meth Editorial Team",
+          date: item.createdAt
+            ? new Date(item.createdAt).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })
+            : item.date || "August 2026",
+        };
+      }
     }
   } catch (_e) {
-    // Fallback search in all articles / local dataset
+    // Continue to fallback
   }
 
-  const foundLocal = findBlogBySlug(decoded);
-  if (foundLocal) return foundLocal;
+  // Search in local dataset or list
+  const localMatch = findLocalBlogById(decoded);
+  if (localMatch) return localMatch;
 
-  const all = await getBlogPosts();
+  const allBlogs = await getBlogPosts();
   return (
-    all.find(
+    allBlogs.find(
       (item) =>
-        item.slug === decoded ||
-        item._id === decoded ||
-        String(item.id) === decoded
-    ) || all[0]
+        String(item.id) === decoded ||
+        String(item._id) === decoded ||
+        item.slug === decoded
+    ) || allBlogs[0]
   );
 }
+
 
 

@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { getBlogById, blogPosts } from "../../data/blogsData";
+import { getBlogPostById, getBlogPosts } from "../../utils/api";
+import { blogPosts as fallbackBlogs } from "../../data/blogsData";
 
 export default async function BlogDetailPage({ params }) {
   const resolvedParams = await params;
   const blogId = resolvedParams?.id;
-  const blog = getBlogById(blogId) || blogPosts[0];
+  const blog = (await getBlogPostById(blogId)) || fallbackBlogs[0];
 
   if (!blog) {
     return (
@@ -23,10 +24,10 @@ export default async function BlogDetailPage({ params }) {
             The blog article you are looking for might have been moved or is no longer available.
           </p>
           <Link
-            href="/"
+            href="/blogs"
             className="mt-6 rounded-full bg-[#0077c8] px-6 py-2.5 text-xs font-bold text-white shadow-md hover:bg-[#005f91] transition"
           >
-            &larr; Return to Homepage
+            &larr; Return to All Blogs
           </Link>
         </div>
         <Footer />
@@ -34,9 +35,16 @@ export default async function BlogDetailPage({ params }) {
     );
   }
 
-  const latestSidebarBlogs = blogPosts
-    .filter((b) => String(b.id) !== String(blog.id))
+  const allBlogs = await getBlogPosts();
+  const latestSidebarBlogs = (allBlogs || fallbackBlogs)
+    .filter((b) => String(b._id || b.id || b.slug) !== String(blog._id || blog.id || blog.slug))
     .slice(0, 5);
+
+  const blogImage = blog.imageUrl || blog.featuredImage || blog.image;
+  const blogTitle = blog.heading || blog.title;
+  const blogDescription = blog.description;
+  const blogContent = blog.content || blog.description || "";
+  const authorName = blog.author || "Vidi Meth Editorial Team";
 
   return (
     <main className="min-h-screen bg-white text-slate-900 pt-20 flex flex-col justify-between">
@@ -48,11 +56,11 @@ export default async function BlogDetailPage({ params }) {
           {/* Main Blog Article (2 cols) */}
           <article className="lg:col-span-2">
             <span className="inline-block rounded-full bg-cyan-100 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#0077c8] mb-3">
-              {blog.category}
+              {blog.category || "General"}
             </span>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-950 leading-tight">
-              {blog.title || blog.heading}
+              {blogTitle}
             </h1>
 
             {blog.subTitle && (
@@ -62,77 +70,28 @@ export default async function BlogDetailPage({ params }) {
             )}
 
             {/* Author & Meta Bar */}
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-y border-slate-200 py-4">
+            <div className="mt-6 border-y border-slate-200 py-4">
               <div className="flex items-center gap-3">
                 <span className="w-10 h-10 rounded-full bg-[#0077c8] text-white font-bold text-xs flex items-center justify-center shadow-sm">
                   VM
                 </span>
                 <div>
                   <p className="text-xs font-bold text-slate-900">
-                    {blog.author}
+                    {authorName}
                   </p>
                   <p className="text-[11px] text-slate-500">
-                    {blog.date} • {blog.readTime}
+                    {blog.date || "Latest Update"}
                   </p>
                 </div>
-              </div>
-
-              {/* Social Share Buttons */}
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-slate-400 mr-1">Share:</span>
-                <a
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                    typeof window !== "undefined" ? window.location.href : ""
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on Facebook"
-                  className="w-7 h-7 rounded-full bg-[#1877f2] text-white text-xs font-bold grid place-items-center hover:opacity-90 transition shadow-sm"
-                >
-                  f
-                </a>
-                <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                    blog.title || ""
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on X"
-                  className="w-7 h-7 rounded-full bg-black text-white text-xs font-bold grid place-items-center hover:opacity-90 transition shadow-sm"
-                >
-                  𝕏
-                </a>
-                <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                    typeof window !== "undefined" ? window.location.href : ""
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on LinkedIn"
-                  className="w-7 h-7 rounded-full bg-[#0a66c2] text-white text-xs font-bold grid place-items-center hover:opacity-90 transition shadow-sm"
-                >
-                  in
-                </a>
-                <a
-                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
-                    `${blog.title || ""} `
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on WhatsApp"
-                  className="w-7 h-7 rounded-full bg-[#25d366] text-white text-xs font-bold grid place-items-center hover:opacity-90 transition shadow-sm"
-                >
-                  wa
-                </a>
               </div>
             </div>
 
             {/* Featured Image */}
-            {blog.featuredImage || blog.imageUrl ? (
+            {blogImage ? (
               <div className="mt-6 rounded-2xl overflow-hidden border border-slate-200 shadow-sm max-h-[460px] w-full bg-slate-100 relative">
                 <img
-                  src={blog.featuredImage || blog.imageUrl}
-                  alt={blog.title || "Featured Blog Image"}
+                  src={blogImage}
+                  alt={blogTitle || "Featured Blog Image"}
                   className="w-full h-full object-cover max-h-[460px]"
                 />
                 {blog.imageCaption && (
@@ -144,21 +103,23 @@ export default async function BlogDetailPage({ params }) {
             ) : null}
 
             {/* Summary Highlight Quote */}
-            {blog.description && (
+            {blogDescription && (
               <div className="mt-8 border-l-4 border-[#0077c8] bg-sky-50/80 p-4 sm:p-5 rounded-r-xl">
                 <p className="text-base text-slate-800 font-medium leading-relaxed italic">
-                  &ldquo;{blog.description}&rdquo;
+                  &ldquo;{blogDescription.replace(/<[^>]*>?/gm, "")}&rdquo;
                 </p>
               </div>
             )}
 
             {/* Structured HTML / Body Content */}
-            <div
-              className="mt-8 text-slate-700 leading-relaxed text-base [&_h2]:text-2xl [&_h2]:font-extrabold [&_h2]:text-slate-900 [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:border-b [&_h2]:border-slate-100 [&_h2]:pb-2 [&_p]:mb-4 [&_p]:text-justify [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-6 [&_ul]:space-y-2 [&_li]:leading-relaxed"
-              dangerouslySetInnerHTML={{
-                __html: blog.content,
-              }}
-            />
+            {blogContent ? (
+              <div
+                className="mt-8 text-slate-700 leading-relaxed text-base [&_h2]:text-2xl [&_h2]:font-extrabold [&_h2]:text-slate-900 [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:border-b [&_h2]:border-slate-100 [&_h2]:pb-2 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-slate-900 [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-4 [&_p]:text-justify [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-6 [&_ul]:space-y-2 [&_li]:leading-relaxed"
+                dangerouslySetInnerHTML={{
+                  __html: blogContent,
+                }}
+              />
+            ) : null}
 
             {/* Key Takeaways Box */}
             {blog.keyTakeaways && blog.keyTakeaways.length > 0 && (
@@ -200,10 +161,10 @@ export default async function BlogDetailPage({ params }) {
             {/* Navigation back */}
             <div className="mt-10 pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
               <Link
-                href="/#blogs"
+                href="/blogs"
                 className="inline-flex items-center gap-2 text-xs font-bold text-[#0077c8] hover:underline"
               >
-                &larr; Back to Blogs Section
+                &larr; Back to All Blogs
               </Link>
               <Link
                 href="/"
@@ -227,32 +188,35 @@ export default async function BlogDetailPage({ params }) {
                 </div>
 
                 <div className="space-y-4 divide-y divide-slate-100">
-                  {latestSidebarBlogs.map((item) => (
-                    <Link
-                      key={item.id}
-                      href={`/blogs/${item.id}`}
-                      className="flex gap-3 pt-3 group"
-                    >
-                      <div className="w-16 h-14 rounded-lg bg-slate-100 border border-slate-200 overflow-hidden shrink-0">
-                        <img
-                          src={item.featuredImage || item.imageUrl}
-                          alt=""
-                          className="w-full h-full object-cover group-hover:scale-105 transition"
-                        />
-                      </div>
-                      <div>
-                        <span className="text-[10px] font-bold text-[#0077c8] uppercase tracking-wider block mb-0.5">
-                          {item.category}
-                        </span>
-                        <p className="text-xs font-bold text-slate-900 line-clamp-2 group-hover:text-[#0077c8] transition leading-snug">
-                          {item.title || item.heading}
-                        </p>
-                        <p className="text-[10px] text-slate-400 mt-1">
-                          {item.date}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
+                  {latestSidebarBlogs.map((item) => {
+                    const sidebarId = item._id || item.id || item.slug;
+                    return (
+                      <Link
+                        key={sidebarId}
+                        href={`/blogs/${sidebarId}`}
+                        className="flex gap-3 pt-3 group"
+                      >
+                        <div className="w-16 h-14 rounded-lg bg-slate-100 border border-slate-200 overflow-hidden shrink-0">
+                          <img
+                            src={item.imageUrl || item.featuredImage || item.image || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop&q=80"}
+                            alt=""
+                            className="w-full h-full object-cover group-hover:scale-105 transition"
+                          />
+                        </div>
+                        <div>
+                          <span className="text-[10px] font-bold text-[#0077c8] uppercase tracking-wider block mb-0.5">
+                            {item.category || "General"}
+                          </span>
+                          <p className="text-xs font-bold text-slate-900 line-clamp-2 group-hover:text-[#0077c8] transition leading-snug">
+                            {item.heading || item.title}
+                          </p>
+                          <p className="text-[10px] text-slate-400 mt-1">
+                            {item.date || "Latest"}
+                          </p>
+                        </div>
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
 

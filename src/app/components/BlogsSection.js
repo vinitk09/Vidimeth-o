@@ -1,13 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { blogPosts } from "../data/blogsData";
+import { blogPosts as fallbackBlogs } from "../data/blogsData";
+import { getBlogPosts } from "../utils/api";
 
 export default function BlogsSection() {
+  const [blogs, setBlogs] = useState(fallbackBlogs);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function loadBlogs() {
+      try {
+        const data = await getBlogPosts();
+        if (isMounted && Array.isArray(data) && data.length > 0) {
+          setBlogs(data);
+        }
+      } catch (_err) {
+        // Fallback already in place
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    }
+    loadBlogs();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const itemsPerPage = 3;
-  const maxIndex = Math.max(0, blogPosts.length - itemsPerPage);
+  const maxIndex = Math.max(0, blogs.length - itemsPerPage);
 
   function handlePrev() {
     setCurrentIndex((prev) => Math.max(0, prev - 1));
@@ -17,7 +41,7 @@ export default function BlogsSection() {
     setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
   }
 
-  const visibleBlogs = blogPosts.slice(currentIndex, currentIndex + itemsPerPage);
+  const visibleBlogs = blogs.slice(currentIndex, currentIndex + itemsPerPage);
 
   return (
     <section id="blogs" className="bg-white py-16 px-4 sm:px-6 lg:px-8 text-slate-900 relative border-b border-slate-200">
@@ -77,20 +101,22 @@ export default function BlogsSection() {
           {/* Blog Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {visibleBlogs.map((blog) => {
+              const blogId = blog._id || blog.id || blog.slug;
+              const authorName = blog.author || "Vidi Meth Team";
               return (
                 <div
-                  key={blog.id}
+                  key={blogId}
                   className="flex flex-col justify-between rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#0077c8]/50 transition-all duration-300 group"
                 >
                   {/* Card Top Image & Category Badge */}
                   <div className="relative h-52 w-full bg-slate-100 overflow-hidden">
                     <img
-                      src={blog.featuredImage || blog.imageUrl}
-                      alt={blog.title || blog.heading}
+                      src={blog.imageUrl || blog.featuredImage || blog.image || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop&q=80"}
+                      alt={blog.heading || blog.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <span className="absolute top-3 left-3 bg-[#0077c8] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-xs">
-                      {blog.category}
+                      {blog.category || "General"}
                     </span>
                   </div>
 
@@ -99,27 +125,27 @@ export default function BlogsSection() {
                     <div>
                       {/* Meta bar */}
                       <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
-                        <span>{blog.date}</span>
+                        <span>{blog.date || "Latest"}</span>
                         <span className="text-[11px] text-slate-500 font-medium truncate max-w-[130px]">
-                          By {blog.author.split(" ")[0]} {blog.author.split(" ")[1] || ""}
+                          By {authorName.split(" ")[0]} {authorName.split(" ")[1] || ""}
                         </span>
                       </div>
 
                       {/* Heading */}
                       <h3 className="text-base font-bold text-slate-900 leading-snug line-clamp-2 group-hover:text-[#0077c8] transition-colors">
-                        {blog.title || blog.heading}
+                        {blog.heading || blog.title}
                       </h3>
 
                       {/* Description */}
                       <p className="text-xs text-slate-600 leading-relaxed mt-2.5 line-clamp-2">
-                        {blog.description}
+                        {blog.description?.replace(/<[^>]*>?/gm, "")}
                       </p>
                     </div>
 
                     {/* View Full Blog Button */}
                     <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between">
                       <Link
-                        href={`/blogs/${blog.id}`}
+                        href={`/blogs/${blogId}`}
                         className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0077c8] hover:text-[#005f91] transition group/link"
                       >
                         <span>View Full Blog</span>
@@ -137,7 +163,7 @@ export default function BlogsSection() {
 
           {/* Dots Indicator */}
           <div className="flex justify-center items-center gap-1.5 mt-8">
-            {Array.from({ length: Math.ceil(blogPosts.length / itemsPerPage) || 1 }).map((_, idx) => (
+            {Array.from({ length: Math.ceil(blogs.length / itemsPerPage) || 1 }).map((_, idx) => (
               <button
                 key={idx}
                 type="button"
