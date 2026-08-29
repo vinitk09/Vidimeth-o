@@ -29,10 +29,10 @@ export default function BlogsSection() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#0077c8] animate-pulse" />
               Articles &amp; Industry Insights
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="mt-3 text-3xl font-bold text-slate-900 sm:text-32px">
               Vidi Meth Knowledge &amp; Growth Hub
             </h2>
-            <p className="text-slate-600 text-sm mt-2 max-w-2xl">
+            <p className="mt-2 text-[15px] text-black max-w-3xl">
               Explore in-depth articles, expert perspectives, and actionable strategies across education, real estate, recruitment, finance, and digital business.
             </p>
           </div>
@@ -143,11 +143,10 @@ export default function BlogsSection() {
                 type="button"
                 onClick={() => setCurrentIndex(idx * itemsPerPage > maxIndex ? maxIndex : idx * itemsPerPage)}
                 aria-label={`Go to blog slide ${idx + 1}`}
-                className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                  Math.floor(currentIndex / itemsPerPage) === idx
-                    ? "w-6 bg-[#0077c8]"
-                    : "w-1.5 bg-slate-300 hover:bg-slate-400"
-                }`}
+                className={`h-1.5 rounded-full transition-all cursor-pointer ${Math.floor(currentIndex / itemsPerPage) === idx
+                  ? "w-6 bg-[#0077c8]"
+                  : "w-1.5 bg-slate-300 hover:bg-slate-400"
+                  }`}
               />
             ))}
           </div>
