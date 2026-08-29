@@ -1,15 +1,7 @@
-import { Poppins } from "next/font/google";
 import "./globals.css";
 import "aos/dist/aos.css";
 import AosInitializer from "./components/AosInitializer";
 import FloatingActions from "./components/FloatingActions";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-poppins",
-  display: "swap",
-});
 
 export const metadata = {
   title: "Vidi Meth Digital Services",
@@ -25,7 +17,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${poppins.variable} font-sans antialiased`} suppressHydrationWarning>
+    <html lang="en" className="font-sans antialiased" suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/png" href="/vidilogo.png" />
         <link rel="shortcut icon" href="/vidilogo.png" />

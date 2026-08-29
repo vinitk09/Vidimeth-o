@@ -150,7 +150,7 @@ export default function Header() {
   const isLightPage =
     pathname === "/vmhomemart" ||
     pathname?.startsWith("/news") ||
-    pathname?.startsWith("/admin");
+    pathname?.startsWith("/blogs");
 
   const isHeaderWhite = isScrolled || isMenuOpen || isLightPage;
   const useDarkText = isHeaderWhite;

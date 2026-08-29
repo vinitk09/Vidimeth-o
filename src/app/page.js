@@ -9,6 +9,8 @@ import Header from "./components/Header";
 import WhatWeDoSection from "./components/WhatWeDoSection";
 import WhyChooseUsSection from "./components/WhyChooseUsSection";
 import StatsCounterSection from "./components/StatsCounterSection";
+import BlogsSection from "./components/BlogsSection";
+import NewsSection from "./components/NewsSection";
 import FloatingActions from "./components/FloatingActions";
 import Link from "next/link";
 
@@ -163,6 +165,8 @@ export default function Home() {
       <WhatWeDoSection />
       <FoundationNetworkSection />
       <StatsCounterSection />
+      <BlogsSection />
+      <NewsSection />
       <ClientTestimonialsSection />
       <Footer />
     </main>

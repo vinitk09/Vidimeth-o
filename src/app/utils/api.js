@@ -274,14 +274,55 @@ export async function getNewsArticles() {
   ];
 }
 
+// ----------------------------------------------------
+// 7. Blogs & Articles API
+// ----------------------------------------------------
+import { blogPosts, getBlogBySlug as findBlogBySlug } from "../data/blogsData";
+
 /**
- * Fetch a single news article by Slug or ID
+ * Fetch all published blog posts
  */
-export async function getNewsArticleBySlug(slugOrId) {
+export async function getBlogPosts() {
+  const endpoints = [
+    `${BACKEND_BASE_URL}/api/blogs`,
+    `${BACKEND_BASE_URL}/api/blog`,
+    "/api/blogs",
+    "/api/blog",
+  ];
+  for (const url of endpoints) {
+    try {
+      const res = await fetch(url, {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        next: { revalidate: 60 },
+      });
+      if (res.ok) {
+        const payload = await res.json();
+        const posts = Array.isArray(payload)
+          ? payload
+          : payload.data || payload.records || payload.blogs || payload.posts || [];
+        if (Array.isArray(posts) && posts.length > 0) {
+          return posts.filter(
+            (item) => (item.status || "Active").toLowerCase() === "active"
+          );
+        }
+      }
+    } catch (_err) {
+      // Continue to next endpoint or fallback
+    }
+  }
+  return blogPosts;
+}
+
+/**
+ * Fetch a single blog post by Slug or ID
+ */
+export async function getBlogPostBySlug(slugOrId) {
   if (!slugOrId) return null;
+  const decoded = decodeURIComponent(slugOrId);
   try {
     const res = await fetch(
-      `${BACKEND_BASE_URL}/api/news/${encodeURIComponent(slugOrId)}`,
+      `${BACKEND_BASE_URL}/api/blogs/${encodeURIComponent(decoded)}`,
       {
         method: "GET",
         headers: { Accept: "application/json" },
@@ -293,16 +334,21 @@ export async function getNewsArticleBySlug(slugOrId) {
       return data.data || data;
     }
   } catch (_e) {
-    // Fallback search in all articles
+    // Fallback search in all articles / local dataset
   }
-  const all = await getNewsArticles();
+
+  const foundLocal = findBlogBySlug(decoded);
+  if (foundLocal) return foundLocal;
+
+  const all = await getBlogPosts();
   return (
     all.find(
       (item) =>
-        item.slug === slugOrId ||
-        item._id === slugOrId ||
-        item.id === slugOrId
+        item.slug === decoded ||
+        item._id === decoded ||
+        String(item.id) === decoded
     ) || all[0]
   );
 }
+
 
