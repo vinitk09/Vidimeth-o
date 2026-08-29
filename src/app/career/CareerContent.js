@@ -236,17 +236,20 @@ export default function CareerContent() {
     async function fetchJobs() {
       try {
         const res = await getCareersData();
-        if (res && res.jobPostings && Array.isArray(res.jobPostings) && res.jobPostings.length > 0) {
-          const apiJobs = res.jobPostings.map((j, i) => ({
-            id: j.jobId || `job-${i}`,
-            jobId: j.jobId || `job-${i}`,
-            title: j.title,
+        const rawJobs = Array.isArray(res)
+          ? res
+          : res?.jobPostings || res?.jobs || res?.data?.jobPostings || res?.data?.jobs || res?.data || res?.records || [];
+        if (Array.isArray(rawJobs) && rawJobs.length > 0) {
+          const apiJobs = rawJobs.map((j, i) => ({
+            id: j._id || j.id || j.jobId || `job-${i}`,
+            jobId: j._id || j.id || j.jobId || `job-${i}`,
+            title: j.title || j.heading || j.position || "Open Position",
             company: j.company || "Vidi Meth Digital Services",
             location: j.location || "Jamshedpur",
             category: j.department || j.category || "Administration",
             type: j.type || "Full-Time",
-            postedDate: "Recently Posted",
-            skills: j.skills || ["Professional", "Teamwork"],
+            postedDate: j.createdAt ? new Date(j.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "Recently Posted",
+            skills: Array.isArray(j.skills) ? j.skills : ["Professional", "Teamwork"],
             description: j.summary || j.description || "Exciting opportunity at Vidi Meth.",
             responsibilities: j.responsibilities || [],
             requirements: j.requirements || [],

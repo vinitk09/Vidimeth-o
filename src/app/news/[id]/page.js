@@ -223,7 +223,12 @@ export default function NewsDetailPage() {
                 <div
                   className="mt-8 space-y-4 text-slate-700 leading-relaxed text-base [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-[#0a1f44] [&_h2]:border-b [&_h2]:border-slate-200 [&_h2]:pb-2 [&_h2]:mt-6 [&_p]:mb-4 [&_p]:text-justify [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1.5"
                   dangerouslySetInnerHTML={{
-                    __html: typeof article.description === "string" ? article.description : "",
+                    __html:
+                      typeof article.content === "string" && article.content
+                        ? article.content
+                        : typeof article.description === "string"
+                        ? article.description
+                        : "",
                   }}
                 />
               )}

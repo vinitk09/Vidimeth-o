@@ -14,6 +14,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: "/api/:path*",
+        destination: "http://187.77.184.141:5050/api/:path*",
+      },
+      {
         source: "/www.vmhomemart.com",
         destination: "/vmhomemart",
       },

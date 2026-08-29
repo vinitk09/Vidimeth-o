@@ -28,57 +28,44 @@ export const getBaseUrl = () => {
  */
 async function apiFetch(endpoint, options = {}) {
   const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
-  const primaryBase = getBaseUrl();
-  const primaryUrl = `${primaryBase}${cleanEndpoint}`;
 
-  try {
-    const response = await fetch(primaryUrl, options);
-    const contentType = response.headers.get("content-type");
-
-    let data;
-    if (contentType && contentType.includes("application/json")) {
-      data = await response.json();
-    } else {
-      const text = await response.text();
-      data = { message: text };
-    }
-
-    if (!response.ok) {
-      throw new Error(data.message || data.error || `HTTP error! status: ${response.status}`);
-    }
-
-    return data;
-  } catch (error) {
-    // If primary base is different from deployed URL and primary request failed, retry with deployed fallback
-    if (primaryBase !== DEPLOYED_API_BASE_URL) {
-      const fallbackUrl = `${DEPLOYED_API_BASE_URL}${cleanEndpoint}`;
-      try {
-        console.warn(`[API] Primary fetch failed for ${primaryUrl}, retrying with deployed fallback: ${fallbackUrl}`);
-        const fallbackResponse = await fetch(fallbackUrl, options);
-        const fallbackContentType = fallbackResponse.headers.get("content-type");
-
-        let fallbackData;
-        if (fallbackContentType && fallbackContentType.includes("application/json")) {
-          fallbackData = await fallbackResponse.json();
-        } else {
-          const text = await fallbackResponse.text();
-          fallbackData = { message: text };
-        }
-
-        if (!fallbackResponse.ok) {
-          throw new Error(fallbackData.message || fallbackData.error || `HTTP error! status: ${fallbackResponse.status}`);
-        }
-
-        return fallbackData;
-      } catch (fallbackError) {
-        console.warn(`[API] Deployed fallback fetch also failed for ${fallbackUrl}:`, fallbackError.message);
-        throw fallbackError;
-      }
-    }
-
-    console.warn(`[API] Fetch failed for ${primaryUrl}:`, error.message);
-    throw error;
+  const urlsToTry = [];
+  if (typeof window !== "undefined") {
+    urlsToTry.push(cleanEndpoint); // Use Next.js rewrite proxy (avoids CORS & Mixed Content)
   }
+  urlsToTry.push(`${getBaseUrl()}${cleanEndpoint}`);
+  if (getBaseUrl() !== DEPLOYED_API_BASE_URL) {
+    urlsToTry.push(`${DEPLOYED_API_BASE_URL}${cleanEndpoint}`);
+  }
+
+  const uniqueUrls = Array.from(new Set(urlsToTry));
+  let lastError;
+
+  for (const url of uniqueUrls) {
+    try {
+      const response = await fetch(url, options);
+      const contentType = response.headers.get("content-type");
+
+      let data;
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        data = { message: text };
+      }
+
+      if (!response.ok) {
+        throw new Error(data.message || data.error || `HTTP error! status: ${response.status}`);
+      }
+
+      return data;
+    } catch (error) {
+      lastError = error;
+      console.warn(`[API] Fetch attempt failed for ${url}:`, error.message);
+    }
+  }
+
+  throw lastError || new Error(`Failed to fetch ${endpoint}`);
 }
 
 // ----------------------------------------------------
@@ -230,13 +217,142 @@ export async function deleteOptOutRequest(id) {
 // Helper: Normalize Image URLs from Deployed Backend
 // ----------------------------------------------------
 export function normalizeImageUrl(url) {
-  if (!url) return "";
-  if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:")) {
-    return url;
+  if (!url || typeof url !== "string") return "";
+  const trimmed = url.trim();
+  if (
+    trimmed.startsWith("http://") ||
+    trimmed.startsWith("https://") ||
+    trimmed.startsWith("data:")
+  ) {
+    return trimmed;
   }
   const base = getBaseUrl().replace(/\/+$/, "");
-  const cleanPath = url.startsWith("/") ? url : `/${url}`;
+  const cleanPath = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
   return `${base}${cleanPath}`;
+}
+
+function extractListFromPayload(payload) {
+  if (!payload) return [];
+  if (Array.isArray(payload)) return payload;
+  if (Array.isArray(payload.data)) return payload.data;
+  if (Array.isArray(payload.records)) return payload.records;
+  if (Array.isArray(payload.posts)) return payload.posts;
+  if (Array.isArray(payload.articles)) return payload.articles;
+  if (Array.isArray(payload.news)) return payload.news;
+  if (Array.isArray(payload.blogs)) return payload.blogs;
+  if (Array.isArray(payload.items)) return payload.items;
+  if (Array.isArray(payload.result)) return payload.result;
+  if (Array.isArray(payload.data?.blogs)) return payload.data.blogs;
+  if (Array.isArray(payload.data?.posts)) return payload.data.posts;
+  if (Array.isArray(payload.data?.articles)) return payload.data.articles;
+  if (Array.isArray(payload.data?.news)) return payload.data.news;
+  if (Array.isArray(payload.data?.records)) return payload.data.records;
+  if (Array.isArray(payload.data?.items)) return payload.data.items;
+  return [];
+}
+
+function extractItemFromPayload(payload) {
+  if (!payload) return null;
+  if (payload.data && typeof payload.data === "object" && !Array.isArray(payload.data)) {
+    return payload.data;
+  }
+  if (payload.blog && typeof payload.blog === "object") return payload.blog;
+  if (payload.article && typeof payload.article === "object") return payload.article;
+  if (payload.post && typeof payload.post === "object") return payload.post;
+  if (payload.news && typeof payload.news === "object") return payload.news;
+  if (payload.result && typeof payload.result === "object" && !Array.isArray(payload.result)) {
+    return payload.result;
+  }
+  if (typeof payload === "object" && (payload._id || payload.id || payload.heading || payload.title)) {
+    return payload;
+  }
+  return null;
+}
+
+function formatNewsArticle(item) {
+  const id = item._id || item.id || item.slug || String(Math.random());
+  const title = item.heading || item.title || item.name || item.topic || "Vidi Meth Update";
+  const desc = item.description || item.excerpt || item.shortDescription || item.content?.replace(/<[^>]*>?/gm, "") || "";
+  const rawImg = item.imageUrl || item.featuredImage || item.image || item.thumbnail || item.banner || item.coverImage;
+  const rawDate = item.createdAt || item.date || item.publishedAt || item.updatedAt;
+
+  let formattedDate = "Latest";
+  if (rawDate) {
+    try {
+      const d = new Date(rawDate);
+      if (!isNaN(d.getTime())) {
+        formattedDate = d.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        });
+      } else {
+        formattedDate = String(rawDate);
+      }
+    } catch (_e) {
+      formattedDate = String(rawDate);
+    }
+  }
+
+  return {
+    ...item,
+    id: id,
+    _id: id,
+    title: title,
+    heading: title,
+    category: item.category || "Updates",
+    slug: item.slug || id,
+    description: desc,
+    content: item.content || desc,
+    image: normalizeImageUrl(rawImg),
+    imageUrl: normalizeImageUrl(rawImg),
+    featuredImage: normalizeImageUrl(rawImg),
+    date: formattedDate,
+  };
+}
+
+function formatBlogPost(item) {
+  const id = item._id || item.id || item.slug || String(Math.random());
+  const title = item.heading || item.title || item.name || item.topic || "Vidi Meth Article";
+  const desc = item.description || item.excerpt || item.shortDescription || item.content?.replace(/<[^>]*>?/gm, "") || "";
+  const rawImg = item.imageUrl || item.featuredImage || item.image || item.thumbnail || item.banner || item.coverImage;
+  const rawDate = item.createdAt || item.date || item.publishedAt || item.updatedAt;
+  const author = item.author || item.authorName || item.creator || item.createdBy || "Vidi Meth Editorial Team";
+
+  let formattedDate = "Latest";
+  if (rawDate) {
+    try {
+      const d = new Date(rawDate);
+      if (!isNaN(d.getTime())) {
+        formattedDate = d.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        });
+      } else {
+        formattedDate = String(rawDate);
+      }
+    } catch (_e) {
+      formattedDate = String(rawDate);
+    }
+  }
+
+  return {
+    ...item,
+    id: id,
+    _id: id,
+    title: title,
+    heading: title,
+    category: item.category || "General",
+    slug: item.slug || id,
+    description: desc,
+    content: item.content || desc,
+    author: author,
+    image: normalizeImageUrl(rawImg),
+    imageUrl: normalizeImageUrl(rawImg),
+    featuredImage: normalizeImageUrl(rawImg),
+    date: formattedDate,
+  };
 }
 
 // ----------------------------------------------------
@@ -255,9 +371,11 @@ export async function getNewsArticles(filters = {}) {
 
   const endpoints = Array.from(
     new Set([
+      `/api/news${queryString}`,
       `${getBaseUrl()}/api/news${queryString}`,
       `${DEPLOYED_API_BASE_URL}/api/news${queryString}`,
-      `/api/news${queryString}`,
+      `/api/vidimeth/news${queryString}`,
+      `${DEPLOYED_API_BASE_URL}/api/vidimeth/news${queryString}`,
     ])
   );
 
@@ -270,39 +388,23 @@ export async function getNewsArticles(filters = {}) {
       });
       if (res.ok) {
         const payload = await res.json();
-        const rawList = Array.isArray(payload)
-          ? payload
-          : payload.data || payload.records || payload.posts || [];
+        const rawList = extractListFromPayload(payload);
+
         if (Array.isArray(rawList) && rawList.length > 0) {
-          const activeArticles = rawList.filter(
-            (item) => (item.status || "Active").toLowerCase() === "active"
-          );
-          if (activeArticles.length > 0) {
-            return activeArticles.map((item) => ({
-              ...item,
-              id: item._id || item.id,
-              _id: item._id || item.id,
-              title: item.heading || item.title,
-              heading: item.heading || item.title,
-              category: item.category || "Updates",
-              slug: item.slug || item._id || item.id,
-              description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
-              image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-              imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-              featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-              date: item.createdAt
-                ? new Date(item.createdAt).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })
-                : item.date || "August 2026",
-            }));
+          const activeArticles = rawList.filter((item) => {
+            if (!item.status) return true;
+            const st = String(item.status).toLowerCase();
+            return st !== "inactive" && st !== "draft" && st !== "deleted" && st !== "false";
+          });
+
+          const listToUse = activeArticles.length > 0 ? activeArticles : rawList;
+          if (listToUse.length > 0) {
+            return listToUse.map(formatNewsArticle);
           }
         }
       }
     } catch (_err) {
-      // Continue to fallback
+      // Continue to next endpoint or fallback
     }
   }
 
@@ -319,9 +421,11 @@ export async function getNewsArticleById(idOrSlug) {
 
   const candidateUrls = Array.from(
     new Set([
+      `/api/news/${encodeURIComponent(decoded)}`,
       `${getBaseUrl()}/api/news/${encodeURIComponent(decoded)}`,
       `${DEPLOYED_API_BASE_URL}/api/news/${encodeURIComponent(decoded)}`,
-      `/api/news/${encodeURIComponent(decoded)}`,
+      `/api/vidimeth/news/${encodeURIComponent(decoded)}`,
+      `${DEPLOYED_API_BASE_URL}/api/vidimeth/news/${encodeURIComponent(decoded)}`,
     ])
   );
 
@@ -334,32 +438,13 @@ export async function getNewsArticleById(idOrSlug) {
       });
       if (res.ok) {
         const payload = await res.json();
-        const item = payload.data || payload;
+        const item = extractItemFromPayload(payload);
         if (item && (item._id || item.id || item.heading || item.title)) {
-          return {
-            ...item,
-            id: item._id || item.id,
-            _id: item._id || item.id,
-            title: item.heading || item.title,
-            heading: item.heading || item.title,
-            category: item.category || "Updates",
-            slug: item.slug || item._id || item.id,
-            description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
-            image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-            imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-            featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-            date: item.createdAt
-              ? new Date(item.createdAt).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })
-              : item.date || "August 2026",
-          };
+          return formatNewsArticle(item);
         }
       }
     } catch (_e) {
-      // Continue to fallback
+      // Continue to next candidate URL
     }
   }
 
@@ -394,9 +479,11 @@ export async function getBlogPosts(filters = {}) {
 
   const endpoints = Array.from(
     new Set([
+      `/api/blogs${queryString}`,
       `${getBaseUrl()}/api/blogs${queryString}`,
       `${DEPLOYED_API_BASE_URL}/api/blogs${queryString}`,
-      `/api/blogs${queryString}`,
+      `/api/blog${queryString}`,
+      `${DEPLOYED_API_BASE_URL}/api/blog${queryString}`,
     ])
   );
 
@@ -409,40 +496,23 @@ export async function getBlogPosts(filters = {}) {
       });
       if (res.ok) {
         const payload = await res.json();
-        const rawList = Array.isArray(payload)
-          ? payload
-          : payload.data || payload.records || payload.blogs || payload.posts || [];
+        const rawList = extractListFromPayload(payload);
+
         if (Array.isArray(rawList) && rawList.length > 0) {
-          const activePosts = rawList.filter(
-            (item) => (item.status || "Active").toLowerCase() === "active"
-          );
-          if (activePosts.length > 0) {
-            return activePosts.map((item) => ({
-              ...item,
-              id: item._id || item.id,
-              _id: item._id || item.id,
-              title: item.heading || item.title,
-              heading: item.heading || item.title,
-              category: item.category || "General",
-              slug: item.slug || item._id || item.id,
-              description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
-              image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-              imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-              featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-              author: item.author || "Vidi Meth Editorial Team",
-              date: item.createdAt
-                ? new Date(item.createdAt).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })
-                : item.date || "August 2026",
-            }));
+          const activePosts = rawList.filter((item) => {
+            if (!item.status) return true;
+            const st = String(item.status).toLowerCase();
+            return st !== "inactive" && st !== "draft" && st !== "deleted" && st !== "false";
+          });
+
+          const listToUse = activePosts.length > 0 ? activePosts : rawList;
+          if (listToUse.length > 0) {
+            return listToUse.map(formatBlogPost);
           }
         }
       }
     } catch (_err) {
-      // Continue to fallback
+      // Continue to next candidate or fallback
     }
   }
 
@@ -459,9 +529,11 @@ export async function getBlogPostById(idOrSlug) {
 
   const candidateUrls = Array.from(
     new Set([
+      `/api/blogs/${encodeURIComponent(decoded)}`,
       `${getBaseUrl()}/api/blogs/${encodeURIComponent(decoded)}`,
       `${DEPLOYED_API_BASE_URL}/api/blogs/${encodeURIComponent(decoded)}`,
-      `/api/blogs/${encodeURIComponent(decoded)}`,
+      `/api/blog/${encodeURIComponent(decoded)}`,
+      `${DEPLOYED_API_BASE_URL}/api/blog/${encodeURIComponent(decoded)}`,
     ])
   );
 
@@ -474,30 +546,9 @@ export async function getBlogPostById(idOrSlug) {
       });
       if (res.ok) {
         const payload = await res.json();
-        const item = payload.data || payload;
+        const item = extractItemFromPayload(payload);
         if (item && (item._id || item.id || item.heading || item.title)) {
-          return {
-            ...item,
-            id: item._id || item.id,
-            _id: item._id || item.id,
-            title: item.heading || item.title,
-            heading: item.heading || item.title,
-            category: item.category || "General",
-            slug: item.slug || item._id || item.id,
-            description: item.description || item.content?.replace(/<[^>]*>?/gm, ""),
-            content: item.content || item.description,
-            image: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-            imageUrl: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-            featuredImage: normalizeImageUrl(item.imageUrl || item.featuredImage || item.image),
-            author: item.author || "Vidi Meth Editorial Team",
-            date: item.createdAt
-              ? new Date(item.createdAt).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })
-              : item.date || "August 2026",
-          };
+          return formatBlogPost(item);
         }
       }
     } catch (_e) {

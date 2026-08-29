@@ -103,12 +103,17 @@ export default function ClientTestimonialsSection() {
     async function fetchLiveReviews() {
       try {
         const res = await getReviews();
-        if (res && res.data && Array.isArray(res.data) && res.data.length > 0) {
-          const verifiedOnly = res.data
-            .filter((item) => item.status === "Verified" || item.status === "approved")
+        const rawReviews = Array.isArray(res) ? res : res?.data || res?.reviews || res?.records || [];
+        if (Array.isArray(rawReviews) && rawReviews.length > 0) {
+          const verifiedOnly = rawReviews
+            .filter((item) => {
+              if (!item.status) return true;
+              const st = String(item.status).toLowerCase();
+              return st === "verified" || st === "approved" || st === "active" || st === "published";
+            })
             .map((item) => ({
-              id: item._id || item.reviewId,
-              name: item.fullName || item.name,
+              id: item._id || item.id || item.reviewId,
+              name: item.fullName || item.name || "Client Review",
               role: item.role || "Client",
               division: item.division || "General Digital Services",
               initials: (item.fullName || item.name || "VM")
@@ -117,9 +122,9 @@ export default function ClientTestimonialsSection() {
                 .join("")
                 .slice(0, 2)
                 .toUpperCase(),
-              rating: item.rating || 5,
-              quote: item.feedback || item.quote || item.headline,
-              status: item.status,
+              rating: Number(item.rating) || 5,
+              quote: item.feedback || item.quote || item.headline || item.review || "",
+              status: item.status || "Verified",
             }));
           if (verifiedOnly.length > 0) {
             setTestimonials([...verifiedOnly, ...defaultTestimonials]);

@@ -95,16 +95,17 @@ export default function ReviewPage() {
   const loadReviewsFromApi = async () => {
     try {
       const res = await getReviews();
-      if (res && res.data && Array.isArray(res.data) && res.data.length > 0) {
-        const mapped = res.data.map((r) => ({
-          id: r._id || r.reviewId || `rev-${Math.random()}`,
-          name: r.fullName || r.name,
+      const rawReviews = Array.isArray(res) ? res : res?.data || res?.reviews || res?.records || [];
+      if (Array.isArray(rawReviews) && rawReviews.length > 0) {
+        const mapped = rawReviews.map((r) => ({
+          id: r._id || r.id || r.reviewId || `rev-${Math.random()}`,
+          name: r.fullName || r.name || "Client Review",
           email: r.email,
           role: r.role || "Client",
           division: r.division || "General Digital Services",
-          rating: r.rating || 5,
+          rating: Number(r.rating) || 5,
           title: r.headline || r.title || "Client Review",
-          quote: r.feedback || r.quote || "",
+          quote: r.feedback || r.quote || r.review || "",
           status: r.status || "Verified",
           date: r.createdAt ? new Date(r.createdAt).toISOString().split("T")[0] : "2026-08-21",
         }));

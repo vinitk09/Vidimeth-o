@@ -132,9 +132,9 @@ export default function StatsCounterSection() {
             >
               {articles.map((article) => {
                 const articleId = article._id || article.id || article.slug;
-                const articleTitle = article.heading || article.title;
-                const articleImg = article.imageUrl || article.featuredImage || article.image;
-                const articleDesc = (article.description || "").replace(/<[^>]*>?/gm, "");
+                const articleTitle = article.heading || article.title || article.name || article.topic || "Vidi Meth News";
+                const articleImg = article.imageUrl || article.featuredImage || article.image || article.thumbnail || article.banner;
+                const articleDesc = (article.description || article.content || article.summary || article.excerpt || "").replace(/<[^>]*>?/gm, "");
 
                 return (
                   <div
