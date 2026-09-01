@@ -1,4 +1,3 @@
-import Image from "next/image";
 import HeroBannerSlider from "./components/HeroBannerSlider";
 import BusinessDevelopmentSection from "./components/BusinessDevelopmentSection";
 import ClientTestimonialsSection from "./components/ClientTestimonialsSection";
@@ -10,8 +9,6 @@ import WhatWeDoSection from "./components/WhatWeDoSection";
 import WhyChooseUsSection from "./components/WhyChooseUsSection";
 import StatsCounterSection from "./components/StatsCounterSection";
 import BlogsSection from "./components/BlogsSection";
-import FloatingActions from "./components/FloatingActions";
-import Link from "next/link";
 
 const welcomeHighlights = [
   {
