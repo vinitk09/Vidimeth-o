@@ -99,6 +99,10 @@ const faqs = [
     answer:
       "You can contact Vidi Meth through the contact information provided on the official website.\n\n• Email: info@vidimeth.com\n• Office: 147, Aambagan Road, Near Bengal Club, Sakchi, Jamshedpur – 831001, Jharkhand, India\n• Working Hours: Monday–Saturday, 10:00 AM–6:00 PM",
   },
+  {
+    question: "Does Vidi Meth provide real estate-related services?",
+    answer: "Yes. Vidi Meth operates digital real estate property portal initiatives such as VillageMyCity, which provides information and connects buyers, sellers, property owners, builders, and dealers."
+  }
 ];
 
 function PlusIcon() {
@@ -191,9 +195,9 @@ export default function FaqsPage() {
               >
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-left [&::-webkit-details-marker]:hidden">
                   <span className="flex items-center gap-3">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#f0f7fd] text-xs font-bold text-[#0077c8]">
+                    {/* <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#f0f7fd] text-xs font-bold text-[#0077c8]">
                       {index + 1}
-                    </span>
+                    </span> */}
                     <h3 className="text-[16px] sm:text-[17px] font-bold leading-[1.35] text-[#0a1f44] group-hover:text-[#0077c8] transition-colors">
                       {faq.question}
                     </h3>
