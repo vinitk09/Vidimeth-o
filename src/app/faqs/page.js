@@ -65,6 +65,10 @@ const faqs = [
       "Yes. Vidi Meth operates digital education initiatives such as VM Academy, which provides information and resources related to courses, colleges, admissions, eligibility, fees, placements, scholarships, and career choices.",
   },
   {
+    question: "Does Vidi Meth provide real estate-related services?",
+    answer: "Yes. Vidi Meth operates digital real estate property portal initiatives such as VillageMyCity, which provides information and connects buyers, sellers, property owners, builders, and dealers."
+  },
+  {
     question: "Does Vidi Meth provide recruitment or employment services?",
     answer:
       "Yes. Vidi Meth's digital ecosystem includes recruitment and employment solutions, through its recruitment platform GoJobin, Vidi Meth provides online employment solutions connecting job seekers with employers and opportunities.",
@@ -99,10 +103,7 @@ const faqs = [
     answer:
       "You can contact Vidi Meth through the contact information provided on the official website.\n\n• Email: info@vidimeth.com\n• Office: 147, Aambagan Road, Near Bengal Club, Sakchi, Jamshedpur – 831001, Jharkhand, India\n• Working Hours: Monday–Saturday, 10:00 AM–6:00 PM",
   },
-  {
-    question: "Does Vidi Meth provide real estate-related services?",
-    answer: "Yes. Vidi Meth operates digital real estate property portal initiatives such as VillageMyCity, which provides information and connects buyers, sellers, property owners, builders, and dealers."
-  }
+
 ];
 
 function PlusIcon() {
